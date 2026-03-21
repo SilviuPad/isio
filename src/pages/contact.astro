@@ -90,17 +90,11 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
       <!-- Info side -->
       <div class="space-y-8" data-animate>
         <div class="glass-card p-8">
-          <h3 class="text-lg font-bold font-heading text-white">Programează un apel</h3>
-          <p class="mt-3 text-base-300 text-sm leading-relaxed">
-            Preferi să discutăm direct? Programează un apel de descoperire gratuit de 30 de minute
-            pentru a analiza cerințele proiectului tău.
+          <h3 class="text-lg font-bold font-heading text-white">Programează un apel de descoperire</h3>
+          <p class="mt-3 text-base-300 text-sm leading-relaxed mb-6">
+            Alege o dată și oră convenabilă pentru un apel gratuit de 30 de minute.
           </p>
-          <a
-            href={localePath('contact', locale)}
-            class="btn-outline inline-block mt-6 text-sm"
-          >
-            Programează apelul
-          </a>
+          <div id="cal-embed" style="width:100%; height:100%; overflow:auto; min-height:450px;"></div>
         </div>
 
         <div class="glass-card p-8">
@@ -156,6 +150,39 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
       </div>
     </div>
   </section>
+
+  <!-- TODO: Replace YOUR_USERNAME with your Cal.com username -->
+  <script is:inline src="https://app.cal.com/embed/embed.js" async></script>
+  <script is:inline>
+    (function() {
+      function initCal() {
+        if (typeof Cal === 'undefined') {
+          setTimeout(initCal, 100);
+          return;
+        }
+        Cal("init", { origin: "https://app.cal.com" });
+        Cal("inline", {
+          elementOrSelector: "#cal-embed",
+          calLink: "YOUR_USERNAME/discovery-call",
+          layout: "month_view",
+          config: {
+            theme: "dark",
+            lang: "ro"
+          }
+        });
+        Cal("ui", {
+          theme: "dark",
+          styles: { branding: { brandColor: "#3b82f6" } },
+          hideEventTypeDetails: false
+        });
+      }
+      if (document.readyState === 'complete') {
+        initCal();
+      } else {
+        window.addEventListener('load', initCal);
+      }
+    })();
+  </script>
 
   <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
