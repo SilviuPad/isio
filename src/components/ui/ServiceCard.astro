@@ -1,33 +1,75 @@
 ---
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   href: string;
-  icon?: string;
+  variant?: 'default' | 'compact';
+  serviceKey?: string;
 }
 
-const { title, description, href, icon } = Astro.props;
+const { title, description, href, variant = 'default', serviceKey } = Astro.props;
+
+// Service-specific gradient backgrounds (since we don't have real images)
+const gradients: Record<string, string> = {
+  'web-development': 'from-electric-600/20 via-electric-500/10 to-base-900',
+  'web-apps': 'from-cyan-500/20 via-cyan-400/10 to-base-900',
+  'seo': 'from-emerald-500/20 via-emerald-400/10 to-base-900',
+  'accessibility': 'from-violet-500/20 via-violet-400/10 to-base-900',
+  'ai-agents': 'from-electric-500/15 via-cyan-400/10 to-base-900',
+};
+
+const gradient = gradients[serviceKey || ''] || 'from-electric-600/20 via-base-800 to-base-900';
+
+// Service-specific SVG icons
+const icons: Record<string, string> = {
+  'web-development': '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>',
+  'web-apps': '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" /></svg>',
+  'seo': '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>',
+  'accessibility': '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
+  'ai-agents': '<svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>',
+};
+
+const iconSvg = icons[serviceKey || ''] || icons['web-development'];
 ---
-<a
-  href={href}
-  class="glass-card p-6 group cursor-pointer transition-all duration-300 block flex flex-col"
-  data-animate
->
-  {icon && (
-    <span class="text-2xl mb-4 block">{icon}</span>
-  )}
-  <h3 class="text-lg font-semibold font-heading text-white group-hover:text-electric-400 transition-colors duration-300">
-    {title}
-  </h3>
-  <p class="mt-2 text-base-300 text-sm leading-relaxed">
-    {description}
-  </p>
-  <!-- Aiero-style arrow button -->
-  <div class="mt-auto pt-4 flex justify-end">
-    <span class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-base-400 group-hover:bg-electric-500 group-hover:border-electric-500 group-hover:text-white transition-all duration-300">
-      <svg class="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-      </svg>
-    </span>
-  </div>
-</a>
+
+{variant === 'compact' ? (
+  <a href={href} class="glass-card group cursor-pointer transition-all duration-300 block overflow-hidden" data-animate>
+    <div class={`h-36 bg-gradient-to-br ${gradient} flex items-center justify-center relative overflow-hidden`}>
+      <div class="text-electric-400/60 group-hover:text-electric-400 transition-colors duration-500 group-hover:scale-110 transition-transform" set:html={iconSvg} />
+      <div class="absolute inset-0 dot-mesh opacity-30"></div>
+    </div>
+    <div class="p-5 flex items-center justify-between">
+      <h3 class="text-base font-semibold font-heading text-white group-hover:text-electric-400 transition-colors duration-300">
+        {title}
+      </h3>
+      <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-base-400 group-hover:bg-electric-500 group-hover:border-electric-500 group-hover:text-white transition-all duration-300 shrink-0">
+        <svg class="w-3.5 h-3.5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </span>
+    </div>
+  </a>
+) : (
+  <a href={href} class="glass-card group cursor-pointer transition-all duration-300 flex flex-col overflow-hidden" data-animate>
+    <div class={`h-48 bg-gradient-to-br ${gradient} flex items-center justify-center relative overflow-hidden`}>
+      <div class="text-electric-400/50 group-hover:text-electric-400 transition-colors duration-500 group-hover:scale-110 transform" set:html={iconSvg} />
+      <div class="absolute inset-0 dot-mesh opacity-30"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-base-950 via-transparent to-transparent opacity-60"></div>
+    </div>
+    <div class="p-6 flex flex-col flex-1">
+      <h3 class="text-lg font-semibold font-heading text-white group-hover:text-electric-400 transition-colors duration-300">
+        {title}
+      </h3>
+      <p class="mt-2 text-base-300 text-sm leading-relaxed">
+        {description}
+      </p>
+      <div class="mt-auto pt-4 flex justify-end">
+        <span class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-base-400 group-hover:bg-electric-500 group-hover:border-electric-500 group-hover:text-white transition-all duration-300">
+          <svg class="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+)}
