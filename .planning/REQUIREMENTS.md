@@ -28,9 +28,9 @@
 
 ### Internationalization
 
-- [ ] **I18N-01**: Full bilingual site with RO and EN versions of all pages
+- [x] **I18N-01**: Full bilingual site with RO and EN versions of all pages
 - [ ] **I18N-02**: Language switcher UI component accessible from all pages
-- [ ] **I18N-03**: Locale-based URL routing (/ro/ and /en/ prefixes)
+- [x] **I18N-03**: Locale-based URL routing (/ro/ and /en/ prefixes)
 - [ ] **I18N-04**: Hreflang tags on all pages for SEO
 - [ ] **I18N-05**: CMS content stored per locale (RO and EN)
 
@@ -41,7 +41,7 @@
 - [ ] **SEO-03**: Auto-generated sitemap.xml
 - [ ] **SEO-04**: Configured robots.txt
 - [ ] **SEO-05**: Optimized meta tags (title, description, OG tags) per page and locale
-- [ ] **SEO-06**: Static-first SSG architecture with zero unnecessary client-side JS
+- [x] **SEO-06**: Static-first SSG architecture with zero unnecessary client-side JS
 
 ### Interaction
 
@@ -121,9 +121,9 @@
 | PRIC-05 | Phase 2 | Pending |
 | PRIC-06 | Phase 2 | Pending |
 | PRIC-07 | Phase 1 | Pending |
-| I18N-01 | Phase 1 | Pending |
+| I18N-01 | Phase 1 | Complete |
 | I18N-02 | Phase 1 | Pending |
-| I18N-03 | Phase 1 | Pending |
+| I18N-03 | Phase 1 | Complete |
 | I18N-04 | Phase 1 | Pending |
 | I18N-05 | Phase 1 | Pending |
 | SEO-01 | Phase 2 | Pending |
@@ -131,7 +131,7 @@
 | SEO-03 | Phase 1 | Pending |
 | SEO-04 | Phase 1 | Pending |
 | SEO-05 | Phase 1 | Pending |
-| SEO-06 | Phase 1 | Pending |
+| SEO-06 | Phase 1 | Complete |
 | INTR-01 | Phase 3 | Pending |
 | INTR-02 | Phase 3 | Pending |
 | INTR-03 | Phase 2 | Pending |
