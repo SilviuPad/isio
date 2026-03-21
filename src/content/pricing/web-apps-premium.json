@@ -1,0 +1,20 @@
+{
+  "service": "web-apps",
+  "order": 3,
+  "name": { "ro": "Premium", "en": "Premium" },
+  "priceEur": 7000,
+  "pricePrefix": null,
+  "deliveryDays": 60,
+  "revisions": -1,
+  "isRecommended": false,
+  "description": { "ro": "Aplicație web enterprise cu funcționalități avansate.", "en": "Enterprise web app with advanced features." },
+  "features": [
+    { "ro": "Operații CRUD", "en": "CRUD operations", "included": true },
+    { "ro": "Autentificare utilizatori", "en": "User authentication", "included": true },
+    { "ro": "Design responsive", "en": "Responsive design", "included": true },
+    { "ro": "Integrare API", "en": "API integration", "included": true },
+    { "ro": "Dashboard admin", "en": "Admin dashboard", "included": true },
+    { "ro": "Integrare plăți", "en": "Payment integration", "included": true },
+    { "ro": "Fluxuri de lucru personalizate", "en": "Custom workflows", "included": true }
+  ]
+}

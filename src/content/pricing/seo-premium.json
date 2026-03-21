@@ -1,0 +1,20 @@
+{
+  "service": "seo",
+  "order": 3,
+  "name": { "ro": "Premium", "en": "Premium" },
+  "priceEur": 1200,
+  "pricePrefix": null,
+  "deliveryDays": 30,
+  "revisions": -1,
+  "isRecommended": false,
+  "description": { "ro": "SEO enterprise cu link building și monitorizare continuă.", "en": "Enterprise SEO with link building and continuous monitoring." },
+  "features": [
+    { "ro": "Audit tehnic", "en": "Technical audit", "included": true },
+    { "ro": "Cercetare cuvinte cheie", "en": "Keyword research", "included": true },
+    { "ro": "Optimizare on-page", "en": "On-page optimization", "included": true },
+    { "ro": "Strategie de conținut", "en": "Content strategy", "included": true },
+    { "ro": "Raportare lunară", "en": "Monthly reporting", "included": true },
+    { "ro": "Link building", "en": "Link building", "included": true },
+    { "ro": "Analiză competitori", "en": "Competitor analysis", "included": true }
+  ]
+}

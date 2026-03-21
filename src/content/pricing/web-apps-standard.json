@@ -1,0 +1,20 @@
+{
+  "service": "web-apps",
+  "order": 2,
+  "name": { "ro": "Standard", "en": "Standard" },
+  "priceEur": 3500,
+  "pricePrefix": null,
+  "deliveryDays": 45,
+  "revisions": 5,
+  "isRecommended": true,
+  "description": { "ro": "Aplicație web completă cu integrări și dashboard.", "en": "Full web app with integrations and dashboard." },
+  "features": [
+    { "ro": "Operații CRUD", "en": "CRUD operations", "included": true },
+    { "ro": "Autentificare utilizatori", "en": "User authentication", "included": true },
+    { "ro": "Design responsive", "en": "Responsive design", "included": true },
+    { "ro": "Integrare API", "en": "API integration", "included": true },
+    { "ro": "Dashboard admin", "en": "Admin dashboard", "included": true },
+    { "ro": "Integrare plăți", "en": "Payment integration", "included": false },
+    { "ro": "Fluxuri de lucru personalizate", "en": "Custom workflows", "included": false }
+  ]
+}

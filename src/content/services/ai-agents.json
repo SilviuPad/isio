@@ -1,0 +1,9 @@
+{
+  "serviceKey": "ai-agents",
+  "slug": { "ro": "implementare-agenti", "en": "ai-agents" },
+  "title": { "ro": "Implementare Agenți AI", "en": "AI Agent Implementation" },
+  "description": { "ro": "Agenți AI autonomi care automatizează procese de business — SEO, marketing, suport clienți.", "en": "Autonomous AI agents that automate business processes — SEO, marketing, customer support." },
+  "metaTitle": { "ro": "Implementare Agenți AI — Isio", "en": "AI Agent Implementation — Isio" },
+  "metaDescription": { "ro": "Implementare agenți AI autonomi pentru automatizarea proceselor de business.", "en": "Autonomous AI agent implementation for business process automation." },
+  "order": 5
+}

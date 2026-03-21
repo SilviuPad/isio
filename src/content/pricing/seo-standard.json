@@ -1,0 +1,20 @@
+{
+  "service": "seo",
+  "order": 2,
+  "name": { "ro": "Standard", "en": "Standard" },
+  "priceEur": 600,
+  "pricePrefix": null,
+  "deliveryDays": 30,
+  "revisions": 3,
+  "isRecommended": true,
+  "description": { "ro": "Optimizare SEO completă cu monitorizare lunară.", "en": "Complete SEO optimization with monthly monitoring." },
+  "features": [
+    { "ro": "Audit tehnic", "en": "Technical audit", "included": true },
+    { "ro": "Cercetare cuvinte cheie", "en": "Keyword research", "included": true },
+    { "ro": "Optimizare on-page", "en": "On-page optimization", "included": true },
+    { "ro": "Strategie de conținut", "en": "Content strategy", "included": true },
+    { "ro": "Raportare lunară", "en": "Monthly reporting", "included": true },
+    { "ro": "Link building", "en": "Link building", "included": false },
+    { "ro": "Analiză competitori", "en": "Competitor analysis", "included": false }
+  ]
+}

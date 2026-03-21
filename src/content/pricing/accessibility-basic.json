@@ -1,0 +1,18 @@
+{
+  "service": "accessibility",
+  "order": 1,
+  "name": { "ro": "Basic", "en": "Basic" },
+  "priceEur": 400,
+  "pricePrefix": null,
+  "deliveryDays": 10,
+  "revisions": 1,
+  "isRecommended": false,
+  "description": { "ro": "Audit WCAG 2.1 nivel A cu raport detaliat.", "en": "WCAG 2.1 Level A audit with detailed report." },
+  "features": [
+    { "ro": "Audit WCAG 2.1 nivel A", "en": "WCAG 2.1 Level A audit", "included": true },
+    { "ro": "Raport detaliat", "en": "Detailed report", "included": true },
+    { "ro": "Listă de priorități pentru remediere", "en": "Priority fixes list", "included": true },
+    { "ro": "Testare cu screen reader", "en": "Screen reader testing", "included": false },
+    { "ro": "Suport pentru remediere", "en": "Remediation support", "included": false }
+  ]
+}

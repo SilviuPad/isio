@@ -1,0 +1,8 @@
+{
+  "title": { "ro": "StartupJunior", "en": "StartupJunior" },
+  "description": { "ro": "Platformă de educație financiară pentru copii — lecții interactive și simulări de business.", "en": "Financial education platform for children — interactive lessons and business simulations." },
+  "screenshot": "/images/portfolio/startupjunior.png",
+  "techStack": ["Astro", "TypeScript", "Tailwind CSS", "Sanity CMS"],
+  "liveUrl": "https://startupjunior.ro",
+  "order": 4
+}

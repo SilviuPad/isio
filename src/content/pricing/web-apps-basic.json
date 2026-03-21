@@ -1,0 +1,18 @@
+{
+  "service": "web-apps",
+  "order": 1,
+  "name": { "ro": "Basic", "en": "Basic" },
+  "priceEur": 1500,
+  "pricePrefix": null,
+  "deliveryDays": 30,
+  "revisions": 2,
+  "isRecommended": false,
+  "description": { "ro": "Aplicație web simplă cu funcționalități de bază.", "en": "Simple web app with basic features." },
+  "features": [
+    { "ro": "Operații CRUD", "en": "CRUD operations", "included": true },
+    { "ro": "Autentificare utilizatori", "en": "User authentication", "included": true },
+    { "ro": "Design responsive", "en": "Responsive design", "included": true },
+    { "ro": "Integrare API", "en": "API integration", "included": false },
+    { "ro": "Funcționalități în timp real", "en": "Real-time features", "included": false }
+  ]
+}

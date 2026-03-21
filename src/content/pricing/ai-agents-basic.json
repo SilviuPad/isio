@@ -1,0 +1,18 @@
+{
+  "service": "ai-agents",
+  "order": 1,
+  "name": { "ro": "Basic", "en": "Basic" },
+  "priceEur": 2000,
+  "pricePrefix": null,
+  "deliveryDays": 21,
+  "revisions": 2,
+  "isRecommended": false,
+  "description": { "ro": "Agent AI simplu pentru o singură sarcină automatizată.", "en": "Simple AI agent for a single automated task." },
+  "features": [
+    { "ro": "Automatizare sarcină unică", "en": "Single task automation", "included": true },
+    { "ro": "Integrare API", "en": "API integration", "included": true },
+    { "ro": "Monitorizare de bază", "en": "Basic monitoring", "included": true },
+    { "ro": "Orchestrare multi-agent", "en": "Multi-agent orchestration", "included": false },
+    { "ro": "Antrenament personalizat", "en": "Custom training", "included": false }
+  ]
+}

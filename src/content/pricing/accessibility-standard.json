@@ -1,0 +1,20 @@
+{
+  "service": "accessibility",
+  "order": 2,
+  "name": { "ro": "Standard", "en": "Standard" },
+  "priceEur": 800,
+  "pricePrefix": null,
+  "deliveryDays": 14,
+  "revisions": 2,
+  "isRecommended": true,
+  "description": { "ro": "Audit WCAG 2.1 nivel AA cu suport de remediere.", "en": "WCAG 2.1 Level AA audit with remediation support." },
+  "features": [
+    { "ro": "Audit WCAG 2.1 nivel A", "en": "WCAG 2.1 Level A audit", "included": true },
+    { "ro": "Raport detaliat", "en": "Detailed report", "included": true },
+    { "ro": "Listă de priorități pentru remediere", "en": "Priority fixes list", "included": true },
+    { "ro": "Conformitate nivel AA", "en": "Level AA compliance", "included": true },
+    { "ro": "Testare cu screen reader", "en": "Screen reader testing", "included": true },
+    { "ro": "Suport pentru remediere", "en": "Remediation support", "included": false },
+    { "ro": "Monitorizare continuă", "en": "Ongoing monitoring", "included": false }
+  ]
+}

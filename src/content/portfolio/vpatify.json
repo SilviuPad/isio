@@ -1,0 +1,8 @@
+{
+  "title": { "ro": "Vpatify", "en": "Vpatify" },
+  "description": { "ro": "Marketplace de accesibilitate web și platformă de audituri automate WCAG.", "en": "Web accessibility marketplace and automated WCAG audit platform." },
+  "screenshot": "/images/portfolio/vpatify.png",
+  "techStack": ["React", "TypeScript", "Node.js", "PostgreSQL", "Stripe"],
+  "liveUrl": "https://vpatify.com",
+  "order": 2
+}

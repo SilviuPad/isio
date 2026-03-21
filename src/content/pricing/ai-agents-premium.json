@@ -1,0 +1,20 @@
+{
+  "service": "ai-agents",
+  "order": 3,
+  "name": { "ro": "Premium", "en": "Premium" },
+  "priceEur": 10000,
+  "pricePrefix": null,
+  "deliveryDays": 60,
+  "revisions": -1,
+  "isRecommended": false,
+  "description": { "ro": "Sistem AI enterprise cu agenți multipli și învățare continuă.", "en": "Enterprise AI system with multiple agents and continuous learning." },
+  "features": [
+    { "ro": "Automatizare sarcină unică", "en": "Single task automation", "included": true },
+    { "ro": "Integrare API", "en": "API integration", "included": true },
+    { "ro": "Monitorizare de bază", "en": "Basic monitoring", "included": true },
+    { "ro": "Fluxuri de lucru multi-sarcină", "en": "Multi-task workflows", "included": true },
+    { "ro": "Dashboard de monitorizare", "en": "Dashboard monitoring", "included": true },
+    { "ro": "Antrenament personalizat", "en": "Custom training", "included": true },
+    { "ro": "Învățare continuă", "en": "Continuous learning", "included": true }
+  ]
+}

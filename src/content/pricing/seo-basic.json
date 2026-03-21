@@ -1,0 +1,18 @@
+{
+  "service": "seo",
+  "order": 1,
+  "name": { "ro": "Basic", "en": "Basic" },
+  "priceEur": 300,
+  "pricePrefix": null,
+  "deliveryDays": 14,
+  "revisions": 1,
+  "isRecommended": false,
+  "description": { "ro": "Audit SEO tehnic cu recomandări prioritizate.", "en": "Technical SEO audit with prioritized recommendations." },
+  "features": [
+    { "ro": "Audit tehnic", "en": "Technical audit", "included": true },
+    { "ro": "Cercetare cuvinte cheie", "en": "Keyword research", "included": true },
+    { "ro": "Optimizare on-page", "en": "On-page optimization", "included": true },
+    { "ro": "Strategie de conținut", "en": "Content strategy", "included": false },
+    { "ro": "Link building", "en": "Link building", "included": false }
+  ]
+}

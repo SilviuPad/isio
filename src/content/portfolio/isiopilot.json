@@ -1,0 +1,8 @@
+{
+  "title": { "ro": "IsioPilot", "en": "IsioPilot" },
+  "description": { "ro": "Agent AI autonom pentru SEO și marketing digital — monitorizare, analiză și optimizare continuă.", "en": "Autonomous AI agent for SEO and digital marketing — monitoring, analysis, and continuous optimization." },
+  "screenshot": "/images/portfolio/isiopilot.png",
+  "techStack": ["Node.js", "TypeScript", "Drizzle ORM", "Neon PostgreSQL", "Gemini AI"],
+  "liveUrl": "https://isiopilot.com",
+  "order": 3
+}

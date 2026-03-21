@@ -1,0 +1,20 @@
+{
+  "service": "ai-agents",
+  "order": 2,
+  "name": { "ro": "Standard", "en": "Standard" },
+  "priceEur": 5000,
+  "pricePrefix": null,
+  "deliveryDays": 45,
+  "revisions": 5,
+  "isRecommended": true,
+  "description": { "ro": "Agent AI multi-funcțional cu orchestrare și dashboard.", "en": "Multi-function AI agent with orchestration and dashboard." },
+  "features": [
+    { "ro": "Automatizare sarcină unică", "en": "Single task automation", "included": true },
+    { "ro": "Integrare API", "en": "API integration", "included": true },
+    { "ro": "Monitorizare de bază", "en": "Basic monitoring", "included": true },
+    { "ro": "Fluxuri de lucru multi-sarcină", "en": "Multi-task workflows", "included": true },
+    { "ro": "Dashboard de monitorizare", "en": "Dashboard monitoring", "included": true },
+    { "ro": "Antrenament personalizat", "en": "Custom training", "included": false },
+    { "ro": "Învățare continuă", "en": "Continuous learning", "included": false }
+  ]
+}

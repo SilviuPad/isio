@@ -1,0 +1,20 @@
+{
+  "service": "accessibility",
+  "order": 3,
+  "name": { "ro": "Premium", "en": "Premium" },
+  "priceEur": 1500,
+  "pricePrefix": null,
+  "deliveryDays": 21,
+  "revisions": -1,
+  "isRecommended": false,
+  "description": { "ro": "Audit complet WCAG 2.1 nivel AAA cu monitorizare continuă.", "en": "Full WCAG 2.1 Level AAA audit with continuous monitoring." },
+  "features": [
+    { "ro": "Audit WCAG 2.1 nivel A", "en": "WCAG 2.1 Level A audit", "included": true },
+    { "ro": "Raport detaliat", "en": "Detailed report", "included": true },
+    { "ro": "Listă de priorități pentru remediere", "en": "Priority fixes list", "included": true },
+    { "ro": "Conformitate nivel AA", "en": "Level AA compliance", "included": true },
+    { "ro": "Testare cu screen reader", "en": "Screen reader testing", "included": true },
+    { "ro": "Suport pentru remediere", "en": "Remediation support", "included": true },
+    { "ro": "Monitorizare continuă", "en": "Ongoing monitoring", "included": true }
+  ]
+}
