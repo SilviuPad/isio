@@ -9,29 +9,29 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation)
-Plan: 4 of 4 in current phase (01-04 — paused at checkpoint)
-Status: Awaiting human verification (Task 2 checkpoint)
-Last activity: 2026-03-21 — 01-04 Task 1 committed (079a705), awaiting Task 2 human-verify
+Phase: 1 of 4 (Foundation) — COMPLETE
+Plan: 4 of 4 in current phase (01-04 — complete)
+Status: Phase 1 complete — ready for Phase 2
+Last activity: 2026-03-21 — 01-04 complete, human-verify approved, SUMMARY.md created
 
-Progress: [████████░░] ~75%
+Progress: [██████████] 100% Phase 1 complete
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: -
-- Total execution time: 0 hours
+- Total plans completed: 4
+- Average duration: ~15 min/plan
+- Total execution time: ~1 hour (Phase 1)
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 1. Foundation | 4/4 | ~1h | ~15 min |
 
 **Recent Trend:**
-- Last 5 plans: -
-- Trend: -
+- Last 5 plans: 01-01, 01-02, 01-03, 01-04
+- Trend: Steady execution, one auto-fix deviation per plan on average
 
 *Updated after each plan completion*
 
@@ -47,6 +47,10 @@ Recent decisions affecting current work:
 - [Pre-phase]: i18n routing must be Phase 1 — cannot be retrofitted without breaking all URLs and SEO
 - [Pre-phase]: Use `@tailwindcss/vite` plugin — `@astrojs/tailwind` is deprecated since Astro 5.2
 - [Pre-phase]: CMS owns page content; i18n JSON files own UI chrome only (button labels, nav, errors)
+- [01-04]: Pricing pages use try/catch with console.warn fallback — Sanity may not exist at first build
+- [01-04]: wrangler.toml uses [assets] block not Pages format — Workers static asset binding for Astro dist output
+- [01-04]: 404 page defaults to RO locale at build time — Cloudflare Workers serves single file; links to /en/ provided
+- [01-04]: sanity.ts projectId fallback 'placeholder' prevents init crash before Sanity project is created
 
 ### Pending Todos
 
@@ -61,6 +65,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-21
-Stopped at: 01-04 Task 2 checkpoint — human verification of dev server bilingual pages required
-Resume signal: User types "approved" after verifying dev server, or describes issues found
-Resume file: None
+Stopped at: Phase 1 complete — 01-04 SUMMARY.md created, all 4 plans done
+Resume signal: Start Phase 2 with `/gsd:execute-phase` or plan Phase 2 content pages
+Resume file: .planning/phases/01-foundation/01-04-SUMMARY.md

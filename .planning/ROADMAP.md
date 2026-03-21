@@ -12,7 +12,7 @@ Four phases take Isio from nothing to a fully operational solo-developer agency 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Bilingual routing, Sanity CMS, Cloudflare deployment, admin auth — the infrastructure every other phase depends on
+- [x] **Phase 1: Foundation** - Bilingual routing, Sanity CMS, Cloudflare deployment, admin auth — the infrastructure every other phase depends on
 - [ ] **Phase 2: Public Site** - All public-facing pages, tiered pricing, portfolio, SEO markup, and mobile-responsive design built on Phase 1 foundations
 - [ ] **Phase 3: Booking + Contact** - Discovery call booking synced to Google Calendar and contact form with email notification
 - [ ] **Phase 4: Document Generation** - Bilingual PDF output for proposals, contracts, invoices, and reports with Romanian diacritic support
@@ -32,10 +32,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Astro 6 project init with i18n routing, Tailwind v4, Cloudflare adapter, Paraglide i18n messages
-- [ ] 01-02-PLAN.md — Sanity CMS schemas (service, portfolio, pricing, settings) and typed GROQ client library
-- [ ] 01-03-PLAN.md — Layout system (Base + Page), Header/Footer/LanguageSwitcher components, SEO meta tags, robots.txt
-- [ ] 01-04-PLAN.md — Bilingual demo pages, Cloudflare Workers config, end-to-end verification
+- [x] 01-01-PLAN.md — Astro 6 project init with i18n routing, Tailwind v4, Cloudflare adapter, Paraglide i18n messages
+- [x] 01-02-PLAN.md — Sanity CMS schemas (service, portfolio, pricing, settings) and typed GROQ client library
+- [x] 01-03-PLAN.md — Layout system (Base + Page), Header/Footer/LanguageSwitcher components, SEO meta tags, robots.txt
+- [x] 01-04-PLAN.md — Bilingual demo pages, Cloudflare Workers config, end-to-end verification
 
 ### Phase 2: Public Site
 **Goal**: A prospective client visiting the site in either Romanian or English can read about all services, compare pricing tiers, view the portfolio, and understand who they are hiring — fully SEO-optimized and mobile-responsive
@@ -77,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/4 | Planning complete | - |
+| 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 0/TBD | Not started | - |
 | 3. Booking + Contact | 0/TBD | Not started | - |
 | 4. Document Generation | 0/TBD | Not started | - |
