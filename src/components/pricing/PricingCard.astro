@@ -1,0 +1,95 @@
+---
+import type { Locale } from '../../i18n/utils';
+import { localePath } from '../../i18n/utils';
+
+interface Props {
+  name: string;
+  priceEur: number;
+  pricePrefix?: string | null;
+  deliveryDays: number;
+  revisions: number;
+  isRecommended: boolean;
+  description: string;
+  features: Array<{ text: string; included: boolean }>;
+  locale: Locale;
+  ctaHref: string;
+}
+
+const {
+  name,
+  priceEur,
+  pricePrefix,
+  deliveryDays,
+  revisions,
+  isRecommended,
+  description,
+  features,
+  locale,
+  ctaHref,
+} = Astro.props;
+
+const deliveryLabel = locale === 'ro'
+  ? `${deliveryDays} zile livrare`
+  : `${deliveryDays} day delivery`;
+
+const revisionsLabel = revisions === -1
+  ? (locale === 'ro' ? 'Revizuiri nelimitate' : 'Unlimited revisions')
+  : (locale === 'ro' ? `${revisions} revizuiri` : `${revisions} revisions`);
+
+const ctaLabel = locale === 'ro' ? 'Selectează pachetul' : 'Select package';
+---
+
+<div class={`relative rounded-2xl p-8 bg-white ${isRecommended ? 'border-2 border-electric-500' : 'border border-navy-200'}`}>
+  {isRecommended && (
+    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-electric-500 text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">
+      {locale === 'ro' ? 'Recomandat' : 'Recommended'}
+    </span>
+  )}
+
+  <!-- Header -->
+  <div>
+    <h3 class="text-xl font-bold font-heading text-navy-950">{name}</h3>
+    {pricePrefix && (
+      <p class="text-sm text-navy-500 mt-1">{pricePrefix}</p>
+    )}
+    <div class="mt-2 flex items-baseline gap-1">
+      <span class="text-4xl font-bold text-navy-950">{priceEur}</span>
+      <span class="text-lg text-navy-400">EUR</span>
+    </div>
+    <p class="text-navy-500 text-sm mt-2">{description}</p>
+  </div>
+
+  <!-- Delivery & Revisions -->
+  <div class="mt-4 space-y-1">
+    <p class="text-sm text-navy-400">{deliveryLabel}</p>
+    <p class="text-sm text-navy-400">{revisionsLabel}</p>
+  </div>
+
+  <!-- Features list -->
+  <ul class="mt-6 space-y-3">
+    {features.map((feature) => (
+      <li class="flex items-start gap-2">
+        {feature.included ? (
+          <svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        ) : (
+          <svg class="w-4 h-4 mt-0.5 text-navy-300 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        )}
+        <span class={`text-sm ${feature.included ? 'text-navy-700' : 'text-navy-400 line-through'}`}>
+          {feature.text}
+        </span>
+      </li>
+    ))}
+  </ul>
+
+  <!-- CTA Button -->
+  <a
+    href={ctaHref}
+    class={`mt-8 block w-full py-3 rounded-full font-semibold text-center transition-colors ${isRecommended ? 'bg-electric-500 hover:bg-electric-600 text-white' : 'bg-navy-100 hover:bg-navy-200 text-navy-700'}`}
+  >
+    {ctaLabel}
+  </a>
+</div>
