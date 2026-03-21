@@ -1,0 +1,27 @@
+{
+  "name": "isio",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "latest",
+    "@astrojs/sitemap": "latest",
+    "@inlang/paraglide-js": "^2.15.0",
+    "@sanity/astro": "^3",
+    "@sanity/client": "^7",
+    "@tailwindcss/vite": "^4.2",
+    "astro": "^6.0",
+    "astro-seo": "^1.1.0",
+    "sanity": "^3",
+    "tailwindcss": "^4.2"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

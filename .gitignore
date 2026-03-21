@@ -22,3 +22,15 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Astro
+.astro/
+
+# Paraglide generated
+src/paraglide/
+
+# Sanity
+.sanity/
+
+# Cloudflare
+.wrangler/
