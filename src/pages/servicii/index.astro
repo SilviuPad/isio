@@ -1,0 +1,54 @@
+---
+export const prerender = true;
+
+import Page from '../../layouts/Page.astro';
+import ServiceCard from '../../components/ui/ServiceCard.astro';
+import { getServices, localize } from '../../lib/content';
+import { slugMap, localePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/utils';
+
+const locale: Locale = 'ro';
+const { roSlug, enSlug } = { roSlug: slugMap.services.ro, enSlug: slugMap.services.en };
+const services = await getServices();
+
+// Map serviceKey to slugMap route key
+const serviceKeyToRoute: Record<string, string> = {
+  'web-development': 'website',
+  'web-apps': 'webApps',
+  'seo': 'seo',
+  'accessibility': 'accessibility',
+  'ai-agents': 'aiAgents',
+};
+---
+<Page
+  title="Servicii — Isio"
+  description="Servicii web profesionale: dezvoltare website-uri, aplicații web, SEO, accesibilitate și agenți AI."
+  locale={locale}
+  roSlug={roSlug}
+  enSlug={enSlug}
+>
+  <section class="bg-navy-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl font-bold font-heading text-white">Servicii</h1>
+        <p class="mt-4 text-lg text-navy-300 max-w-2xl">Soluții complete pentru prezența ta digitală</p>
+      </div>
+    </div>
+  </section>
+  <section class="bg-navy-900 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => {
+          const routeKey = serviceKeyToRoute[service.serviceKey] || service.serviceKey;
+          return (
+            <ServiceCard
+              title={localize(service.title, locale)}
+              description={localize(service.description, locale)}
+              href={localePath(routeKey, locale)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Page>

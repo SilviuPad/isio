@@ -2,6 +2,11 @@
 export const prerender = true;
 
 import Page from '../../layouts/Page.astro';
+import Hero from '../../components/home/Hero.astro';
+import ServicesPreview from '../../components/home/ServicesPreview.astro';
+import Stats from '../../components/home/Stats.astro';
+import PortfolioPreview from '../../components/home/PortfolioPreview.astro';
+import CallToAction from '../../components/home/CallToAction.astro';
 import { slugMap } from '../../i18n/utils';
 import type { Locale } from '../../i18n/utils';
 
@@ -15,15 +20,9 @@ const { roSlug, enSlug } = { roSlug: slugMap.home.ro, enSlug: slugMap.home.en };
   roSlug={roSlug}
   enSlug={enSlug}
 >
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-      Isio Web Agency
-    </h1>
-    <p class="mt-6 text-lg text-gray-600 max-w-2xl">
-      We build websites, web apps, and provide SEO and accessibility services.
-    </p>
-    <p class="mt-4 text-sm text-gray-400">
-      [Foundation page — full content coming in Phase 2]
-    </p>
-  </section>
+  <Hero locale={locale} />
+  <ServicesPreview locale={locale} />
+  <Stats locale={locale} />
+  <PortfolioPreview locale={locale} />
+  <CallToAction locale={locale} />
 </Page>
