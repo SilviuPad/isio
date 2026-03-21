@@ -1,0 +1,74 @@
+---
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  pageType?: 'home' | 'service' | 'pricing' | 'portfolio' | 'about' | 'contact' | 'default';
+  serviceName?: string;
+}
+
+const { locale, pageType = 'default', serviceName } = Astro.props;
+const baseUrl = 'https://isio.ro';
+
+// WebSite schema -- always present
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Isio',
+  url: baseUrl,
+  inLanguage: locale === 'ro' ? 'ro-RO' : 'en-US',
+  description: locale === 'ro'
+    ? 'Agenție web specializată în dezvoltare, SEO, accesibilitate și agenți AI.'
+    : 'Web agency specializing in development, SEO, accessibility, and AI agents.',
+};
+
+// LocalBusiness schema -- always present
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Isio',
+  url: baseUrl,
+  logo: `${baseUrl}/favicon.svg`,
+  description: locale === 'ro'
+    ? 'Agenție web specializată în dezvoltare website-uri, aplicații web, SEO și accesibilitate.'
+    : 'Web agency specializing in website development, web apps, SEO, and accessibility.',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'RO',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Romania' },
+    { '@type': 'Country', name: 'Global' },
+  ],
+  knowsLanguage: ['ro', 'en'],
+  priceRange: '€€',
+  serviceType: [
+    'Web Development',
+    'Web Application Development',
+    'Search Engine Optimization',
+    'Web Accessibility Auditing',
+    'AI Agent Implementation',
+  ],
+};
+
+// Service schema -- only on service pages
+const serviceSchema = serviceName ? {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: serviceName,
+  provider: {
+    '@type': 'ProfessionalService',
+    name: 'Isio',
+    url: baseUrl,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Romania',
+  },
+} : null;
+
+const schemas = [websiteSchema, localBusinessSchema, serviceSchema].filter(Boolean);
+---
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

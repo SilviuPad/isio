@@ -1,5 +1,6 @@
 ---
 import { SEO } from 'astro-seo';
+import JsonLd from '../components/seo/JsonLd.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,9 +10,11 @@ interface Props {
   roSlug: string;
   enSlug: string;
   ogImage?: string;
+  pageType?: 'home' | 'service' | 'pricing' | 'portfolio' | 'about' | 'contact' | 'default';
+  serviceName?: string;
 }
 
-const { title, description = '', locale, roSlug, enSlug, ogImage } = Astro.props;
+const { title, description = '', locale, roSlug, enSlug, ogImage, pageType = 'default', serviceName } = Astro.props;
 const baseUrl = 'https://isio.ro';
 const canonicalUrl = locale === 'ro' ? `${baseUrl}${roSlug}` : `${baseUrl}${enSlug}`;
 const defaultOgImage = `${baseUrl}/og.png`;
@@ -51,6 +54,7 @@ const defaultOgImage = `${baseUrl}/og.png`;
         image: ogImage || defaultOgImage,
       }}
     />
+    <JsonLd locale={locale} pageType={pageType} serviceName={serviceName} />
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased">
     <slot />
