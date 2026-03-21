@@ -14,6 +14,7 @@ build/
 .idea/
 .vscode/
 .history/
+.claude/
 *.swp
 *.swo
 
