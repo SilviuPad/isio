@@ -2,26 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @theme {
-  --color-navy-950: #0a0e27;
-  --color-navy-900: #0f1535;
-  --color-navy-800: #1a2147;
-  --color-navy-700: #252d5a;
-  --color-navy-600: #3a4578;
-  --color-navy-500: #5a6496;
-  --color-navy-400: #8088b0;
-  --color-navy-300: #a6acc8;
-  --color-navy-200: #cdd1e2;
-  --color-navy-100: #e8eaf2;
-  --color-navy-50: #f4f5f9;
+  /* Base - near black */
+  --color-base-950: #0a0a0f;
+  --color-base-900: #0f0f18;
+  --color-base-800: #161625;
+  --color-base-700: #1e1e32;
+  --color-base-600: #2a2a42;
+  --color-base-500: #3d3d5c;
+  --color-base-400: #5a5a7a;
+  --color-base-300: #8585a0;
+  --color-base-200: #b0b0c5;
+  --color-base-100: #d5d5e2;
+  --color-base-50: #ededf2;
 
+  /* Electric accent */
   --color-electric-500: #3b82f6;
   --color-electric-400: #60a5fa;
   --color-electric-300: #93bbfd;
   --color-electric-600: #2563eb;
   --color-electric-700: #1d4ed8;
 
+  /* Cyan accent */
   --color-cyan-400: #22d3ee;
   --color-cyan-500: #06b6d4;
+
+  /* Glow colors for effects */
+  --color-glow-blue: rgba(59, 130, 246, 0.15);
+  --color-glow-cyan: rgba(34, 211, 238, 0.10);
 
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -33,10 +40,98 @@ html {
 
 body {
   font-family: var(--font-body);
+  background-color: var(--color-base-950);
+  color: var(--color-base-100);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+}
+
+/* Glassmorphic card utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-electric-400), var(--color-cyan-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow button */
+.btn-glow {
+  background: linear-gradient(135deg, var(--color-electric-500), var(--color-electric-600));
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Secondary button */
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-base-100);
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-electric-400);
+  color: var(--color-electric-400);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* Dot mesh background */
+.dot-mesh {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Section number tag like [ 01 ] */
+.section-tag {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-base-400);
+  text-transform: uppercase;
+}
+
+/* Radial glow background effect */
+.radial-glow {
+  position: relative;
+}
+.radial-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--color-glow-blue), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }

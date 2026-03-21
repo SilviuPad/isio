@@ -16,13 +16,13 @@ const { currentLocale, roSlug, enSlug } = Astro.props;
     class:list={[
       'px-2 py-1 rounded transition-colors',
       currentLocale === 'ro'
-        ? 'font-semibold text-gray-900 bg-gray-100'
-        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50',
+        ? 'font-semibold text-white bg-base-700'
+        : 'text-base-400 hover:text-white hover:bg-base-800',
     ]}
   >
     RO
   </a>
-  <span class="text-gray-300" aria-hidden="true">|</span>
+  <span class="text-base-600" aria-hidden="true">|</span>
   <a
     href={enSlug}
     aria-current={currentLocale === 'en' ? 'page' : undefined}
@@ -31,8 +31,8 @@ const { currentLocale, roSlug, enSlug } = Astro.props;
     class:list={[
       'px-2 py-1 rounded transition-colors',
       currentLocale === 'en'
-        ? 'font-semibold text-gray-900 bg-gray-100'
-        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50',
+        ? 'font-semibold text-white bg-base-700'
+        : 'text-base-400 hover:text-white hover:bg-base-800',
     ]}
   >
     EN
