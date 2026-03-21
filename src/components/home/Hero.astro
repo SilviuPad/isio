@@ -27,27 +27,57 @@ const labels: Record<Locale, { title: string; titleHighlight: string; subtitle: 
 
 const l = labels[locale];
 ---
-<section class="bg-navy-950 py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section class="bg-base-950 dot-mesh relative overflow-hidden min-h-screen flex items-center">
+  <!-- Radial glow behind headline -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    aria-hidden="true"
+  >
+    <div
+      id="hero-orb"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full"
+      style="background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(34,211,238,0.05) 40%, transparent 70%); filter: blur(40px);"
+    ></div>
+    <!-- Floating gradient orb -->
+    <div
+      id="hero-float-orb"
+      class="absolute top-1/4 right-1/4 w-80 h-80 rounded-full"
+      style="background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%); filter: blur(60px);"
+    ></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32">
     <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-white leading-tight">
+      <h1
+        id="hero-title"
+        class="text-5xl sm:text-6xl lg:text-8xl font-bold font-heading text-white leading-tight"
+        style="opacity: 0;"
+      >
         {l.title}
         {' '}
-        <span class="text-electric-400">{l.titleHighlight}</span>
+        <span class="gradient-text">{l.titleHighlight}</span>
       </h1>
-      <p class="mt-6 text-xl text-navy-300 max-w-2xl mx-auto">
+      <p
+        id="hero-subtitle"
+        class="mt-6 text-lg sm:text-xl text-base-300 max-w-2xl mx-auto"
+        style="opacity: 0;"
+      >
         {l.subtitle}
       </p>
-      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div
+        id="hero-ctas"
+        class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+        style="opacity: 0;"
+      >
         <a
           href={localePath('services', locale)}
-          class="bg-electric-500 hover:bg-electric-600 text-white px-8 py-4 rounded-full font-semibold transition-colors text-base w-full sm:w-auto text-center"
+          class="btn-glow text-base w-full sm:w-auto text-center"
         >
           {l.ctaServices}
         </a>
         <a
           href={localePath('contact', locale)}
-          class="border border-navy-600 text-white hover:bg-navy-800 px-8 py-4 rounded-full font-semibold transition-colors text-base w-full sm:w-auto text-center"
+          class="btn-outline text-base w-full sm:w-auto text-center"
         >
           {l.ctaContact}
         </a>
@@ -55,3 +85,44 @@ const l = labels[locale];
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // Hero entrance animations — triggered on load, not scroll
+  gsap.from('#hero-title', {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+    delay: 0,
+    clearProps: 'opacity',
+  });
+
+  gsap.from('#hero-subtitle', {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+    delay: 0.2,
+    clearProps: 'opacity',
+  });
+
+  gsap.from('#hero-ctas', {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+    delay: 0.4,
+    clearProps: 'opacity',
+  });
+
+  // Floating orb animation — gentle up/down loop
+  gsap.to('#hero-float-orb', {
+    y: -24,
+    duration: 4,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true,
+  });
+</script>

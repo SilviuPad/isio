@@ -23,17 +23,69 @@ const labels: Record<Locale, { title: string; subtitle: string; cta: string }> =
 
 const l = labels[locale];
 ---
-<section class="bg-gradient-to-r from-electric-600 to-electric-500 py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto">
-      <h2 class="text-3xl font-bold font-heading text-white">{l.title}</h2>
-      <p class="mt-4 text-white/80 text-lg">{l.subtitle}</p>
-      <a
-        href={localePath('contact', locale)}
-        class="mt-8 inline-block bg-white text-electric-600 hover:bg-navy-50 px-8 py-4 rounded-full font-semibold transition-colors text-base"
-      >
-        {l.cta}
-      </a>
+<section class="bg-base-900 relative overflow-hidden py-24">
+  <!-- Radial glow behind content -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div
+      id="cta-orb"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
+      style="background: radial-gradient(circle, rgba(59,130,246,0.14) 0%, rgba(34,211,238,0.06) 40%, transparent 70%); filter: blur(48px);"
+    ></div>
+    <!-- Secondary floating orb -->
+    <div
+      id="cta-float-orb"
+      class="absolute bottom-0 right-0 w-64 h-64 rounded-full"
+      style="background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%); filter: blur(40px); transform: translate(30%, 30%);"
+    ></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto" data-animate>
+      <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">{l.title}</h2>
+      <p class="mt-4 text-base-300 text-lg">{l.subtitle}</p>
+      <div class="mt-8">
+        <a
+          href={localePath('contact', locale)}
+          class="btn-glow inline-block"
+        >
+          {l.cta}
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Section content fade in — scoped to the CTA section via unique orb sibling
+  const ctaOrb = document.querySelector<HTMLElement>('#cta-orb');
+  const ctaSection = ctaOrb?.closest('section');
+  if (ctaSection) {
+    const animateEl = ctaSection.querySelector<HTMLElement>('[data-animate]');
+    if (animateEl) {
+      gsap.from(animateEl, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: animateEl,
+          start: 'top 85%',
+        },
+      });
+    }
+  }
+
+  // Floating orb gentle animation
+  gsap.to('#cta-float-orb', {
+    y: -20,
+    x: -10,
+    duration: 5,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true,
+  });
+</script>

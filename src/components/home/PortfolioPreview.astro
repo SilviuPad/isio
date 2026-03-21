@@ -9,14 +9,16 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const labels: Record<Locale, { title: string; subtitle: string; viewProject: string; viewAll: string }> = {
+const labels: Record<Locale, { tag: string; title: string; subtitle: string; viewProject: string; viewAll: string }> = {
   ro: {
+    tag: '[ 02 ] Portofoliu',
     title: 'Portofoliu',
     subtitle: 'Proiecte recente',
     viewProject: 'Vezi proiectul',
     viewAll: 'Vezi tot portofoliul',
   },
   en: {
+    tag: '[ 02 ] Portfolio',
     title: 'Portfolio',
     subtitle: 'Recent projects',
     viewProject: 'View project',
@@ -28,33 +30,38 @@ const l = labels[locale];
 
 const portfolioItems = await getPortfolioItems();
 ---
-<section class="bg-white py-24">
+<section class="bg-base-950 py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto">
-      <h2 class="text-3xl font-bold font-heading text-navy-950">{l.title}</h2>
-      <p class="mt-4 text-navy-500 text-lg">{l.subtitle}</p>
+    <div class="text-center max-w-2xl mx-auto" data-animate>
+      <span class="section-tag">{l.tag}</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">{l.title}</h2>
+      <p class="mt-4 text-base-400 text-lg">{l.subtitle}</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 portfolio-grid">
       {portfolioItems.map((item) => (
-        <div class="rounded-xl overflow-hidden border border-navy-100 bg-white hover:shadow-lg transition-shadow">
+        <div class="glass-card overflow-hidden group" data-animate>
           {item.screenshot ? (
             <img
               src={item.screenshot}
               alt={localize(item.title, locale)}
-              class="w-full h-48 object-cover"
+              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
             />
           ) : (
-            <div class="bg-navy-100 h-48 flex items-center justify-center">
-              <span class="text-navy-400 text-sm">Screenshot</span>
+            <div class="bg-base-800 h-48 flex items-center justify-center border-b border-white/5">
+              <span class="text-base-500 text-sm">Screenshot</span>
             </div>
           )}
           <div class="p-5">
-            <h3 class="font-heading font-semibold text-navy-950">{localize(item.title, locale)}</h3>
-            <p class="mt-2 text-navy-500 text-sm leading-relaxed">{localize(item.description, locale)}</p>
+            <h3 class="font-heading font-semibold text-white group-hover:text-electric-400 transition-colors duration-300">
+              {localize(item.title, locale)}
+            </h3>
+            <p class="mt-2 text-base-300 text-sm leading-relaxed">{localize(item.description, locale)}</p>
             {item.techStack && item.techStack.length > 0 && (
               <div class="mt-3 flex flex-wrap gap-2">
                 {item.techStack.map((tech: string) => (
-                  <span class="bg-navy-50 text-navy-600 text-xs px-2 py-1 rounded-full">{tech}</span>
+                  <span class="bg-white/5 text-base-300 border border-white/10 text-xs px-2 py-1 rounded-full">
+                    {tech}
+                  </span>
                 ))}
               </div>
             )}
@@ -63,7 +70,7 @@ const portfolioItems = await getPortfolioItems();
                 href={item.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-4 inline-flex items-center text-electric-500 hover:text-electric-600 text-sm font-medium transition-colors"
+                class="mt-4 inline-flex items-center text-electric-400 hover:text-electric-300 text-sm font-medium transition-colors duration-300"
               >
                 {l.viewProject}
                 <svg class="ml-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -75,10 +82,10 @@ const portfolioItems = await getPortfolioItems();
         </div>
       ))}
     </div>
-    <div class="mt-12 text-center">
+    <div class="mt-12 text-center" data-animate>
       <a
         href={localePath('portfolio', locale)}
-        class="inline-flex items-center text-electric-500 hover:text-electric-600 font-semibold transition-colors"
+        class="inline-flex items-center text-electric-400 hover:text-electric-300 font-semibold transition-colors duration-300"
       >
         {l.viewAll}
         <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,3 +95,52 @@ const portfolioItems = await getPortfolioItems();
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Staggered scroll animation for portfolio cards
+  const portfolioGrid = document.querySelector<HTMLElement>('.portfolio-grid');
+  if (portfolioGrid) {
+    const cards = gsap.utils.toArray<HTMLElement>('.portfolio-grid [data-animate]');
+    if (cards.length) {
+      gsap.from(cards, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: portfolioGrid,
+          start: 'top 85%',
+        },
+      });
+    }
+
+    // Section header
+    const headerEl = portfolioGrid.closest('section')?.querySelector('.text-center[data-animate]');
+    if (headerEl) {
+      gsap.from(headerEl, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: headerEl, start: 'top 85%' },
+      });
+    }
+
+    // "View all" link below grid
+    const viewAllEl = portfolioGrid.nextElementSibling;
+    if (viewAllEl && viewAllEl.hasAttribute('data-animate')) {
+      gsap.from(viewAllEl, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: viewAllEl, start: 'top 85%' },
+      });
+    }
+  }
+</script>
