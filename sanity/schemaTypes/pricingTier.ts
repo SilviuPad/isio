@@ -101,7 +101,8 @@ export default defineType({
         ],
         preview: {
           select: { title: 'en', included: 'included' },
-          prepare({ title, included }: { title: string; included: boolean }) {
+          prepare(value: Record<string, any>) {
+            const { title, included } = value;
             return { title: `${included ? '✓' : '✗'} ${title || ''}` };
           },
         },
@@ -120,7 +121,8 @@ export default defineType({
   ],
   preview: {
     select: { title: 'name.en', subtitle: 'service', order: 'order' },
-    prepare({ title, subtitle, order }: { title: string; subtitle: string; order: number }) {
+    prepare(value: Record<string, any>) {
+      const { title, subtitle, order } = value;
       const tierLabel = order === 1 ? 'Basic' : order === 2 ? 'Standard' : 'Premium';
       return { title: `${title || tierLabel}`, subtitle: `${subtitle} — Tier ${order}` };
     },
