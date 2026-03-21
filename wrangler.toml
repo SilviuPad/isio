@@ -6,4 +6,8 @@ compatibility_flags = ["nodejs_compat"]
 directory = "./dist/client"
 binding = "ASSETS"
 
-# No external service credentials needed — content is local
+# Required secrets (set via `wrangler secret put <NAME>`):
+# RESEND_API_KEY — from Resend dashboard (resend.io -> API Keys)
+# TURNSTILE_SECRET_KEY — from Cloudflare Turnstile widget (server-side verification)
+# CONTACT_EMAIL — admin notification email (default: contact@isio.ro)
+# PUBLIC_TURNSTILE_SITE_KEY — public site key, embedded in HTML (also set in .env for local dev)
