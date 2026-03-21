@@ -1,0 +1,60 @@
+---
+import type { Locale } from '../../i18n/utils';
+import { getServiceByKey, localize } from '../../lib/content';
+import { getServiceDetail } from '../../lib/service-data';
+import ServiceFeatureList from './ServiceFeatureList.astro';
+import ServiceCTA from './ServiceCTA.astro';
+
+interface Props {
+  serviceKey: string;
+  locale: Locale;
+}
+
+const { serviceKey, locale } = Astro.props;
+
+const service = await getServiceByKey(serviceKey);
+const detail = getServiceDetail(serviceKey);
+
+const title = service ? localize(service.title, locale) : serviceKey;
+const description = service ? localize(service.description, locale) : '';
+const tagline = detail ? detail.tagline[locale] : description;
+const turnaround = detail ? detail.turnaroundDays[locale] : '';
+
+const turnaroundLabel: Record<Locale, string> = {
+  ro: 'Timp de livrare',
+  en: 'Turnaround time',
+};
+---
+
+<!-- Hero -->
+<section class="bg-navy-950 py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold font-heading text-white sm:text-5xl">{title}</h1>
+    <p class="mt-6 text-xl text-navy-300 max-w-2xl">{tagline}</p>
+  </div>
+</section>
+
+<!-- Content sections -->
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+  {detail && detail.sections.map((section) => (
+    <div class="mb-14">
+      <h2 class="text-2xl font-bold font-heading text-navy-950 mb-6">
+        {section.title[locale]}
+      </h2>
+      <ServiceFeatureList items={section.items} locale={locale} />
+    </div>
+  ))}
+
+  <!-- Turnaround block -->
+  {turnaround && (
+    <div class="bg-navy-50 rounded-xl p-8 mb-14">
+      <p class="text-navy-600 text-sm font-semibold uppercase tracking-wider mb-2">
+        {turnaroundLabel[locale]}
+      </p>
+      <p class="text-electric-500 font-bold text-3xl font-heading">{turnaround}</p>
+    </div>
+  )}
+
+  <!-- Dual CTA -->
+  <ServiceCTA locale={locale} />
+</div>
