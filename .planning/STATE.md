@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** Clients can discover services, understand pricing, and book a discovery call — all self-service — while the solo developer manages everything from a single CMS-powered admin panel.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 2 — Public Site
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation) — COMPLETE
-Plan: 4 of 4 in current phase (01-04 — complete)
-Status: Phase 1 complete — ready for Phase 2
-Last activity: 2026-03-21 — 01-04 complete, human-verify approved, SUMMARY.md created
+Phase: 2 of 4 (Public Site) — IN PROGRESS
+Plan: 0 of 5 in current phase
+Status: Executing Phase 2 — Wave 1 starting
+Last activity: 2026-03-21 — Phase 2 execution started
 
-Progress: [██████████] 100% Phase 1 complete
+Progress: [░░░░░░░░░░] 0% Phase 2
 
 ## Performance Metrics
 
