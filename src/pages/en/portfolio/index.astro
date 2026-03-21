@@ -10,10 +10,21 @@ const locale: Locale = 'en';
 const { roSlug, enSlug } = { roSlug: slugMap.portfolio.ro, enSlug: slugMap.portfolio.en };
 ---
 <Page title="Portfolio — Isio" description="Recent projects by Isio — websites, web apps, platforms." locale={locale} roSlug={roSlug} enSlug={enSlug}>
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-    <h1 class="text-4xl font-bold font-heading text-navy-950">Portfolio</h1>
-    <p class="mt-4 text-lg text-navy-500 max-w-2xl">Recent projects</p>
-    <div class="mt-12">
+  <!-- Hero -->
+  <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+    <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <span class="section-tag">Portfolio</span>
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white mt-4">Recent projects</h1>
+      <p class="mt-4 text-xl text-base-300 max-w-2xl">
+        Websites, web apps, and platforms delivered with performance and attention to detail.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
       <PortfolioGrid locale={locale} />
     </div>
   </section>

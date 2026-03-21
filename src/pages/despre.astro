@@ -10,79 +10,109 @@ const { roSlug, enSlug } = { roSlug: slugMap.about.ro, enSlug: slugMap.about.en 
 ---
 <Page title="Despre — Isio" description="Agenție web fondată de un dezvoltator cu experiență în accesibilitate, SEO și aplicații web." locale={locale} roSlug={roSlug} enSlug={enSlug}>
   <!-- Hero -->
-  <section class="bg-navy-950 py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white">Despre Isio</h1>
-      <p class="mt-6 text-xl text-navy-300 max-w-3xl">
+  <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+    <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <span class="section-tag" data-animate>Despre</span>
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white mt-4" data-animate>Despre Isio</h1>
+      <p class="mt-6 text-xl text-base-300 max-w-3xl" data-animate>
         O agenție web construită pe principiul că tehnologia trebuie să fie accesibilă, performantă și autonomă.
       </p>
     </div>
   </section>
 
   <!-- Bio -->
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-      <div>
-        <h2 class="text-2xl font-bold font-heading text-navy-950">Dezvoltator & Fondator</h2>
-        <p class="mt-6 text-navy-600 leading-relaxed">
-          Isio este fondată de un dezvoltator full-stack cu peste 7 ani de experiență în construirea de produse web.
-          De la marketplace-uri de accesibilitate la agenți AI autonomi, fiecare proiect este abordat cu aceeași
-          atenție la detalii tehnice și experiența utilizatorului.
-        </p>
-        <p class="mt-4 text-navy-600 leading-relaxed">
-          Filosofia noastră: să livrăm soluții care funcționează independent, cu cod curat, performanță
-          excepțională și accesibilitate de la prima linie de cod.
-        </p>
-      </div>
-      <div>
-        <h2 class="text-2xl font-bold font-heading text-navy-950">Specializări</h2>
-        <div class="mt-6 grid grid-cols-2 gap-4">
-          {[
-            'Dezvoltare Web',
-            'Aplicații Web',
-            'SEO Tehnic',
-            'Accesibilitate WCAG',
-            'Agenți AI',
-            'TypeScript',
-            'Astro & React',
-            'PostgreSQL',
-          ].map((skill) => (
-            <div class="bg-navy-50 rounded-xl px-4 py-3 text-center">
-              <span class="text-sm font-semibold text-navy-700">{skill}</span>
-            </div>
-          ))}
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="glass-card p-8" data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">Dezvoltator & Fondator</h2>
+          <p class="mt-6 text-base-300 leading-relaxed">
+            Isio este fondată de un dezvoltator full-stack cu peste 7 ani de experiență în construirea de produse web.
+            De la marketplace-uri de accesibilitate la agenți AI autonomi, fiecare proiect este abordat cu aceeași
+            atenție la detalii tehnice și experiența utilizatorului.
+          </p>
+          <p class="mt-4 text-base-300 leading-relaxed">
+            Filosofia noastră: să livrăm soluții care funcționează independent, cu cod curat, performanță
+            excepțională și accesibilitate de la prima linie de cod.
+          </p>
+        </div>
+        <div class="glass-card p-8" data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white mb-6">Specializări</h2>
+          <div class="grid grid-cols-2 gap-3">
+            {[
+              'Dezvoltare Web',
+              'Aplicații Web',
+              'SEO Tehnic',
+              'Accesibilitate WCAG',
+              'Agenți AI',
+              'TypeScript',
+              'Astro & React',
+              'PostgreSQL',
+            ].map((skill) => (
+              <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center hover:bg-white/10 hover:border-electric-500/30 transition-all duration-200">
+                <span class="text-sm font-semibold text-base-200">{skill}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Values -->
-  <section class="bg-navy-50 py-20">
+  <section class="bg-base-900 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold font-heading text-navy-950 text-center">Valorile noastre</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        <div class="text-center">
-          <div class="text-3xl font-bold text-electric-500 font-heading">Performanță</div>
-          <p class="mt-3 text-navy-600 text-sm">Scoruri Lighthouse 100/100. Fiecare milisecundă contează.</p>
+      <div class="text-center mb-12" data-animate>
+        <span class="section-tag">Principii</span>
+        <h2 class="text-3xl font-bold font-heading text-white mt-4">Valorile noastre</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-8 text-center" data-animate>
+          <div class="gradient-text text-3xl font-bold font-heading mb-3">Performanță</div>
+          <p class="text-base-300 text-sm leading-relaxed">Scoruri Lighthouse 100/100. Fiecare milisecundă contează pentru conversii și experiența utilizatorului.</p>
         </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-electric-500 font-heading">Accesibilitate</div>
-          <p class="mt-3 text-navy-600 text-sm">WCAG 2.1 din prima zi. Toată lumea merită acces egal la web.</p>
+        <div class="glass-card p-8 text-center" data-animate>
+          <div class="gradient-text text-3xl font-bold font-heading mb-3">Accesibilitate</div>
+          <p class="text-base-300 text-sm leading-relaxed">WCAG 2.1 din prima zi. Toată lumea merită acces egal la web, indiferent de dispozitiv sau dizabilitate.</p>
         </div>
-        <div class="text-center">
-          <div class="text-3xl font-bold text-electric-500 font-heading">Autonomie</div>
-          <p class="mt-3 text-navy-600 text-sm">Soluții care funcționează singure. Automatizare, nu dependență.</p>
+        <div class="glass-card p-8 text-center" data-animate>
+          <div class="gradient-text text-3xl font-bold font-heading mb-3">Autonomie</div>
+          <p class="text-base-300 text-sm leading-relaxed">Soluții care funcționează singure. Automatizare inteligentă, nu dependență de intervenție manuală.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 text-center">
-    <h2 class="text-3xl font-bold font-heading text-navy-950">Hai să construim împreună</h2>
-    <p class="mt-4 text-navy-500 max-w-xl mx-auto">Ai un proiect în minte? Programează un apel de descoperire gratuit.</p>
-    <a href={localePath('contact', locale)} class="inline-block mt-8 bg-electric-500 hover:bg-electric-600 text-white px-8 py-4 rounded-full font-semibold transition-colors">
-      Programează un apel
-    </a>
+  <section class="bg-base-950 py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="glass-card p-12 text-center relative overflow-hidden" data-animate>
+        <div class="radial-glow absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
+        <div class="relative z-10">
+          <h2 class="text-3xl font-bold font-heading text-white">Hai să construim împreună</h2>
+          <p class="mt-4 text-base-300 max-w-xl mx-auto">Ai un proiect în minte? Programează un apel de descoperire gratuit și vedem cum putem colabora.</p>
+          <a href={localePath('contact', locale)} class="btn-glow inline-block mt-8">
+            Programează un apel
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 </Page>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('[data-animate]').forEach((el) => {
+    gsap.from(el as Element, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el as Element, start: 'top 85%' }
+    });
+  });
+</script>

@@ -29,28 +29,48 @@ for (const tier of allTiers) {
   enSlug={enSlug}
 >
   <!-- Hero -->
-  <section class="bg-navy-950 py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white">Prețuri</h1>
-      <p class="mt-6 text-xl text-navy-300 max-w-2xl mx-auto">
-        Pachete transparente pentru fiecare serviciu. Fără surprize, fără costuri ascunse.
+  <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+    <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <span class="section-tag">Prețuri</span>
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white mt-4">Prețuri transparente</h1>
+      <p class="mt-6 text-xl text-base-300 max-w-2xl mx-auto">
+        Pachete clare pentru fiecare serviciu. Fără surprize, fără costuri ascunse.
       </p>
     </div>
   </section>
 
   <!-- Pricing sections -->
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-    {services.map((service) => {
-      const tiers = tiersByService.get(service.serviceKey) ?? [];
-      if (tiers.length === 0) return null;
-      return (
-        <PricingServiceGroup
-          serviceKey={service.serviceKey}
-          serviceName={localize(service.title, locale)}
-          tiers={tiers}
-          locale={locale}
-        />
-      );
-    })}
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+      {services.map((service) => {
+        const tiers = tiersByService.get(service.serviceKey) ?? [];
+        if (tiers.length === 0) return null;
+        return (
+          <PricingServiceGroup
+            serviceKey={service.serviceKey}
+            serviceName={localize(service.title, locale)}
+            tiers={tiers}
+            locale={locale}
+          />
+        );
+      })}
+    </div>
   </section>
 </Page>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('[data-animate]').forEach((el) => {
+    gsap.from(el as Element, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el as Element, start: 'top 85%' }
+    });
+  });
+</script>

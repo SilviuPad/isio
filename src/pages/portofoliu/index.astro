@@ -10,10 +10,21 @@ const locale: Locale = 'ro';
 const { roSlug, enSlug } = { roSlug: slugMap.portfolio.ro, enSlug: slugMap.portfolio.en };
 ---
 <Page title="Portofoliu — Isio" description="Proiecte recente realizate de Isio — website-uri, aplicații web, platforme." locale={locale} roSlug={roSlug} enSlug={enSlug}>
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-    <h1 class="text-4xl font-bold font-heading text-navy-950">Portofoliu</h1>
-    <p class="mt-4 text-lg text-navy-500 max-w-2xl">Proiecte recente</p>
-    <div class="mt-12">
+  <!-- Hero -->
+  <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+    <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <span class="section-tag">Portofoliu</span>
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white mt-4">Proiecte recente</h1>
+      <p class="mt-4 text-xl text-base-300 max-w-2xl">
+        Website-uri, aplicații web și platforme livrate cu performanță și atenție la detalii.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
       <PortfolioGrid locale={locale} />
     </div>
   </section>

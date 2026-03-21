@@ -27,34 +27,54 @@ const turnaroundLabel: Record<Locale, string> = {
 ---
 
 <!-- Hero -->
-<section class="bg-navy-950 py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold font-heading text-white sm:text-5xl">{title}</h1>
-    <p class="mt-6 text-xl text-navy-300 max-w-2xl">{tagline}</p>
+<section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+  <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <span class="section-tag" data-animate>Servicii</span>
+    <h1 class="text-4xl font-bold font-heading text-white sm:text-5xl mt-4" data-animate>{title}</h1>
+    <p class="mt-6 text-xl text-base-300 max-w-2xl" data-animate>{tagline}</p>
   </div>
 </section>
 
 <!-- Content sections -->
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-  {detail && detail.sections.map((section) => (
-    <div class="mb-14">
-      <h2 class="text-2xl font-bold font-heading text-navy-950 mb-6">
-        {section.title[locale]}
-      </h2>
-      <ServiceFeatureList items={section.items} locale={locale} />
-    </div>
-  ))}
+<div class="bg-base-950">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    {detail && detail.sections.map((section) => (
+      <div class="glass-card p-8 mb-8" data-animate>
+        <h2 class="text-2xl font-bold font-heading text-white mb-6">
+          {section.title[locale]}
+        </h2>
+        <ServiceFeatureList items={section.items} locale={locale} />
+      </div>
+    ))}
 
-  <!-- Turnaround block -->
-  {turnaround && (
-    <div class="bg-navy-50 rounded-xl p-8 mb-14">
-      <p class="text-navy-600 text-sm font-semibold uppercase tracking-wider mb-2">
-        {turnaroundLabel[locale]}
-      </p>
-      <p class="text-electric-500 font-bold text-3xl font-heading">{turnaround}</p>
-    </div>
-  )}
+    <!-- Turnaround block -->
+    {turnaround && (
+      <div class="glass-card p-8 mb-8 border-l-4 border-electric-500" data-animate>
+        <p class="text-base-400 text-sm font-semibold uppercase tracking-wider mb-2">
+          {turnaroundLabel[locale]}
+        </p>
+        <p class="gradient-text font-bold text-3xl font-heading">{turnaround}</p>
+      </div>
+    )}
 
-  <!-- Dual CTA -->
-  <ServiceCTA locale={locale} />
+    <!-- Dual CTA -->
+    <ServiceCTA locale={locale} />
+  </div>
 </div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('[data-animate]').forEach((el) => {
+    gsap.from(el as Element, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el as Element, start: 'top 85%' }
+    });
+  });
+</script>

@@ -26,21 +26,24 @@ const labels: Record<Locale, { pricing: string; contact: string; heading: string
 const t = labels[locale];
 ---
 
-<section class="bg-navy-50 rounded-2xl p-12 mt-16 text-center">
-  <h2 class="text-3xl font-bold font-heading text-navy-950">{t.heading}</h2>
-  <p class="mt-4 text-lg text-navy-500 max-w-xl mx-auto">{t.subheading}</p>
-  <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-    <a
-      href={localePath('pricing', locale)}
-      class="bg-electric-500 hover:bg-electric-600 text-white px-8 py-4 rounded-full font-semibold transition-colors duration-200 inline-block"
-    >
-      {t.pricing}
-    </a>
-    <a
-      href={localePath('contact', locale)}
-      class="border-2 border-navy-300 text-navy-700 hover:border-electric-500 hover:text-electric-500 px-8 py-4 rounded-full font-semibold transition-colors duration-200 inline-block"
-    >
-      {t.contact}
-    </a>
+<section class="glass-card p-12 mt-16 text-center relative overflow-hidden" data-animate>
+  <div class="radial-glow absolute inset-0 pointer-events-none opacity-60" aria-hidden="true"></div>
+  <div class="relative z-10">
+    <h2 class="text-3xl font-bold font-heading text-white">{t.heading}</h2>
+    <p class="mt-4 text-lg text-base-300 max-w-xl mx-auto">{t.subheading}</p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href={localePath('pricing', locale)}
+        class="btn-glow inline-block"
+      >
+        {t.pricing}
+      </a>
+      <a
+        href={localePath('contact', locale)}
+        class="btn-outline inline-block"
+      >
+        {t.contact}
+      </a>
+    </div>
   </div>
 </section>
