@@ -106,51 +106,51 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SITE-01 | Pending | Pending |
-| SITE-02 | Pending | Pending |
-| SITE-03 | Pending | Pending |
-| SITE-04 | Pending | Pending |
-| SITE-05 | Pending | Pending |
-| SITE-06 | Pending | Pending |
-| SITE-07 | Pending | Pending |
-| SITE-08 | Pending | Pending |
-| PRIC-01 | Pending | Pending |
-| PRIC-02 | Pending | Pending |
-| PRIC-03 | Pending | Pending |
-| PRIC-04 | Pending | Pending |
-| PRIC-05 | Pending | Pending |
-| PRIC-06 | Pending | Pending |
-| PRIC-07 | Pending | Pending |
-| I18N-01 | Pending | Pending |
-| I18N-02 | Pending | Pending |
-| I18N-03 | Pending | Pending |
-| I18N-04 | Pending | Pending |
-| I18N-05 | Pending | Pending |
-| SEO-01 | Pending | Pending |
-| SEO-02 | Pending | Pending |
-| SEO-03 | Pending | Pending |
-| SEO-04 | Pending | Pending |
-| SEO-05 | Pending | Pending |
-| SEO-06 | Pending | Pending |
-| INTR-01 | Pending | Pending |
-| INTR-02 | Pending | Pending |
-| INTR-03 | Pending | Pending |
-| CMS-01 | Pending | Pending |
-| CMS-02 | Pending | Pending |
-| CMS-03 | Pending | Pending |
-| CMS-04 | Pending | Pending |
-| DOCS-01 | Pending | Pending |
-| DOCS-02 | Pending | Pending |
-| DOCS-03 | Pending | Pending |
-| DOCS-04 | Pending | Pending |
-| DOCS-05 | Pending | Pending |
-| AUTH-01 | Pending | Pending |
+| SITE-01 | Phase 2 | Pending |
+| SITE-02 | Phase 2 | Pending |
+| SITE-03 | Phase 2 | Pending |
+| SITE-04 | Phase 2 | Pending |
+| SITE-05 | Phase 2 | Pending |
+| SITE-06 | Phase 2 | Pending |
+| SITE-07 | Phase 2 | Pending |
+| SITE-08 | Phase 2 | Pending |
+| PRIC-01 | Phase 2 | Pending |
+| PRIC-02 | Phase 2 | Pending |
+| PRIC-03 | Phase 2 | Pending |
+| PRIC-04 | Phase 2 | Pending |
+| PRIC-05 | Phase 2 | Pending |
+| PRIC-06 | Phase 2 | Pending |
+| PRIC-07 | Phase 1 | Pending |
+| I18N-01 | Phase 1 | Pending |
+| I18N-02 | Phase 1 | Pending |
+| I18N-03 | Phase 1 | Pending |
+| I18N-04 | Phase 1 | Pending |
+| I18N-05 | Phase 1 | Pending |
+| SEO-01 | Phase 2 | Pending |
+| SEO-02 | Phase 2 | Pending |
+| SEO-03 | Phase 1 | Pending |
+| SEO-04 | Phase 1 | Pending |
+| SEO-05 | Phase 1 | Pending |
+| SEO-06 | Phase 1 | Pending |
+| INTR-01 | Phase 3 | Pending |
+| INTR-02 | Phase 3 | Pending |
+| INTR-03 | Phase 2 | Pending |
+| CMS-01 | Phase 1 | Pending |
+| CMS-02 | Phase 4 | Pending |
+| CMS-03 | Phase 1 | Pending |
+| CMS-04 | Phase 1 | Pending |
+| DOCS-01 | Phase 4 | Pending |
+| DOCS-02 | Phase 4 | Pending |
+| DOCS-03 | Phase 4 | Pending |
+| DOCS-04 | Phase 4 | Pending |
+| DOCS-05 | Phase 4 | Pending |
+| AUTH-01 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 39 total
-- Mapped to phases: 0
-- Unmapped: 39 ⚠️
+- Mapped to phases: 39
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-21*
-*Last updated: 2026-03-21 after initial definition*
+*Last updated: 2026-03-21 after roadmap creation — all 39 requirements mapped*
