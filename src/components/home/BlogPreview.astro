@@ -1,0 +1,76 @@
+---
+import type { Locale } from '../../i18n/utils';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const posts = [
+  {
+    image: 'from-electric-500/15 via-base-800 to-base-900',
+    date: '15 MAR. 2026',
+    title: { ro: 'Cum poate inteligența artificială să-ți transforme afacerea?', en: 'How can AI transform your business?' },
+    tags: '/ AI / Business /',
+  },
+  {
+    image: 'from-cyan-500/15 via-base-800 to-base-900',
+    date: '10 MAR. 2026',
+    title: { ro: 'SEO tehnic: ghid complet pentru performanță maximă', en: 'Technical SEO: complete guide for maximum performance' },
+    tags: '/ SEO / Performance /',
+  },
+  {
+    image: 'from-violet-500/15 via-base-800 to-base-900',
+    date: '05 MAR. 2026',
+    title: { ro: 'Accesibilitate web: de ce contează WCAG 2.1 pentru afacerea ta', en: 'Web accessibility: why WCAG 2.1 matters for your business' },
+    tags: '/ Accessibility / Web /',
+  },
+];
+---
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Split title area -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end mb-16" data-animate>
+      <div>
+        <span class="section-tag">{locale === 'ro' ? '[ 08 ] blog' : '[ 08 ] blog'}</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">
+          {locale === 'ro' ? 'Explorând lumea tehnologiei și inovației' : 'Exploring the world of technology and innovation'}
+        </h2>
+      </div>
+      <div class="lg:text-right">
+        <a href="#" class="btn-outline inline-flex items-center gap-2 group">
+          {locale === 'ro' ? 'Mai multe articole' : 'More articles'}
+          <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <!-- 3-column blog grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <a href="#" class="glass-card overflow-hidden group block cursor-pointer transition-all duration-300" data-animate>
+          <!-- Image area -->
+          <div class={`h-52 bg-gradient-to-br ${post.image} relative overflow-hidden`}>
+            <div class="absolute inset-0 dot-mesh opacity-30"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-base-950 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 text-xs text-base-300">{post.date}</span>
+          </div>
+          <!-- Content -->
+          <div class="p-6">
+            <h4 class="text-lg font-semibold font-heading text-white group-hover:text-electric-400 transition-colors leading-snug">
+              {post.title[locale]}
+            </h4>
+            <span class="text-base-500 text-xs mt-3 block">{post.tags}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray<Element>('[data-animate]').forEach((el) => {
+    gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
+</script>
