@@ -29,7 +29,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Sanity Studio is accessible at its deployed URL and requires authentication to access
   4. The Astro project builds with zero client-side JavaScript on static pages and deploys successfully to Cloudflare Pages
   5. Pricing data is stored in Sanity CMS and can be edited without requiring a code change or redeploy
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Astro 6 project init with i18n routing, Tailwind v4, Cloudflare adapter, Paraglide i18n messages
+- [ ] 01-02-PLAN.md — Sanity CMS schemas (service, portfolio, pricing, settings) and typed GROQ client library
+- [ ] 01-03-PLAN.md — Layout system (Base + Page), Header/Footer/LanguageSwitcher components, SEO meta tags, robots.txt
+- [ ] 01-04-PLAN.md — Bilingual demo pages, Cloudflare Workers config, end-to-end verification
 
 ### Phase 2: Public Site
 **Goal**: A prospective client visiting the site in either Romanian or English can read about all services, compare pricing tiers, view the portfolio, and understand who they are hiring — fully SEO-optimized and mobile-responsive
@@ -71,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/4 | Planning complete | - |
 | 2. Public Site | 0/TBD | Not started | - |
 | 3. Booking + Contact | 0/TBD | Not started | - |
 | 4. Document Generation | 0/TBD | Not started | - |
