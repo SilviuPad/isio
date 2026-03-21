@@ -47,7 +47,14 @@ Plans:
   3. Lighthouse audit on the Cloudflare preview URL returns 100 (Performance), 100 (SEO), 100 (Accessibility), and 100 (Best Practices)
   4. JSON-LD schema markup for LocalBusiness, Service, and WebSite is present and validates without errors in Google's Rich Results Test
   5. The language switcher component is visible on every page and correctly navigates to the equivalent page in the other locale without redirecting to the homepage
-**Plans**: TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Design system (colors, fonts, CSS tokens) and content data (15 pricing tiers, 3 portfolio items, service rename)
+- [ ] 02-02-PLAN.md — Homepage (hero, services, stats, portfolio, CTA) and services index page
+- [ ] 02-03-PLAN.md — 5 service detail pages with shared template, scope, deliverables, turnaround, dual CTAs
+- [ ] 02-04-PLAN.md — Central pricing page (Fiverr-style tiers), portfolio grid, and about page
+- [ ] 02-05-PLAN.md — JSON-LD schema markup, mobile navigation, and visual verification checkpoint
 
 ### Phase 3: Booking + Contact
 **Goal**: A prospective client can book a discovery call that appears on the admin's Google Calendar, and can send a message via contact form that triggers an email notification — without any OAuth token management burden
@@ -78,6 +85,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
-| 2. Public Site | 0/TBD | Not started | - |
+| 2. Public Site | 0/5 | Planning complete | - |
 | 3. Booking + Contact | 0/TBD | Not started | - |
 | 4. Document Generation | 0/TBD | Not started | - |
