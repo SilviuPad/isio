@@ -57,6 +57,100 @@ const defaultOgImage = `${baseUrl}/og.png`;
     <JsonLd locale={locale} pageType={pageType} serviceName={serviceName} />
   </head>
   <body class="bg-base-950 text-base-100 min-h-screen antialiased">
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <span class="preloader-logo">Isio</span>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill"></div>
+      </div>
+    </div>
     <slot />
+    <!-- Custom cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+    <!-- Global animations -->
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      gsap.registerPlugin(ScrollTrigger);
+
+      // === LENIS SMOOTH SCROLL ===
+      const lenis = new Lenis({
+        duration: 2.8,
+        easing: (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+        lerp: 0.05,
+        smoothTouch: false,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // === PRELOADER ===
+      const preloader = document.getElementById('preloader');
+      function hidePreloader() {
+        if (!preloader) return;
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }
+      window.addEventListener('load', () => setTimeout(hidePreloader, 1600), { once: true });
+      setTimeout(hidePreloader, 3500); // fallback
+
+      // === CUSTOM CURSOR ===
+      const cursor = document.getElementById('custom-cursor');
+      const cursorDot = document.getElementById('custom-cursor-dot');
+
+      if (cursor && cursorDot && window.matchMedia('(hover: hover)').matches) {
+        let cx = 0, cy = 0;
+        let dx = 0, dy = 0;
+
+        document.addEventListener('mousemove', (e) => {
+          cx = e.clientX;
+          cy = e.clientY;
+          // Dot follows instantly
+          cursorDot.style.left = cx + 'px';
+          cursorDot.style.top = cy + 'px';
+        });
+
+        // Ring follows with lag
+        function animateCursor() {
+          dx += (cx - dx) * 0.12;
+          dy += (cy - dy) * 0.12;
+          cursor.style.left = dx + 'px';
+          cursor.style.top = dy + 'px';
+          requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover state on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, .glass-card, .magnetic-btn, input, textarea, select');
+        hoverTargets.forEach((el) => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+
+        // Click state
+        document.addEventListener('mousedown', () => cursor.classList.add('cursor-click'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('cursor-click'));
+      }
+
+      // === MAGNETIC BUTTONS ===
+      document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+        const el = btn as HTMLElement;
+        el.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: 'power2.out' });
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+        });
+      });
+    </script>
   </body>
 </html>

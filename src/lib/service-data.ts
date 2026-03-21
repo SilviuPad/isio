@@ -1,5 +1,3 @@
-import type { Locale } from '../i18n/utils';
-
 interface LocaleString { ro: string; en: string; }
 
 interface ServiceSection {
