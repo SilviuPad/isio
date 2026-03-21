@@ -1,0 +1,25 @@
+---
+import type { Locale } from '../../i18n/utils';
+import { getPortfolioItems, localize } from '../../lib/content';
+import PortfolioCard from './PortfolioCard.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const items = await getPortfolioItems();
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {items.map((item) => (
+    <PortfolioCard
+      title={localize(item.title, locale)}
+      description={localize(item.description, locale)}
+      screenshot={item.screenshot}
+      techStack={item.techStack}
+      liveUrl={item.liveUrl}
+    />
+  ))}
+</div>

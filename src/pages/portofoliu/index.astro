@@ -1,0 +1,20 @@
+---
+export const prerender = true;
+
+import Page from '../../layouts/Page.astro';
+import PortfolioGrid from '../../components/portfolio/PortfolioGrid.astro';
+import { slugMap } from '../../i18n/utils';
+import type { Locale } from '../../i18n/utils';
+
+const locale: Locale = 'ro';
+const { roSlug, enSlug } = { roSlug: slugMap.portfolio.ro, enSlug: slugMap.portfolio.en };
+---
+<Page title="Portofoliu — Isio" description="Proiecte recente realizate de Isio — website-uri, aplicații web, platforme." locale={locale} roSlug={roSlug} enSlug={enSlug}>
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <h1 class="text-4xl font-bold font-heading text-navy-950">Portofoliu</h1>
+    <p class="mt-4 text-lg text-navy-500 max-w-2xl">Proiecte recente</p>
+    <div class="mt-12">
+      <PortfolioGrid locale={locale} />
+    </div>
+  </section>
+</Page>

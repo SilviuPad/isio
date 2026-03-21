@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  screenshot: string;
+  techStack: string[];
+  liveUrl: string;
+}
+
+const { title, description, screenshot, techStack, liveUrl } = Astro.props;
+---
+
+<div class="rounded-2xl overflow-hidden border border-navy-100 bg-white hover:shadow-lg transition-shadow">
+  <!-- Screenshot area -->
+  <div class="bg-navy-100 h-56 flex items-center justify-center overflow-hidden">
+    {screenshot ? (
+      <img
+        src={screenshot}
+        alt={title}
+        width="640"
+        height="224"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    ) : (
+      <span class="text-navy-400 text-sm">Screenshot</span>
+    )}
+  </div>
+
+  <!-- Content area -->
+  <div class="p-6">
+    <h3 class="text-xl font-bold font-heading text-navy-950">{title}</h3>
+    <p class="text-navy-500 text-sm mt-2">{description}</p>
+
+    <!-- Tech stack -->
+    <div class="flex flex-wrap gap-2 mt-4">
+      {techStack.map((tech) => (
+        <span class="bg-navy-50 text-navy-600 text-xs font-medium px-3 py-1 rounded-full">{tech}</span>
+      ))}
+    </div>
+
+    <!-- Live link -->
+    <a
+      href={liveUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 mt-4 text-electric-500 hover:text-electric-600 text-sm font-semibold transition-colors"
+    >
+      <span>Vezi proiectul / View project</span>
+      <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+</div>

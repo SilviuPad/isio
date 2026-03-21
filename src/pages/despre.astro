@@ -1,0 +1,88 @@
+---
+export const prerender = true;
+
+import Page from '../layouts/Page.astro';
+import { slugMap, localePath } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+
+const locale: Locale = 'ro';
+const { roSlug, enSlug } = { roSlug: slugMap.about.ro, enSlug: slugMap.about.en };
+---
+<Page title="Despre — Isio" description="Agenție web fondată de un dezvoltator cu experiență în accesibilitate, SEO și aplicații web." locale={locale} roSlug={roSlug} enSlug={enSlug}>
+  <!-- Hero -->
+  <section class="bg-navy-950 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white">Despre Isio</h1>
+      <p class="mt-6 text-xl text-navy-300 max-w-3xl">
+        O agenție web construită pe principiul că tehnologia trebuie să fie accesibilă, performantă și autonomă.
+      </p>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div>
+        <h2 class="text-2xl font-bold font-heading text-navy-950">Dezvoltator & Fondator</h2>
+        <p class="mt-6 text-navy-600 leading-relaxed">
+          Isio este fondată de un dezvoltator full-stack cu peste 7 ani de experiență în construirea de produse web.
+          De la marketplace-uri de accesibilitate la agenți AI autonomi, fiecare proiect este abordat cu aceeași
+          atenție la detalii tehnice și experiența utilizatorului.
+        </p>
+        <p class="mt-4 text-navy-600 leading-relaxed">
+          Filosofia noastră: să livrăm soluții care funcționează independent, cu cod curat, performanță
+          excepțională și accesibilitate de la prima linie de cod.
+        </p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold font-heading text-navy-950">Specializări</h2>
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          {[
+            'Dezvoltare Web',
+            'Aplicații Web',
+            'SEO Tehnic',
+            'Accesibilitate WCAG',
+            'Agenți AI',
+            'TypeScript',
+            'Astro & React',
+            'PostgreSQL',
+          ].map((skill) => (
+            <div class="bg-navy-50 rounded-xl px-4 py-3 text-center">
+              <span class="text-sm font-semibold text-navy-700">{skill}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="bg-navy-50 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold font-heading text-navy-950 text-center">Valorile noastre</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-electric-500 font-heading">Performanță</div>
+          <p class="mt-3 text-navy-600 text-sm">Scoruri Lighthouse 100/100. Fiecare milisecundă contează.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-electric-500 font-heading">Accesibilitate</div>
+          <p class="mt-3 text-navy-600 text-sm">WCAG 2.1 din prima zi. Toată lumea merită acces egal la web.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-electric-500 font-heading">Autonomie</div>
+          <p class="mt-3 text-navy-600 text-sm">Soluții care funcționează singure. Automatizare, nu dependență.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <h2 class="text-3xl font-bold font-heading text-navy-950">Hai să construim împreună</h2>
+    <p class="mt-4 text-navy-500 max-w-xl mx-auto">Ai un proiect în minte? Programează un apel de descoperire gratuit.</p>
+    <a href={localePath('contact', locale)} class="inline-block mt-8 bg-electric-500 hover:bg-electric-600 text-white px-8 py-4 rounded-full font-semibold transition-colors">
+      Programează un apel
+    </a>
+  </section>
+</Page>
