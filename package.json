@@ -7,11 +7,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "node scripts/patch-workerd.cjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "latest",
     "@astrojs/sitemap": "latest",
+    "@cloudflare/workerd-windows-64": "^1.20260317.1",
     "@inlang/paraglide-js": "^2.15.0",
     "@sanity/astro": "^3",
     "@sanity/client": "^7",

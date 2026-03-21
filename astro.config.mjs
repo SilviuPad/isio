@@ -8,7 +8,7 @@ import { paraglideVitePlugin } from '@inlang/paraglide-js';
 export default defineConfig({
   site: 'https://isio.ro',
   output: 'server',
-  adapter: cloudflare(),
+  adapter: cloudflare({ prerenderEnvironment: 'node' }),
   i18n: {
     locales: ['ro', 'en'],
     defaultLocale: 'ro',
@@ -19,7 +19,7 @@ export default defineConfig({
   },
   integrations: [
     sanity({
-      projectId: import.meta.env.SANITY_PROJECT_ID || '',
+      projectId: import.meta.env.SANITY_PROJECT_ID || 'placeholder',
       dataset: 'production',
       apiVersion: '2025-02-19',
       useCdn: false,
