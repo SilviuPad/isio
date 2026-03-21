@@ -13,19 +13,8 @@ const { locale } = Astro.props;
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <!-- Left: image/visual area (5 cols like Aiero) -->
       <div class="lg:col-span-5 relative">
-        <div class="aspect-[4/5] rounded-2xl bg-gradient-to-br from-electric-500/10 via-base-800 to-base-900 relative overflow-hidden">
-          <!-- Placeholder for person/brand image -->
-          <div class="absolute inset-0 dot-mesh opacity-40"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="text-center">
-              <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-electric-500/30 to-cyan-400/20 flex items-center justify-center mb-4">
-                <svg class="w-12 h-12 text-electric-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
-              </div>
-              <span class="text-base-400 text-sm font-heading">Est. 2019</span>
-            </div>
-          </div>
+        <div class="aspect-[4/5] rounded-2xl relative overflow-hidden bg-base-900">
+          <img src="/images/about/agency.svg" alt="Isio Agency" class="w-full h-full object-cover" width="480" height="600" loading="lazy" />
           <!-- Bottom gradient fade -->
           <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-base-950 to-transparent"></div>
         </div>

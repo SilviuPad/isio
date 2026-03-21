@@ -5,19 +5,16 @@ const { locale } = Astro.props;
 
 const posts = [
   {
-    image: 'from-electric-500/15 via-base-800 to-base-900',
     date: '15 MAR. 2026',
     title: { ro: 'Cum poate inteligența artificială să-ți transforme afacerea?', en: 'How can AI transform your business?' },
     tags: '/ AI / Business /',
   },
   {
-    image: 'from-cyan-500/15 via-base-800 to-base-900',
     date: '10 MAR. 2026',
     title: { ro: 'SEO tehnic: ghid complet pentru performanță maximă', en: 'Technical SEO: complete guide for maximum performance' },
     tags: '/ SEO / Performance /',
   },
   {
-    image: 'from-violet-500/15 via-base-800 to-base-900',
     date: '05 MAR. 2026',
     title: { ro: 'Accesibilitate web: de ce contează WCAG 2.1 pentru afacerea ta', en: 'Web accessibility: why WCAG 2.1 matters for your business' },
     tags: '/ Accessibility / Web /',
@@ -45,11 +42,11 @@ const posts = [
     </div>
     <!-- 3-column blog grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {posts.map((post) => (
+      {posts.map((post, i) => (
         <a href="#" class="glass-card overflow-hidden group block cursor-pointer transition-all duration-300" data-animate>
           <!-- Image area -->
-          <div class={`h-52 bg-gradient-to-br ${post.image} relative overflow-hidden`}>
-            <div class="absolute inset-0 dot-mesh opacity-30"></div>
+          <div class="h-52 relative overflow-hidden bg-base-900">
+            <img src={`/images/blog/blog${i + 1}.svg`} alt={post.title[locale]} class="w-full h-full object-cover" width="640" height="400" loading="lazy" />
             <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-base-950 to-transparent"></div>
             <span class="absolute bottom-4 left-4 text-xs text-base-300">{post.date}</span>
           </div>
