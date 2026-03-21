@@ -12,14 +12,14 @@ const { locale } = Astro.props;
 
 const labels: Record<Locale, { tag: string; title: string; subtitle: string; viewAll: string }> = {
   ro: {
-    tag: '[ 01 ] Servicii',
-    title: 'Servicii',
+    tag: '[ 01 ] servicii',
+    title: 'Servicii specializate pentru afacerea ta',
     subtitle: 'Soluții complete pentru prezența ta digitală',
     viewAll: 'Vezi toate serviciile',
   },
   en: {
-    tag: '[ 01 ] Services',
-    title: 'Services',
+    tag: '[ 01 ] services',
+    title: 'Specialized services for your business',
     subtitle: 'Complete solutions for your digital presence',
     viewAll: 'View all services',
   },
@@ -40,12 +40,29 @@ const serviceKeyToRoute: Record<string, string> = {
 ---
 <section class="bg-base-950 py-24 relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto" data-animate>
-      <span class="section-tag">{l.tag}</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">{l.title}</h2>
-      <p class="mt-4 text-base-400 text-lg">{l.subtitle}</p>
+    <!-- Split title area: heading left, description + button right -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end mb-16" data-animate>
+      <div>
+        <span class="section-tag">{l.tag}</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white animated-heading">
+          {l.title}
+        </h2>
+      </div>
+      <div class="lg:text-right">
+        <p class="text-base-400 mb-6">{l.subtitle}</p>
+        <a
+          href={localePath('services', locale)}
+          class="inline-flex items-center gap-2 text-electric-400 hover:text-electric-300 font-semibold transition-colors group"
+        >
+          {l.viewAll}
+          <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 services-grid">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 services-grid">
       {services.map((service) => {
         const routeKey = serviceKeyToRoute[service.serviceKey] || service.serviceKey;
         return (
@@ -57,17 +74,6 @@ const serviceKeyToRoute: Record<string, string> = {
         );
       })}
     </div>
-    <div class="mt-12 text-center" data-animate>
-      <a
-        href={localePath('services', locale)}
-        class="inline-flex items-center text-electric-400 hover:text-electric-300 font-semibold transition-colors duration-300"
-      >
-        {l.viewAll}
-        <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -75,6 +81,21 @@ const serviceKeyToRoute: Record<string, string> = {
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
+
+  // Section header split title
+  const servicesSection = document.querySelector<HTMLElement>('.services-grid')?.closest('section');
+  if (servicesSection) {
+    const headerEl = servicesSection.querySelector<HTMLElement>('[data-animate]');
+    if (headerEl) {
+      gsap.from(headerEl, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: headerEl, start: 'top 85%' },
+      });
+    }
+  }
 
   // Staggered scroll animation for service cards
   const servicesGrid = document.querySelector<HTMLElement>('.services-grid');
@@ -91,30 +112,6 @@ const serviceKeyToRoute: Record<string, string> = {
           trigger: servicesGrid,
           start: 'top 85%',
         },
-      });
-    }
-
-    // Section header (direct parent's sibling, not inside grid)
-    const headerEl = servicesGrid.closest('section')?.querySelector('.text-center[data-animate]');
-    if (headerEl) {
-      gsap.from(headerEl, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: headerEl, start: 'top 85%' },
-      });
-    }
-
-    // "View all" link below grid
-    const viewAllEl = servicesGrid.nextElementSibling;
-    if (viewAllEl && viewAllEl.hasAttribute('data-animate')) {
-      gsap.from(viewAllEl, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: viewAllEl, start: 'top 85%' },
       });
     }
   }

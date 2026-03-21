@@ -1,0 +1,97 @@
+---
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const items = [
+  'Web Development',
+  'AI Agents',
+  'SEO',
+  'Accessibility',
+  'Web Apps',
+  'TypeScript',
+  'Performance',
+  'Automation',
+];
+---
+<section class="py-12 border-y border-white/5 bg-base-900/30 overflow-hidden relative">
+  <div class="marquee-track" id="marquee-track">
+    {items.map((item, i) => (
+      <span class={`marquee-item ${i % 2 === 0 ? 'filled' : ''}`}>
+        {item}
+        <span class="text-electric-500 mx-4">/</span>
+      </span>
+    ))}
+    {/* Duplicate for seamless loop */}
+    {items.map((item, i) => (
+      <span class={`marquee-item ${i % 2 === 0 ? 'filled' : ''}`}>
+        {item}
+        <span class="text-electric-500 mx-4">/</span>
+      </span>
+    ))}
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0 0.5rem;
+    font-family: var(--font-heading, sans-serif);
+    transition: color 0.3s;
+  }
+
+  .marquee-item.filled {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .marquee-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+</style>
+
+<script>
+  const track = document.getElementById('marquee-track');
+  if (track) {
+    let currentX = 0;
+    const speed = -0.5; // pixels per frame
+    let velocity = speed;
+
+    function getTotalWidth(): number {
+      return track.scrollWidth / 2;
+    }
+
+    function animateMarquee() {
+      currentX += velocity;
+      const totalWidth = getTotalWidth();
+      if (currentX <= -totalWidth) currentX = 0;
+      track.style.transform = `translateX(${currentX}px)`;
+      requestAnimationFrame(animateMarquee);
+    }
+    animateMarquee();
+
+    // Speed up on scroll (Aiero style)
+    let resetTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('scroll', () => {
+      velocity = speed * 3;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => { velocity = speed; }, 300);
+    }, { passive: true });
+  }
+</script>

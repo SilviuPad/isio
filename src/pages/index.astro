@@ -7,6 +7,7 @@ import ServicesPreview from '../components/home/ServicesPreview.astro';
 import Stats from '../components/home/Stats.astro';
 import PortfolioPreview from '../components/home/PortfolioPreview.astro';
 import CallToAction from '../components/home/CallToAction.astro';
+import Marquee from '../components/home/Marquee.astro';
 import { slugMap } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
 
@@ -22,6 +23,7 @@ const { roSlug, enSlug } = { roSlug: slugMap.home.ro, enSlug: slugMap.home.en };
 >
   <Hero locale={locale} />
   <ServicesPreview locale={locale} />
+  <Marquee locale={locale} />
   <Stats locale={locale} />
   <PortfolioPreview locale={locale} />
   <CallToAction locale={locale} />
