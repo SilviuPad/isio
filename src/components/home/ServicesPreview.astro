@@ -1,0 +1,69 @@
+---
+import ServiceCard from '../ui/ServiceCard.astro';
+import { getServices, localize } from '../../lib/content';
+import { localePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const labels: Record<Locale, { title: string; subtitle: string; viewAll: string }> = {
+  ro: {
+    title: 'Servicii',
+    subtitle: 'Soluții complete pentru prezența ta digitală',
+    viewAll: 'Vezi toate serviciile',
+  },
+  en: {
+    title: 'Services',
+    subtitle: 'Complete solutions for your digital presence',
+    viewAll: 'View all services',
+  },
+};
+
+const l = labels[locale];
+
+const services = await getServices();
+
+// Map serviceKey to slugMap route key
+const serviceKeyToRoute: Record<string, string> = {
+  'web-development': 'website',
+  'web-apps': 'webApps',
+  'seo': 'seo',
+  'accessibility': 'accessibility',
+  'ai-agents': 'aiAgents',
+};
+---
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold font-heading text-navy-950">{l.title}</h2>
+      <p class="mt-4 text-navy-500 text-lg">{l.subtitle}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+      {services.map((service) => {
+        const routeKey = serviceKeyToRoute[service.serviceKey] || service.serviceKey;
+        return (
+          <ServiceCard
+            title={localize(service.title, locale)}
+            description={localize(service.description, locale)}
+            href={localePath(routeKey, locale)}
+          />
+        );
+      })}
+    </div>
+    <div class="mt-12 text-center">
+      <a
+        href={localePath('services', locale)}
+        class="inline-flex items-center text-electric-500 hover:text-electric-600 font-semibold transition-colors"
+      >
+        {l.viewAll}
+        <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

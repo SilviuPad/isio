@@ -1,0 +1,45 @@
+---
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const labels: Record<Locale, { projects: string; experience: string; technologies: string; satisfaction: string }> = {
+  ro: {
+    projects: 'Proiecte livrate',
+    experience: 'Ani experiență',
+    technologies: 'Tehnologii',
+    satisfaction: 'Satisfacție clienți',
+  },
+  en: {
+    projects: 'Projects delivered',
+    experience: 'Years experience',
+    technologies: 'Technologies',
+    satisfaction: 'Client satisfaction',
+  },
+};
+
+const l = labels[locale];
+
+const stats = [
+  { number: '50+', label: l.projects },
+  { number: '7+', label: l.experience },
+  { number: '20+', label: l.technologies },
+  { number: '100%', label: l.satisfaction },
+];
+---
+<section class="bg-navy-950 py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <div class="text-4xl font-bold text-electric-400 font-heading">{stat.number}</div>
+          <div class="text-navy-300 text-sm mt-2">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
