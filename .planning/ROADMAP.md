@@ -42,7 +42,7 @@ Plans:
 **Depends on**: Phase 1
 **Requirements**: SITE-01, SITE-02, SITE-03, SITE-04, SITE-05, SITE-06, SITE-07, SITE-08, PRIC-01, PRIC-02, PRIC-03, PRIC-04, PRIC-05, PRIC-06, SEO-01, SEO-02, INTR-03
 **Success Criteria** (what must be TRUE):
-  1. All five service pages exist in both RO and EN, each displaying scope, deliverables, turnaround, and a three-tier pricing comparison table with one tier highlighted as recommended
+  1. All five service pages exist in both RO and EN, each displaying scope, deliverables, turnaround, and dual CTAs linking to the central pricing page
   2. The portfolio grid shows Vpatify, IsioPilot, and StartupJunior.ro with screenshots, technologies used, and links, in both locales
   3. Lighthouse audit on the Cloudflare preview URL returns 100 (Performance), 100 (SEO), 100 (Accessibility), and 100 (Best Practices)
   4. JSON-LD schema markup for LocalBusiness, Service, and WebSite is present and validates without errors in Google's Rich Results Test
