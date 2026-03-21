@@ -45,14 +45,14 @@
 
 ### Interaction
 
-- [ ] **INTR-01**: Custom booking form for discovery calls synced with Google Calendar
+- [x] **INTR-01**: Custom booking form for discovery calls synced with Google Calendar
 - [x] **INTR-02**: Contact form with email notification to admin
 - [ ] **INTR-03**: Mobile-first responsive design across all pages and components
 
 ### CMS & Admin
 
-- [ ] **CMS-01**: Sanity Studio setup for managing all site content (services, portfolio, about, pricing)
-- [ ] **CMS-02**: Client deadline tracker in Sanity Studio (client name, project, milestones, due dates, status)
+- [ ] **CMS-01**: Astro content collections for managing all site content (services, portfolio, about, pricing)
+- [ ] **CMS-02**: Client deadline tracker in admin dashboard (client name, project, milestones, due dates, status)
 - [ ] **CMS-03**: Editable price sheet managed via CMS
 - [ ] **CMS-04**: Content webhook triggering site rebuild on publish
 
@@ -66,7 +66,7 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: Single admin login (password-protected) for Sanity Studio access
+- [ ] **AUTH-01**: Single admin login (password-protected) for admin dashboard access
 
 ## v2 Requirements
 
@@ -88,7 +88,7 @@
 
 ### Multi-User
 
-- **MULT-01**: Role-based access for future team members in Sanity Studio
+- **MULT-01**: Role-based access for future team members in admin dashboard
 
 ## Out of Scope
 
@@ -132,7 +132,7 @@
 | SEO-04 | Phase 1 | Pending |
 | SEO-05 | Phase 1 | Pending |
 | SEO-06 | Phase 1 | Complete |
-| INTR-01 | Phase 3 | Pending |
+| INTR-01 | Phase 3 | Complete |
 | INTR-02 | Phase 3 | Complete |
 | INTR-03 | Phase 2 | Pending |
 | CMS-01 | Phase 1 | Pending |

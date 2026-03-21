@@ -12,7 +12,7 @@ Four phases take Isio from nothing to a fully operational solo-developer agency 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [x] **Phase 1: Foundation** - Bilingual routing, Sanity CMS, Cloudflare deployment, admin auth — the infrastructure every other phase depends on
+- [x] **Phase 1: Foundation** - Bilingual routing, Astro content collections, Cloudflare deployment — the infrastructure every other phase depends on
 - [x] **Phase 2: Public Site** - All public-facing pages, tiered pricing, portfolio, SEO markup, and mobile-responsive design built on Phase 1 foundations
 - [ ] **Phase 3: Booking + Contact** - Discovery call booking synced to Google Calendar and contact form with email notification
 - [ ] **Phase 4: Document Generation** - Bilingual PDF output for proposals, contracts, invoices, and reports with Romanian diacritic support
@@ -20,20 +20,20 @@ Decimal phases appear between their surrounding integers in numeric order.
 ## Phase Details
 
 ### Phase 1: Foundation
-**Goal**: The infrastructure exists for bilingual static pages to be built, CMS content to be queried, and the site to be deployed continuously — all before any public content is added
+**Goal**: The infrastructure exists for bilingual static pages to be built, content collections to be queried, and the site to be deployed continuously — all before any public content is added
 **Depends on**: Nothing (first phase)
 **Requirements**: I18N-01, I18N-02, I18N-03, I18N-04, I18N-05, SEO-03, SEO-04, SEO-05, SEO-06, CMS-01, CMS-03, CMS-04, PRIC-07, AUTH-01
 **Success Criteria** (what must be TRUE):
   1. Visiting `/ro/` and `/en/` renders distinct bilingual pages with correct hreflang tags in the HTML head
-  2. Publishing a change in Sanity Studio triggers an automatic site rebuild and the live site reflects the change within 60 seconds
-  3. Sanity Studio is accessible at its deployed URL and requires authentication to access
+  2. Content changes committed to the repository trigger a Cloudflare Pages rebuild and the live site reflects the change
+  3. Astro content collections provide typed access to services, portfolio, pricing, and settings data
   4. The Astro project builds with zero client-side JavaScript on static pages and deploys successfully to Cloudflare Pages
-  5. Pricing data is stored in Sanity CMS and can be edited without requiring a code change or redeploy
+  5. Pricing data is stored in Astro content collections (JSON) and can be edited by updating the JSON files
 **Plans:** 4 plans
 
 Plans:
 - [x] 01-01-PLAN.md — Astro 6 project init with i18n routing, Tailwind v4, Cloudflare adapter, Paraglide i18n messages
-- [x] 01-02-PLAN.md — Sanity CMS schemas (service, portfolio, pricing, settings) and typed GROQ client library
+- [x] 01-02-PLAN.md — Astro content collection schemas (service, portfolio, pricing, settings) and typed content helpers
 - [x] 01-03-PLAN.md — Layout system (Base + Page), Header/Footer/LanguageSwitcher components, SEO meta tags, robots.txt
 - [x] 01-04-PLAN.md — Bilingual demo pages, Cloudflare Workers config, end-to-end verification
 
@@ -68,16 +68,16 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md — Contact form API route with Resend email + Cloudflare Turnstile, wired forms in both locales
-- [ ] 03-02-PLAN.md — Cal.com inline booking embed in both locales, visual verification checkpoint
+- [x] 03-02-PLAN.md — Cal.com inline booking embed in both locales, visual verification checkpoint
 
 ### Phase 4: Document Generation
-**Goal**: The admin can generate a bilingual PDF proposal, contract, invoice, or report for any client directly from Sanity Studio, with Romanian diacritics rendering correctly
+**Goal**: The admin can generate a bilingual PDF proposal, contract, invoice, or report for any client directly from the admin dashboard, with Romanian diacritics rendering correctly
 **Depends on**: Phase 1
 **Requirements**: DOCS-01, DOCS-02, DOCS-03, DOCS-04, DOCS-05, CMS-02
 **Success Criteria** (what must be TRUE):
-  1. Generating a proposal, contract, invoice, or report from Sanity Studio produces a downloadable PDF in both Romanian and English variants
+  1. Generating a proposal, contract, invoice, or report from the admin dashboard produces a downloadable PDF in both Romanian and English variants
   2. All Romanian diacritics (a with breve, a with circumflex, i with circumflex, s with comma-below, t with comma-below) render correctly in generated PDFs — no question marks or empty boxes
-  3. The client deadline tracker in Sanity Studio displays client name, project, milestones, due dates, and status for each active client
+  3. The client deadline tracker in the admin dashboard displays client name, project, milestones, due dates, and status for each active client
   4. The PDF generation endpoint returns 401 Unauthorized for any request without a valid admin token
 **Plans**: TBD
 
@@ -90,5 +90,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 5/5 | Complete | 2026-03-22 |
-| 3. Booking + Contact | 1/2 | In Progress | - |
+| 3. Booking + Contact | 2/2 | Ready for verification | - |
 | 4. Document Generation | 0/TBD | Not started | - |

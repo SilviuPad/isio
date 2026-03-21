@@ -43,15 +43,15 @@ Progress: [█████░░░░░] 50% Phase 3
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- [Pre-phase]: Astro 6 + Tailwind CSS v4 + Sanity CMS v3 + Cloudflare Pages confirmed as stack
+- [Pre-phase]: Astro 6 + Tailwind CSS v4 + Astro content collections + Cloudflare Pages confirmed as stack
 - [Pre-phase]: Cal.com embed strongly preferred over custom Google Calendar API (eliminates OAuth complexity)
 - [Pre-phase]: i18n routing must be Phase 1 — cannot be retrofitted without breaking all URLs and SEO
 - [Pre-phase]: Use `@tailwindcss/vite` plugin — `@astrojs/tailwind` is deprecated since Astro 5.2
-- [Pre-phase]: CMS owns page content; i18n JSON files own UI chrome only (button labels, nav, errors)
-- [01-04]: Pricing pages use try/catch with console.warn fallback — Sanity may not exist at first build
+- [Pre-phase]: Content collections own page content; i18n JSON files own UI chrome only (button labels, nav, errors)
+- [01-04]: Pricing pages use try/catch with console.warn fallback — content collections may be empty at first build
 - [01-04]: wrangler.toml uses [assets] block not Pages format — Workers static asset binding for Astro dist output
 - [01-04]: 404 page defaults to RO locale at build time — Cloudflare Workers serves single file; links to /en/ provided
-- [01-04]: sanity.ts projectId fallback 'placeholder' prevents init crash before Sanity project is created
+- [01-04]: Content collection JSON files provide data at build time — no external CMS dependency
 - [03-01]: Resend SDK uses camelCase replyTo not reply_to — corrected during execution
 - [03-01]: is:inline scripts for form fetch submission — avoids Astro bundler scope issues with DOM manipulation
 - [03-01]: PUBLIC_TURNSTILE_SITE_KEY via import.meta.env at build time — Astro PUBLIC_ convention for client-safe vars
@@ -64,7 +64,7 @@ None yet.
 ### Blockers/Concerns
 
 - [Research flag] Phase 3: If custom Google Calendar API is used instead of Cal.com, OAuth service account vs. user OAuth flow needs research before implementation
-- [Research flag] Phase 4: `@react-pdf/renderer` Noto Sans font embedding API needs verification; Sanity Studio v3 custom actions API needs checking
+- [Research flag] Phase 4: `@react-pdf/renderer` Noto Sans font embedding API needs verification; admin dashboard UI approach needs deciding
 - [Risk] Phase 4: Romanian diacritic variants — ensure all templates use comma-below (ș/ț) not cedilla (ş/ţ) Unicode code points
 
 ## Session Continuity
