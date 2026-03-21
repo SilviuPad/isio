@@ -59,8 +59,8 @@ const l = labels[locale];
   <!-- Scan line effect -->
   <div id="hero-scanline" class="absolute left-0 right-0 h-[1px] pointer-events-none" style="background: linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.3) 20%, rgba(34,211,238,0.5) 50%, rgba(59,130,246,0.3) 80%, transparent 100%); top: -10%; opacity: 0.6;" aria-hidden="true"></div>
 
-  <!-- ===== HERO INFO (Aiero hero-info) ===== -->
-  <div class="relative z-10 pt-24 pb-8 lg:pb-12">
+  <!-- ===== HERO INFO ===== -->
+  <div class="relative z-10 pt-24 pb-8 lg:pb-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
         <!-- Left: gradient title (9 cols) -->
@@ -79,10 +79,10 @@ const l = labels[locale];
           </p>
           <a
             href={localePath('services', locale)}
-            class="btn-glow magnetic-btn text-2xl inline-flex items-center justify-between gap-2 mt-8 w-full"
+            class="btn-glow magnetic-btn text-base inline-flex items-center gap-2 mt-8 shrink-0"
           >
             {l.ctaDiscover}
-            <svg class="w-8 h-8 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>
           </a>
@@ -91,13 +91,13 @@ const l = labels[locale];
     </div>
   </div>
 
-  <!-- ===== VIDEO BANNER (Aiero video-banner) — FULL WIDTH ===== -->
+  <!-- ===== VIDEO BANNER — FULL WIDTH ===== -->
   <div class="relative z-10 pb-8 px-4 sm:px-6 lg:px-8" id="hero-banner">
     <div class="w-full">
       <div class="relative overflow-hidden bg-gradient-to-br from-electric-600/20 via-electric-500/10 to-base-900 border border-white/5 rounded-2xl">
         <!-- Background image layer -->
         <div class="absolute inset-0">
-          <img src="/images/services/ai-agents.svg" alt="" class="w-full h-full object-cover opacity-20 mix-blend-overlay" width="640" height="400" />
+          <img src="/images/services/ai-agents.svg" alt="" class="w-full h-full object-cover opacity-20 mix-blend-overlay" width="640" height="400" fetchpriority="high" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-r from-base-950/90 via-base-950/70 to-transparent"></div>
         </div>
         <!-- Banner content -->
@@ -128,10 +128,8 @@ const l = labels[locale];
               : 'Web agency built on the principle that technology should be fast, accessible, and autonomous. One developer, zero overhead — you talk directly to whoever writes the code.'}
           </p>
 
-          <!-- Large ISIO text touching bottom -->
-          <h2 class="text-[5rem] sm:text-[7rem] lg:text-[10rem] font-bold font-heading leading-none tracking-tighter text-white uppercase" style="margin-bottom: -0.08em;">
-            ISIO
-          </h2>
+          <!-- Large ISIO logo touching bottom -->
+          <img src="/images/logo.svg" alt="ISIO" class="h-[5rem] sm:h-[7rem] lg:h-[10rem] w-auto" width="224" height="80" style="margin-bottom: -0.08em;" />
         </div>
       </div>
     </div>

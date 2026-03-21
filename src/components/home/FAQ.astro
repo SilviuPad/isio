@@ -25,13 +25,13 @@ const faqs = [
 <section class="py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Left: visual (4 cols like Aiero) -->
-      <div class="lg:col-span-4" data-animate>
+      <!-- Left: visual (4 cols) -->
+      <div class="lg:col-span-4 hidden lg:block" data-animate>
         <div class="aspect-square rounded-2xl relative overflow-hidden bg-base-900 sticky top-24">
           <img src="/images/services/ai-agents.svg" alt="" class="w-full h-full object-cover rounded-2xl" width="480" height="480" loading="lazy" />
         </div>
       </div>
-      <!-- Right: FAQ accordion (8 cols like Aiero) -->
+      <!-- Right: FAQ accordion (8 cols) -->
       <div class="lg:col-span-8">
         <div class="mb-12">
           <span class="section-tag">{locale === 'ro' ? '[ 06 ] întrebări frecvente' : '[ 06 ] faq'}</span>

@@ -32,7 +32,7 @@ const ctaHref = localePath('contact', locale);
 
 <div class="mb-20" data-animate>
   <h2 class="text-2xl font-bold font-heading text-white mb-8">{serviceName}</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
     {tiers.map((tier) => (
       <PricingCard
         name={localize(tier.name, locale)}
@@ -47,5 +47,26 @@ const ctaHref = localePath('contact', locale);
         ctaHref={ctaHref}
       />
     ))}
+    <!-- Custom / Enquire card -->
+    <div class="glass-card p-8 flex flex-col items-center justify-center text-center border-dashed border-white/10">
+      <svg class="w-10 h-10 text-electric-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+      </svg>
+      <h3 class="text-xl font-bold font-heading text-white">Custom</h3>
+      <p class="text-base-400 text-sm mt-2">
+        {locale === 'ro'
+          ? 'Ai cerințe specifice? Contactează-ne pentru o ofertă personalizată.'
+          : 'Have specific requirements? Contact us for a custom quote.'}
+      </p>
+      <a
+        href={ctaHref}
+        class="btn-outline mt-6 inline-flex items-center gap-2 group text-sm"
+      >
+        {locale === 'ro' ? 'Cere ofertă' : 'Enquire'}
+        <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+        </svg>
+      </a>
+    </div>
   </div>
 </div>

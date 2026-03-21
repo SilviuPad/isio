@@ -42,8 +42,8 @@ const features = [
       {features.map((f) => (
         <div class="glass-card p-8 group hover:border-electric-500/20 transition-all duration-300" data-animate>
           <div class="text-electric-400 mb-6 group-hover:scale-110 transition-transform duration-300" set:html={f.icon} />
-          <h4 class="text-lg font-semibold font-heading text-white mb-3">{f.title[locale]}</h4>
-          <p class="text-base-400 text-sm leading-relaxed">{f.desc[locale]}</p>
+          <h3 class="text-lg font-semibold font-heading text-white mb-3">{f.title[locale]}</h3>
+          <p class="text-base-300 text-sm leading-relaxed">{f.desc[locale]}</p>
         </div>
       ))}
     </div>

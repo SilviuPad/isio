@@ -45,14 +45,15 @@ const navItems = [
 <header class="fixed top-0 left-0 right-0 z-40 bg-base-950/80 backdrop-blur-md border-b border-white/5">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-      <a href={localePath('home', locale)} class="text-xl font-bold tracking-tight text-white font-heading">
-        Isio
+      <a href={localePath('home', locale)} class="flex items-center">
+        <img src="/images/logo.svg" alt="Isio" class="h-12 w-auto" width="224" height="80" />
       </a>
-      <nav aria-label="Main navigation" class="hidden md:flex items-center gap-6">
+      <nav aria-label="Main navigation" class="hidden md:flex items-center gap-6" style="font-family: 'Manrope', Arial, Helvetica, sans-serif;">
         {navItems.map((item) => (
           <a
             href={item.href}
-            class="text-sm font-medium text-base-300 hover:text-white transition-colors"
+            class="nav-link relative uppercase"
+            style="font-size: 14px; font-weight: 700; height: 40px; line-height: 40px; color: rgb(255, 255, 255);"
           >
             {item.label}
           </a>
@@ -71,3 +72,16 @@ const navItems = [
   <MobileMenu locale={locale} roSlug={roSlug} enSlug={enSlug} />
 </header>
 <div class="h-16"></div>
+
+<style>
+  .nav-link {
+    background: linear-gradient(90deg, #3b82f6, #22d3ee) no-repeat left bottom / 0% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: background-size 0.4s ease;
+  }
+  .nav-link:hover {
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 100%;
+  }
+</style>

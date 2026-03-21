@@ -10,18 +10,18 @@ const { locale } = Astro.props;
 ---
 <section class="py-24 relative overflow-hidden">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <!-- Left: image/visual area (5 cols like Aiero) -->
-      <div class="lg:col-span-5 relative">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left: image/visual area (5 cols) -->
+      <div class="hidden lg:block lg:col-span-5 relative">
         <div class="aspect-[4/5] rounded-2xl relative overflow-hidden bg-base-900">
           <img src="/images/about/agency.svg" alt="Isio Agency" class="w-full h-full object-cover" width="480" height="600" loading="lazy" />
           <!-- Bottom gradient fade -->
           <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-base-950 to-transparent"></div>
         </div>
       </div>
-      <!-- Right: content (7 cols like Aiero) -->
-      <div class="lg:col-span-7 relative">
-        <!-- Large ghost background text (Aiero style-text) -->
+      <!-- Right: content (7 cols) -->
+      <div class="lg:col-span-7 relative sticky top-24">
+        <!-- Large ghost background text -->
         <span
           class="absolute -top-8 -left-4 text-[6rem] lg:text-[8rem] font-bold font-heading leading-none tracking-tighter select-none pointer-events-none"
           style="-webkit-text-stroke: 1px rgba(255,255,255,0.04); color: transparent;"
@@ -41,7 +41,7 @@ const { locale } = Astro.props;
               ? 'Isio este o agenție web fondată de un dezvoltator full-stack cu peste 7 ani de experiență. De la marketplace-uri de accesibilitate la agenți AI autonomi, fiecare proiect este abordat cu aceeași atenție la detalii tehnice.'
               : 'Isio is a web agency founded by a full-stack developer with 7+ years of experience. From accessibility marketplaces to autonomous AI agents, every project receives the same attention to technical detail.'}
           </p>
-          <p class="mt-4 text-base-400 leading-relaxed">
+          <p class="mt-4 text-base-300 leading-relaxed">
             {locale === 'ro'
               ? 'Filosofia noastră: să livrăm soluții care funcționează independent, cu cod curat, performanță excepțională și accesibilitate de la prima linie de cod.'
               : 'Our philosophy: deliver solutions that run independently, with clean code, exceptional performance, and accessibility from the first line of code.'}

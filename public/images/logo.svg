@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 80" width="224" height="80">
+  <defs>
+    <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Letters scaled 30% narrower in height, centered around y=40 -->
+  <g transform="translate(0,40) scale(1,0.7) translate(0,-40)">
+    <!-- I — sharp corners -->
+    <rect x="10" y="16" width="10" height="50" fill="white"/>
+
+    <!-- S — sharp inner corners, rounded ends only -->
+    <path d="
+      M 37,16 L 77,16 A 5,5 0 0 1 82,21 L 82,26 L 42,26
+      L 42,36 L 82,36 L 82,61 A 5,5 0 0 1 77,66 L 37,66 A 5,5 0 0 1 32,61
+      L 32,56 L 72,56 L 72,46 L 32,46 L 32,21 A 5,5 0 0 1 37,16 Z
+    " fill="white"/>
+
+    <!-- I — sharp corners -->
+    <rect x="96" y="16" width="10" height="50" fill="white"/>
+
+    <!-- O — straight top/bottom, 45-deg rounded corners, uniform 10px walls -->
+    <path d="
+      M 139,16 L 163,16 A 15,15 0 0 1 178,31 L 178,51 A 15,15 0 0 1 163,66
+      L 139,66 A 15,15 0 0 1 124,51 L 124,31 A 15,15 0 0 1 139,16 Z
+      M 142,26 L 160,26 A 8,8 0 0 1 168,34 L 168,48 A 8,8 0 0 1 160,56
+      L 142,56 A 8,8 0 0 1 134,48 L 134,34 A 8,8 0 0 1 142,26 Z
+    " fill="white" fill-rule="evenodd"/>
+  </g>
+
+  <!-- Network / molecular graphic (triangle, separated from text) -->
+  <g>
+    <line x1="192" y1="26" x2="212" y2="14" stroke="url(#node-grad)" stroke-width="1.8" opacity="0.6"/>
+    <line x1="192" y1="26" x2="214" y2="30" stroke="url(#node-grad)" stroke-width="1.8" opacity="0.6"/>
+    <line x1="212" y1="14" x2="214" y2="30" stroke="url(#node-grad)" stroke-width="1.8" opacity="0.6"/>
+    <circle cx="192" cy="26" r="3.5" fill="url(#node-grad)"/>
+    <circle cx="212" cy="14" r="5.5" fill="url(#node-grad)"/>
+    <circle cx="214" cy="30" r="4" fill="url(#node-grad)"/>
+  </g>
+</svg>

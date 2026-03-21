@@ -39,7 +39,7 @@ const l = labels[locale];
           data-suffix="+"
         >0+</div>
         <span class="text-white font-heading font-semibold text-lg mt-4 block">{l.projects}</span>
-        <p class="text-base-400 text-sm mt-2">{l.projectsDesc}</p>
+        <p class="text-base-300 text-sm mt-2">{l.projectsDesc}</p>
       </div>
       <!-- Smaller stat: experience -->
       <div class="lg:col-span-3 p-8" data-animate>
@@ -48,7 +48,7 @@ const l = labels[locale];
           data-counter="7"
           data-suffix="+"
         >0+</div>
-        <span class="text-base-400 text-sm mt-2 block uppercase tracking-wider">{l.experience}</span>
+        <span class="text-base-300 text-sm mt-2 block uppercase tracking-wider">{l.experience}</span>
         <p class="text-base-500 text-xs mt-2">{l.experienceDesc}</p>
       </div>
       <!-- Smaller stat: satisfaction -->
@@ -58,7 +58,7 @@ const l = labels[locale];
           data-counter="100"
           data-suffix="%"
         >0%</div>
-        <span class="text-base-400 text-sm mt-2 block uppercase tracking-wider">{l.satisfaction}</span>
+        <span class="text-base-300 text-sm mt-2 block uppercase tracking-wider">{l.satisfaction}</span>
         <p class="text-base-500 text-xs mt-2">{l.satisfactionDesc}</p>
       </div>
     </div>
@@ -70,7 +70,7 @@ const l = labels[locale];
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
 
-  // Aiero-style rAF counter with ease-out cubic
+  // style rAF counter with ease-out cubic
   document.querySelectorAll('[data-counter]').forEach((counter) => {
     const el = counter as HTMLElement;
     const target = parseFloat(el.dataset.counter || '0');

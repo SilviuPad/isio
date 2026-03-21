@@ -36,7 +36,7 @@ const blocks = [
       {blocks.map((block) => (
         <div class="glass-card p-8 group hover:border-electric-500/20 transition-all duration-300" data-animate>
           <div class="text-electric-400 mb-6" set:html={block.icon} />
-          <h4 class="text-xl font-semibold font-heading text-white mb-6">{block.title[locale]}</h4>
+          <h3 class="text-xl font-semibold font-heading text-white mb-6">{block.title[locale]}</h3>
           <ul class="space-y-3">
             {block.items[locale].map((item) => (
               <li class="flex items-start gap-3 text-sm text-base-300">

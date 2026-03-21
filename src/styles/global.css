@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-size: 0.75rem;
   letter-spacing: 0.15em;
-  color: var(--color-base-400);
+  color: var(--color-base-300);
   text-transform: uppercase;
 }
 
@@ -257,14 +257,14 @@ html.lenis, html.lenis body {
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   flex-shrink: 0;
 }
 
 .marquee-item.filled {
-  color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.2);
   -webkit-text-stroke: none;
 }
 

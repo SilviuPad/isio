@@ -17,7 +17,7 @@ const testimonials = [
 <section class="py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- Left: quote (7 cols like Aiero) -->
+      <!-- Left: quote (7 cols) -->
       <div class="lg:col-span-7" data-animate>
         <div class="glass-card p-10 lg:p-14">
           <!-- Quote icon -->
@@ -33,12 +33,12 @@ const testimonials = [
             </div>
             <div>
               <span class="text-white font-semibold block">— {testimonials[0].author}</span>
-              <span class="text-base-400 text-sm">{testimonials[0].role[locale]}</span>
+              <span class="text-base-300 text-sm">{testimonials[0].role[locale]}</span>
             </div>
           </div>
         </div>
       </div>
-      <!-- Right: info area (5 cols like Aiero) -->
+      <!-- Right: info area (5 cols) -->
       <div class="lg:col-span-5" data-animate>
         <div class="h-full rounded-2xl bg-gradient-to-br from-electric-500/10 via-base-800 to-base-900 relative overflow-hidden p-10 flex flex-col justify-between">
           <img src="/images/services/web-development.svg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" width="640" height="400" loading="lazy" />
@@ -53,7 +53,7 @@ const testimonials = [
             <div class="flex items-baseline gap-2">
               <span class="text-5xl font-bold gradient-text font-heading" data-counter="50" data-suffix="+">0+</span>
             </div>
-            <span class="text-base-400 text-sm mt-1 block">{locale === 'ro' ? 'Clienți mulțumiți' : 'Happy clients'}</span>
+            <span class="text-base-300 text-sm mt-1 block">{locale === 'ro' ? 'Clienți mulțumiți' : 'Happy clients'}</span>
           </div>
         </div>
       </div>

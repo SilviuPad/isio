@@ -49,7 +49,7 @@ const serviceKeyToRoute: Record<string, string> = {
         </h2>
       </div>
       <div class="lg:text-right">
-        <p class="text-base-400 mb-6">{l.subtitle}</p>
+        <p class="text-base-300 mb-6">{l.subtitle}</p>
         <a
           href={localePath('services', locale)}
           class="inline-flex items-center gap-2 text-electric-400 hover:text-electric-300 font-semibold transition-colors group"
@@ -62,7 +62,7 @@ const serviceKeyToRoute: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Aiero-style mixed service grid: 2 large cards + 1 split column -->
+    <!-- style mixed service grid: 2 large cards + 1 split column -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 services-grid">
       {services.slice(0, 2).map((service) => {
         const routeKey = serviceKeyToRoute[service.serviceKey] || service.serviceKey;
@@ -77,8 +77,8 @@ const serviceKeyToRoute: Record<string, string> = {
         );
       })}
 
-      <!-- Third column: two stacked compact cards -->
-      <div class="flex flex-col gap-6">
+      <!-- Third column: two stacked compact cards (inline on tablet) -->
+      <div class="flex flex-col md:flex-row md:col-span-2 lg:col-span-1 lg:flex-col gap-6">
         {services.slice(2, 4).map((service) => {
           const routeKey = serviceKeyToRoute[service.serviceKey] || service.serviceKey;
           return (
@@ -112,7 +112,7 @@ const serviceKeyToRoute: Record<string, string> = {
             </h3>
             <p class="mt-1 text-base-300 text-sm">{localize(services[4].description, locale)}</p>
           </div>
-          <span class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-base-400 group-hover:bg-electric-500 group-hover:border-electric-500 group-hover:text-white transition-all duration-300 shrink-0">
+          <span class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-base-300 group-hover:bg-electric-500 group-hover:border-electric-500 group-hover:text-white transition-all duration-300 shrink-0">
             <svg class="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
