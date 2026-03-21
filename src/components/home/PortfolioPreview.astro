@@ -9,18 +9,16 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const labels: Record<Locale, { tag: string; title: string; subtitle: string; viewProject: string; viewAll: string }> = {
+const labels: Record<Locale, { tag: string; title: string; viewProject: string; viewAll: string }> = {
   ro: {
-    tag: '[ 02 ] Portofoliu',
-    title: 'Portofoliu',
-    subtitle: 'Proiecte recente',
+    tag: '[ 02 ] portofoliu',
+    title: 'Proiecte recente',
     viewProject: 'Vezi proiectul',
-    viewAll: 'Vezi tot portofoliul',
+    viewAll: 'Vezi portofoliul complet',
   },
   en: {
-    tag: '[ 02 ] Portfolio',
-    title: 'Portfolio',
-    subtitle: 'Recent projects',
+    tag: '[ 02 ] portfolio',
+    title: 'Recent projects',
     viewProject: 'View project',
     viewAll: 'View full portfolio',
   },
@@ -32,12 +30,28 @@ const portfolioItems = await getPortfolioItems();
 ---
 <section class="bg-base-950 py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto" data-animate>
-      <span class="section-tag">{l.tag}</span>
-      <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">{l.title}</h2>
-      <p class="mt-4 text-base-400 text-lg">{l.subtitle}</p>
+    <!-- Split title area: heading left, link right -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end mb-16" data-animate>
+      <div>
+        <span class="section-tag">{l.tag}</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">
+          {l.title}
+        </h2>
+      </div>
+      <div class="lg:text-right">
+        <a
+          href={localePath('portfolio', locale)}
+          class="inline-flex items-center gap-2 text-electric-400 hover:text-electric-300 font-semibold transition-colors group"
+        >
+          {l.viewAll}
+          <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 portfolio-grid">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 portfolio-grid">
       {portfolioItems.map((item) => (
         <div class="glass-card overflow-hidden group" data-animate>
           {item.screenshot ? (
@@ -82,17 +96,6 @@ const portfolioItems = await getPortfolioItems();
         </div>
       ))}
     </div>
-    <div class="mt-12 text-center" data-animate>
-      <a
-        href={localePath('portfolio', locale)}
-        class="inline-flex items-center text-electric-400 hover:text-electric-300 font-semibold transition-colors duration-300"
-      >
-        {l.viewAll}
-        <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -100,6 +103,21 @@ const portfolioItems = await getPortfolioItems();
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
+
+  // Section header split title
+  const portfolioSection = document.querySelector<HTMLElement>('.portfolio-grid')?.closest('section');
+  if (portfolioSection) {
+    const headerEl = portfolioSection.querySelector<HTMLElement>('[data-animate]');
+    if (headerEl) {
+      gsap.from(headerEl, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: headerEl, start: 'top 85%' },
+      });
+    }
+  }
 
   // Staggered scroll animation for portfolio cards
   const portfolioGrid = document.querySelector<HTMLElement>('.portfolio-grid');
@@ -116,30 +134,6 @@ const portfolioItems = await getPortfolioItems();
           trigger: portfolioGrid,
           start: 'top 85%',
         },
-      });
-    }
-
-    // Section header
-    const headerEl = portfolioGrid.closest('section')?.querySelector('.text-center[data-animate]');
-    if (headerEl) {
-      gsap.from(headerEl, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: headerEl, start: 'top 85%' },
-      });
-    }
-
-    // "View all" link below grid
-    const viewAllEl = portfolioGrid.nextElementSibling;
-    if (viewAllEl && viewAllEl.hasAttribute('data-animate')) {
-      gsap.from(viewAllEl, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: viewAllEl, start: 'top 85%' },
       });
     }
   }

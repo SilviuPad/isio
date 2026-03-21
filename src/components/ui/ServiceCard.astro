@@ -10,7 +10,7 @@ const { title, description, href, icon } = Astro.props;
 ---
 <a
   href={href}
-  class="glass-card p-6 group cursor-pointer transition-all duration-300 block"
+  class="glass-card p-6 group cursor-pointer transition-all duration-300 block flex flex-col"
   data-animate
 >
   {icon && (
@@ -22,15 +22,12 @@ const { title, description, href, icon } = Astro.props;
   <p class="mt-2 text-base-300 text-sm leading-relaxed">
     {description}
   </p>
-  <span class="mt-4 inline-flex items-center text-electric-400 text-sm font-medium">
-    Află mai mult
-    <svg
-      class="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-    </svg>
-  </span>
+  <!-- Aiero-style arrow button -->
+  <div class="mt-auto pt-4 flex justify-end">
+    <span class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-base-400 group-hover:bg-electric-500 group-hover:border-electric-500 group-hover:text-white transition-all duration-300">
+      <svg class="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </span>
+  </div>
 </a>

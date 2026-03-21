@@ -8,48 +8,38 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const labels: Record<Locale, { title: string; subtitle: string; cta: string }> = {
-  ro: {
-    title: 'Gata să începem?',
-    subtitle: 'Discutăm despre proiectul tău și găsim cea mai bună soluție.',
-    cta: 'Programează un apel',
-  },
-  en: {
-    title: 'Ready to start?',
-    subtitle: 'Let\'s talk about your project and find the best solution.',
-    cta: 'Book a call',
-  },
+const labels: Record<Locale, { heading: string; cta: string }> = {
+  ro: { heading: 'Gata să construim ceva excepțional?', cta: 'Programează un apel' },
+  en: { heading: 'Ready to build something exceptional?', cta: 'Book a call' },
 };
-
 const l = labels[locale];
 ---
-<section class="bg-base-900 relative overflow-hidden py-24">
-  <!-- Radial glow behind content -->
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div
-      id="cta-orb"
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
-      style="background: radial-gradient(circle, rgba(59,130,246,0.14) 0%, rgba(34,211,238,0.06) 40%, transparent 70%); filter: blur(48px);"
-    ></div>
-    <!-- Secondary floating orb -->
-    <div
-      id="cta-float-orb"
-      class="absolute bottom-0 right-0 w-64 h-64 rounded-full"
-      style="background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%); filter: blur(40px); transform: translate(30%, 30%);"
-    ></div>
-  </div>
-
-  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto" data-animate>
-      <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white">{l.title}</h2>
-      <p class="mt-4 text-base-300 text-lg">{l.subtitle}</p>
-      <div class="mt-8">
+<section class="relative overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+    <div class="border-t border-white/5 pt-16">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white max-w-2xl" data-animate>
+          {l.heading}
+        </h2>
         <a
           href={localePath('contact', locale)}
-          class="btn-glow inline-block"
+          class="btn-glow magnetic-btn text-base inline-flex items-center gap-2 shrink-0"
+          data-animate
         >
           {l.cta}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
         </a>
+      </div>
+      <!-- Large ghost text -->
+      <div class="mt-12 overflow-hidden" data-animate>
+        <span
+          class="text-[6rem] sm:text-[8rem] lg:text-[12rem] font-bold font-heading leading-none tracking-tighter select-none"
+          style="-webkit-text-stroke: 1px rgba(255,255,255,0.05); color: transparent;"
+        >
+          Isio
+        </span>
       </div>
     </div>
   </div>
@@ -59,33 +49,13 @@ const l = labels[locale];
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-
-  // Section content fade in — scoped to the CTA section via unique orb sibling
-  const ctaOrb = document.querySelector<HTMLElement>('#cta-orb');
-  const ctaSection = ctaOrb?.closest('section');
-  if (ctaSection) {
-    const animateEl = ctaSection.querySelector<HTMLElement>('[data-animate]');
-    if (animateEl) {
-      gsap.from(animateEl, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: animateEl,
-          start: 'top 85%',
-        },
-      });
-    }
-  }
-
-  // Floating orb gentle animation
-  gsap.to('#cta-float-orb', {
-    y: -20,
-    x: -10,
-    duration: 5,
-    ease: 'sine.inOut',
-    repeat: -1,
-    yoyo: true,
+  gsap.utils.toArray('[data-animate]').forEach((el) => {
+    gsap.from(el as Element, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el as Element, start: 'top 85%' },
+    });
   });
 </script>
