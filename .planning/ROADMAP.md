@@ -64,7 +64,11 @@ Plans:
   1. A visitor can complete a discovery call booking in either locale and the event appears on the admin's Google Calendar with the visitor's details
   2. A visitor can submit the contact form and the admin receives an email notification with the message content
   3. Both the booking flow and contact form work correctly on mobile viewport sizes
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Contact form API route with Resend email + Cloudflare Turnstile, wired forms in both locales
+- [ ] 03-02-PLAN.md — Cal.com inline booking embed in both locales, visual verification checkpoint
 
 ### Phase 4: Document Generation
 **Goal**: The admin can generate a bilingual PDF proposal, contract, invoice, or report for any client directly from Sanity Studio, with Romanian diacritics rendering correctly
@@ -86,5 +90,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 5/5 | Complete | 2026-03-22 |
-| 3. Booking + Contact | 0/TBD | Not started | - |
+| 3. Booking + Contact | 0/2 | Not started | - |
 | 4. Document Generation | 0/TBD | Not started | - |
