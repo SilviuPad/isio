@@ -13,7 +13,7 @@ Four phases take Isio from nothing to a fully operational solo-developer agency 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Bilingual routing, Sanity CMS, Cloudflare deployment, admin auth — the infrastructure every other phase depends on
-- [ ] **Phase 2: Public Site** - All public-facing pages, tiered pricing, portfolio, SEO markup, and mobile-responsive design built on Phase 1 foundations
+- [x] **Phase 2: Public Site** - All public-facing pages, tiered pricing, portfolio, SEO markup, and mobile-responsive design built on Phase 1 foundations
 - [ ] **Phase 3: Booking + Contact** - Discovery call booking synced to Google Calendar and contact form with email notification
 - [ ] **Phase 4: Document Generation** - Bilingual PDF output for proposals, contracts, invoices, and reports with Romanian diacritic support
 
@@ -50,11 +50,11 @@ Plans:
 **Plans:** 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Design system (colors, fonts, CSS tokens) and content data (15 pricing tiers, 3 portfolio items, service rename)
-- [ ] 02-02-PLAN.md — Homepage (hero, services, stats, portfolio, CTA) and services index page
-- [ ] 02-03-PLAN.md — 5 service detail pages with shared template, scope, deliverables, turnaround, dual CTAs
-- [ ] 02-04-PLAN.md — Central pricing page (Fiverr-style tiers), portfolio grid, and about page
-- [ ] 02-05-PLAN.md — JSON-LD schema markup, mobile navigation, and visual verification checkpoint
+- [x] 02-01-PLAN.md — Design system (colors, fonts, CSS tokens) and content data (15 pricing tiers, 3 portfolio items, service rename)
+- [x] 02-02-PLAN.md — Homepage (hero, services, stats, portfolio, CTA) and services index page
+- [x] 02-03-PLAN.md — 5 service detail pages with shared template, scope, deliverables, turnaround, dual CTAs
+- [x] 02-04-PLAN.md — Central pricing page (Fiverr-style tiers), portfolio grid, and about page
+- [x] 02-05-PLAN.md — JSON-LD schema markup, mobile navigation, and visual verification checkpoint
 
 ### Phase 3: Booking + Contact
 **Goal**: A prospective client can book a discovery call that appears on the admin's Google Calendar, and can send a message via contact form that triggers an email notification — without any OAuth token management burden
@@ -85,6 +85,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
-| 2. Public Site | 0/5 | Planning complete | - |
+| 2. Public Site | 5/5 | Complete | 2026-03-22 |
 | 3. Booking + Contact | 0/TBD | Not started | - |
 | 4. Document Generation | 0/TBD | Not started | - |
