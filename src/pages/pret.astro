@@ -1,0 +1,46 @@
+---
+export const prerender = true;
+
+import Page from '../layouts/Page.astro';
+import { slugMap } from '../i18n/utils';
+import { getAllPricingTiers, localize } from '../lib/sanity';
+import type { Locale } from '../i18n/utils';
+
+const locale: Locale = 'ro';
+const { roSlug, enSlug } = { roSlug: slugMap.pricing.ro, enSlug: slugMap.pricing.en };
+
+// Fetch pricing tiers from Sanity CMS at build time
+let tiers = [];
+try {
+  tiers = await getAllPricingTiers();
+} catch (e) {
+  // Sanity not configured yet — show placeholder
+  console.warn('Sanity fetch failed (expected during initial setup):', e instanceof Error ? e.message : e);
+}
+---
+<Page
+  title="Prețuri — Isio"
+  description="Pachete de prețuri pentru servicii web, aplicații, SEO și accesibilitate."
+  locale={locale}
+  roSlug={roSlug}
+  enSlug={enSlug}
+>
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Prețuri</h1>
+    {tiers.length > 0 ? (
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {tiers.map((tier) => (
+          <div class="rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold">{localize(tier.name, locale)}</h3>
+            <p class="mt-2 text-2xl font-bold">{tier.priceEur} EUR</p>
+            <p class="mt-1 text-sm text-gray-500">{tier.deliveryDays} zile livrare</p>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p class="mt-6 text-gray-500">
+        [Prețurile vor fi încărcate din CMS odată ce proiectul Sanity este configurat]
+      </p>
+    )}
+  </section>
+</Page>

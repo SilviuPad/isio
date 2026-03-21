@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client';
 
 export const sanityClient = createClient({
-  projectId: import.meta.env.SANITY_PROJECT_ID,
+  projectId: import.meta.env.SANITY_PROJECT_ID || 'placeholder',
   dataset: import.meta.env.SANITY_DATASET || 'production',
   apiVersion: '2025-02-19',  // Defaults perspective to 'published' — drafts filtered automatically
   useCdn: false,              // MUST be false for build-time SSG fetching

@@ -1,0 +1,48 @@
+---
+export const prerender = true;
+
+import Base from '../layouts/Base.astro';
+import type { Locale } from '../i18n/utils';
+
+// Detect locale from referer or default to RO
+const locale: Locale = 'ro';
+
+const content: Record<Locale, { title: string; message: string; backHome: string; homeHref: string }> = {
+  ro: {
+    title: 'Pagina nu a fost găsită',
+    message: 'Ne pare rău, pagina pe care o cauți nu există.',
+    backHome: 'Înapoi acasă',
+    homeHref: '/',
+  },
+  en: {
+    title: 'Page not found',
+    message: 'Sorry, the page you are looking for does not exist.',
+    backHome: 'Back to home',
+    homeHref: '/en/',
+  },
+};
+
+const text = content[locale];
+---
+<Base title={`404 — ${text.title}`} locale={locale} roSlug="/" enSlug="/en/">
+  <div class="flex min-h-screen items-center justify-center px-4">
+    <div class="text-center">
+      <p class="text-6xl font-bold text-gray-200">404</p>
+      <h1 class="mt-4 text-2xl font-bold text-gray-900">{text.title}</h1>
+      <p class="mt-2 text-gray-600">{text.message}</p>
+      <a href={text.homeHref} class="mt-6 inline-block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 transition-colors">
+        {text.backHome}
+      </a>
+      {locale === 'ro' && (
+        <p class="mt-4">
+          <a href="/en/" class="text-sm text-gray-400 hover:text-gray-600">English version</a>
+        </p>
+      )}
+      {locale === 'en' && (
+        <p class="mt-4">
+          <a href="/" class="text-sm text-gray-400 hover:text-gray-600">Versiunea română</a>
+        </p>
+      )}
+    </div>
+  </div>
+</Base>

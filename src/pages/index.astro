@@ -1,7 +1,29 @@
 ---
 export const prerender = true;
+
+import Page from '../layouts/Page.astro';
+import { slugMap } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+
+const locale: Locale = 'ro';
+const { roSlug, enSlug } = { roSlug: slugMap.home.ro, enSlug: slugMap.home.en };
 ---
-<html lang="ro-RO">
-  <head><title>Isio</title></head>
-  <body><h1>Isio</h1></body>
-</html>
+<Page
+  title="Isio — Agenție Web"
+  description="Agenție web specializată în dezvoltare website-uri, aplicații web, SEO și audituri de accesibilitate."
+  locale={locale}
+  roSlug={roSlug}
+  enSlug={enSlug}
+>
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+      Agenție Web Isio
+    </h1>
+    <p class="mt-6 text-lg text-gray-600 max-w-2xl">
+      Dezvoltăm website-uri, aplicații web și oferim servicii de SEO și accesibilitate.
+    </p>
+    <p class="mt-4 text-sm text-gray-400">
+      [Pagina de fundație — conținutul complet urmează în Faza 2]
+    </p>
+  </section>
+</Page>

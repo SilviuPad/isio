@@ -1,0 +1,10 @@
+name = "isio"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist/client"
+binding = "ASSETS"
+
+# Environment variables set in Cloudflare dashboard (not in this file)
+# SANITY_PROJECT_ID, SANITY_API_READ_TOKEN
