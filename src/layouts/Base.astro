@@ -1,0 +1,58 @@
+---
+import { SEO } from 'astro-seo';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  locale: 'ro' | 'en';
+  roSlug: string;
+  enSlug: string;
+  ogImage?: string;
+}
+
+const { title, description = '', locale, roSlug, enSlug, ogImage } = Astro.props;
+const baseUrl = 'https://isio.ro';
+const canonicalUrl = locale === 'ro' ? `${baseUrl}${roSlug}` : `${baseUrl}${enSlug}`;
+const defaultOgImage = `${baseUrl}/og.png`;
+---
+<!DOCTYPE html>
+<html lang={locale === 'ro' ? 'ro-RO' : 'en-US'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalUrl}
+      languageAlternates={[
+        { href: `${baseUrl}${roSlug}`, hreflang: 'ro' },
+        { href: `${baseUrl}${enSlug}`, hreflang: 'en' },
+        { href: `${baseUrl}${roSlug}`, hreflang: 'x-default' },
+      ]}
+      openGraph={{
+        basic: {
+          title: title,
+          type: 'website',
+          image: ogImage || defaultOgImage,
+          url: canonicalUrl,
+        },
+        optional: {
+          locale: locale === 'ro' ? 'ro_RO' : 'en_US',
+          siteName: 'Isio',
+          description: description,
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        title: title,
+        description: description,
+        image: ogImage || defaultOgImage,
+      }}
+    />
+  </head>
+  <body class="min-h-screen bg-white text-gray-900 antialiased">
+    <slot />
+  </body>
+</html>
