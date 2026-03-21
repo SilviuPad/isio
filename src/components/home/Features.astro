@@ -1,0 +1,67 @@
+---
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const features = [
+  {
+    icon: '<svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>',
+    title: { ro: 'Execuție rapidă', en: 'Lightning execution' },
+    desc: { ro: 'De la concept la producție în zile, nu luni. Fiecare proiect este livrat cu viteză maximă.', en: 'From concept to production in days, not months. Every project delivered at maximum velocity.' },
+  },
+  {
+    icon: '<svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>',
+    title: { ro: 'Soluții personalizate', en: 'Tailored solutions' },
+    desc: { ro: 'Fiecare proiect este construit de la zero pentru cerințele tale specifice. Zero template-uri generice.', en: 'Every project built from scratch for your specific needs. Zero generic templates.' },
+  },
+  {
+    icon: '<svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
+    title: { ro: 'Accesibilitate nativă', en: 'Native accessibility' },
+    desc: { ro: 'WCAG 2.1 din prima linie de cod. Fiecare interfață este utilizabilă de toți, fără compromisuri.', en: 'WCAG 2.1 from line one of code. Every interface usable by everyone, no compromises.' },
+  },
+  {
+    icon: '<svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>',
+    title: { ro: 'Performanță 100/100', en: '100/100 Performance' },
+    desc: { ro: 'Lighthouse perfect pe toate categoriile. Fiecare milisecundă contează pentru conversii.', en: 'Perfect Lighthouse on all categories. Every millisecond counts for conversions.' },
+  },
+];
+---
+<section class="py-24 relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16">
+      <span class="section-tag">{locale === 'ro' ? '[ 03 ] de ce isio' : '[ 03 ] why isio'}</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">
+        {locale === 'ro' ? 'Avantajele care ne diferențiază' : 'The advantages that set us apart'}
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((f) => (
+        <div class="glass-card p-8 group hover:border-electric-500/20 transition-all duration-300" data-animate>
+          <div class="text-electric-400 mb-6 group-hover:scale-110 transition-transform duration-300" set:html={f.icon} />
+          <h4 class="text-lg font-semibold font-heading text-white mb-3">{f.title[locale]}</h4>
+          <p class="text-base-400 text-sm leading-relaxed">{f.desc[locale]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  const featureCards = gsap.utils.toArray<HTMLElement>('.glass-card[data-animate]');
+  if (featureCards.length) {
+    featureCards.forEach((card, i) => {
+      gsap.from(card, {
+        y: 60, opacity: 0, duration: 0.8, ease: 'power3.out',
+        delay: i * 0.1,
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true }
+      });
+    });
+  }
+</script>
