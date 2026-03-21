@@ -49,19 +49,3 @@ const features = [
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  const featureCards = gsap.utils.toArray<HTMLElement>('.glass-card[data-animate]');
-  if (featureCards.length) {
-    featureCards.forEach((card, i) => {
-      gsap.from(card, {
-        y: 60, opacity: 0, duration: 0.8, ease: 'power3.out',
-        delay: i * 0.1,
-        scrollTrigger: { trigger: card, start: 'top 90%', once: true }
-      });
-    });
-  }
-</script>

@@ -65,9 +65,6 @@ const testimonials = [
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray<Element>('[data-animate]').forEach((el) => {
-    gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
-  });
   // Counter
   document.querySelectorAll('[data-counter]').forEach((el) => {
     const target = parseFloat((el as HTMLElement).dataset.counter || '0');

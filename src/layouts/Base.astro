@@ -97,6 +97,29 @@ const defaultOgImage = `${baseUrl}/og.png`;
       window.addEventListener('load', () => setTimeout(hidePreloader, 1600), { once: true });
       setTimeout(hidePreloader, 3500); // fallback
 
+      // === GLOBAL DATA-ANIMATE HANDLER ===
+      // Handles all [data-animate] elements globally — shows immediately if already in viewport
+      gsap.utils.toArray<Element>('[data-animate]').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          // Already in viewport — show immediately, no animation
+          gsap.set(el, { opacity: 1, y: 0, clearProps: 'all' });
+        } else {
+          // Below viewport — animate on scroll
+          gsap.from(el, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              once: true,
+            },
+          });
+        }
+      });
+
       // === MAGNETIC BUTTONS ===
       document.querySelectorAll('.magnetic-btn').forEach((btn) => {
         const el = btn as HTMLElement;

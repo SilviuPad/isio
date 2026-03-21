@@ -80,14 +80,6 @@ const l = labels[locale];
         started = true;
         const duration = 4000; // 4 seconds
 
-        // Slide in the stat block
-        gsap.from(el.closest('[data-animate]') ?? el, {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-        });
-
         const startTime = performance.now();
 
         function update(currentTime: number) {

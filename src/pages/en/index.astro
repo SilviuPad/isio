@@ -3,7 +3,6 @@ export const prerender = true;
 
 import Page from '../../layouts/Page.astro';
 import Hero from '../../components/home/Hero.astro';
-import TechCarousel from '../../components/home/TechCarousel.astro';
 import ServicesPreview from '../../components/home/ServicesPreview.astro';
 import Marquee from '../../components/home/Marquee.astro';
 import Features from '../../components/home/Features.astro';
@@ -31,7 +30,6 @@ const { roSlug, enSlug } = { roSlug: slugMap.home.ro, enSlug: slugMap.home.en };
   pageType="home"
 >
   <Hero locale={locale} />
-  <TechCarousel locale={locale} />
   <ServicesPreview locale={locale} />
   <Marquee locale={locale} />
   <Features locale={locale} />

@@ -44,18 +44,3 @@ const l = labels[locale];
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray('[data-animate]').forEach((el) => {
-    gsap.from(el as Element, {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: el as Element, start: 'top 85%' },
-    });
-  });
-</script>
