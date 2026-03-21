@@ -42,11 +42,11 @@ const { locale } = Astro.props;
       <div data-animate>
         <div class="glass-card p-8 lg:p-10">
           <h3 class="text-2xl font-bold font-heading text-white mb-6">{locale === 'ro' ? 'Trimite un mesaj' : 'Get in Touch'}</h3>
-          <form class="space-y-5">
-            <input type="text" placeholder={locale === 'ro' ? 'Nume complet' : 'Full name'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
-            <input type="email" placeholder="Email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
-            <input type="text" placeholder={locale === 'ro' ? 'Subiect' : 'Subject'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
-            <textarea rows={5} placeholder={locale === 'ro' ? 'Scrie mesajul tău...' : 'Write your message...'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors resize-none"></textarea>
+          <form class="space-y-5" id="contact-form-inline" data-locale={locale}>
+            <input type="text" name="name" placeholder={locale === 'ro' ? 'Nume complet' : 'Full name'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
+            <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
+            <textarea name="message" rows={5} placeholder={locale === 'ro' ? 'Scrie mesajul tău...' : 'Write your message...'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors resize-none"></textarea>
+            <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ''} data-theme="dark" data-size="invisible"></div>
             <button type="submit" class="btn-outline inline-flex items-center gap-2 group">
               {locale === 'ro' ? 'Trimite mesajul' : 'Send message'}
               <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,8 +54,119 @@ const { locale } = Astro.props;
               </svg>
             </button>
           </form>
+          <div id="form-status-inline" class="mt-4 hidden"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contact-form-inline');
+    var statusEl = document.getElementById('form-status-inline');
+    if (!form || !statusEl) return;
+
+    var locale = form.getAttribute('data-locale') || 'ro';
+
+    var strings = {
+      ro: {
+        loading: 'Se trimite...',
+        submit: 'Trimite mesajul',
+        success: 'Mesajul a fost trimis! Revenim in maxim 24 de ore.',
+        error: 'Nu am putut trimite mesajul. Te rugam incearca din nou.',
+      },
+      en: {
+        loading: 'Sending...',
+        submit: 'Send message',
+        success: "Message sent! We'll get back to you within 24 hours.",
+        error: 'Could not send message. Please try again.',
+      },
+    };
+
+    var t = strings[locale] || strings.ro;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        var textNode = submitBtn.firstChild;
+        if (textNode && textNode.nodeType === 3) {
+          textNode.textContent = t.loading;
+        } else {
+          submitBtn.textContent = t.loading;
+        }
+      }
+
+      statusEl.className = 'mt-4 hidden';
+      statusEl.textContent = '';
+
+      var nameEl = form.querySelector('[name="name"]');
+      var emailEl = form.querySelector('[name="email"]');
+      var messageEl = form.querySelector('[name="message"]');
+      var turnstileEl = form.querySelector('[name="cf-turnstile-response"]');
+
+      var payload = {
+        name: nameEl ? nameEl.value : '',
+        email: emailEl ? emailEl.value : '',
+        service: '',
+        message: messageEl ? messageEl.value : '',
+        turnstileToken: turnstileEl ? turnstileEl.value : '',
+        locale: locale,
+      };
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            form.style.display = 'none';
+            statusEl.className = 'mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+            statusEl.textContent = t.success;
+          } else {
+            statusEl.className = 'mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400';
+            statusEl.textContent = t.error;
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              var textNode = submitBtn.firstChild;
+              if (textNode && textNode.nodeType === 3) {
+                textNode.textContent = t.submit;
+              } else {
+                submitBtn.textContent = t.submit;
+              }
+            }
+            if (typeof turnstile !== 'undefined') {
+              turnstile.reset();
+            }
+          }
+        })
+        .catch(function () {
+          statusEl.className = 'mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400';
+          statusEl.textContent = t.error;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            var textNode = submitBtn.firstChild;
+            if (textNode && textNode.nodeType === 3) {
+              textNode.textContent = t.submit;
+            } else {
+              submitBtn.textContent = t.submit;
+            }
+          }
+          if (typeof turnstile !== 'undefined') {
+            turnstile.reset();
+          }
+        });
+    });
+  })();
+</script>

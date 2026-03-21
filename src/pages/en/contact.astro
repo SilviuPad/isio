@@ -30,7 +30,7 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
       <div data-animate>
         <h2 class="text-2xl font-bold font-heading text-white">Send a message</h2>
         <p class="mt-2 text-base-400 text-sm">We respond within 24 hours.</p>
-        <form class="mt-8 space-y-6" id="contact-form">
+        <form class="mt-8 space-y-6" id="contact-form" data-locale="en">
           <div>
             <label for="name" class="block text-sm font-medium text-base-200 mb-2">Name</label>
             <input
@@ -79,10 +79,12 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
               placeholder="Tell us about your project..."
             ></textarea>
           </div>
+          <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ''} data-theme="dark" data-size="invisible"></div>
           <button type="submit" class="btn-glow w-full text-center">
             Send message
           </button>
         </form>
+        <div id="form-status" class="mt-4 hidden"></div>
       </div>
 
       <!-- Info side -->
@@ -154,4 +156,100 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
       </div>
     </div>
   </section>
+
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script is:inline>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var statusEl = document.getElementById('form-status');
+      if (!form || !statusEl) return;
+
+      var locale = form.getAttribute('data-locale') || 'en';
+
+      var strings = {
+        ro: {
+          loading: 'Se trimite...',
+          submit: 'Trimite mesajul',
+          success: 'Mesajul a fost trimis! Revenim in maxim 24 de ore.',
+          error: 'Nu am putut trimite mesajul. Te rugam incearca din nou.',
+        },
+        en: {
+          loading: 'Sending...',
+          submit: 'Send message',
+          success: "Message sent! We'll get back to you within 24 hours.",
+          error: 'Could not send message. Please try again.',
+        },
+      };
+
+      var t = strings[locale] || strings.en;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = t.loading;
+        }
+
+        statusEl.className = 'mt-4 hidden';
+        statusEl.textContent = '';
+
+        var nameEl = form.querySelector('[name="name"]');
+        var emailEl = form.querySelector('[name="email"]');
+        var serviceEl = form.querySelector('[name="service"]');
+        var messageEl = form.querySelector('[name="message"]');
+        var turnstileEl = form.querySelector('[name="cf-turnstile-response"]');
+
+        var payload = {
+          name: nameEl ? nameEl.value : '',
+          email: emailEl ? emailEl.value : '',
+          service: serviceEl ? serviceEl.value : '',
+          message: messageEl ? messageEl.value : '',
+          turnstileToken: turnstileEl ? turnstileEl.value : '',
+          locale: locale,
+        };
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { ok: res.ok, data: data };
+            });
+          })
+          .then(function (result) {
+            if (result.ok) {
+              form.style.display = 'none';
+              statusEl.className = 'mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+              statusEl.textContent = t.success;
+            } else {
+              statusEl.className = 'mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400';
+              statusEl.textContent = t.error;
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = t.submit;
+              }
+              if (typeof turnstile !== 'undefined') {
+                turnstile.reset();
+              }
+            }
+          })
+          .catch(function () {
+            statusEl.className = 'mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400';
+            statusEl.textContent = t.error;
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = t.submit;
+            }
+            if (typeof turnstile !== 'undefined') {
+              turnstile.reset();
+            }
+          });
+      });
+    })();
+  </script>
 </Page>
