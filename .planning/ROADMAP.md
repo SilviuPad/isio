@@ -67,7 +67,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Contact form API route with Resend email + Cloudflare Turnstile, wired forms in both locales
+- [x] 03-01-PLAN.md — Contact form API route with Resend email + Cloudflare Turnstile, wired forms in both locales
 - [ ] 03-02-PLAN.md — Cal.com inline booking embed in both locales, visual verification checkpoint
 
 ### Phase 4: Document Generation
@@ -90,5 +90,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 5/5 | Complete | 2026-03-22 |
-| 3. Booking + Contact | 0/2 | Not started | - |
+| 3. Booking + Contact | 1/2 | In Progress | - |
 | 4. Document Generation | 0/TBD | Not started | - |

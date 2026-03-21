@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** Clients can discover services, understand pricing, and book a discovery call — all self-service — while the solo developer manages everything from a single CMS-powered admin panel.
-**Current focus:** Phase 2 complete — ready for Phase 3
+**Current focus:** Phase 3 — Booking + Contact
 
 ## Current Position
 
-Phase: 2 of 4 (Public Site) — COMPLETE
-Plan: 5 of 5 in current phase
-Status: Phase 2 complete — all plans executed, visual verification approved
-Last activity: 2026-03-22 — Phase 2 execution complete
+Phase: 3 of 4 (Booking + Contact) — IN PROGRESS
+Plan: 1 of 2 in current phase
+Status: Plan 03-01 complete — contact form backend + Turnstile + Resend
+Last activity: 2026-03-22 — Plan 03-01 complete
 
-Progress: [██████████] 100% Phase 2
+Progress: [█████░░░░░] 50% Phase 3
 
 ## Performance Metrics
 
@@ -52,6 +52,10 @@ Recent decisions affecting current work:
 - [01-04]: wrangler.toml uses [assets] block not Pages format — Workers static asset binding for Astro dist output
 - [01-04]: 404 page defaults to RO locale at build time — Cloudflare Workers serves single file; links to /en/ provided
 - [01-04]: sanity.ts projectId fallback 'placeholder' prevents init crash before Sanity project is created
+- [03-01]: Resend SDK uses camelCase replyTo not reply_to — corrected during execution
+- [03-01]: is:inline scripts for form fetch submission — avoids Astro bundler scope issues with DOM manipulation
+- [03-01]: PUBLIC_TURNSTILE_SITE_KEY via import.meta.env at build time — Astro PUBLIC_ convention for client-safe vars
+- [03-01]: npm install --force needed on ARM64 Windows dev machine — workerd package is x64-only (deploy target is x64)
 
 ### Pending Todos
 
@@ -66,6 +70,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Phase 2 complete — all 5 plans done, visual verification approved
-Resume signal: Start Phase 3 with `/gsd:discuss-phase 03` or `/gsd:plan-phase 03`
-Resume file: .planning/phases/02-public-site/02-05-SUMMARY.md
+Stopped at: Phase 3 Plan 01 complete — contact form backend, Turnstile, Resend wired
+Resume signal: Continue Phase 3 with Plan 02 (Cal.com booking embed)
+Resume file: .planning/phases/03-booking-contact/03-01-SUMMARY.md
