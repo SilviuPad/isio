@@ -7,18 +7,22 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const labels: Record<Locale, { projects: string; projectsDesc: string; experience: string; satisfaction: string }> = {
+const labels: Record<Locale, { projects: string; projectsDesc: string; experience: string; experienceDesc: string; satisfaction: string; satisfactionDesc: string }> = {
   ro: {
     projects: 'Proiecte livrate',
     projectsDesc: 'Proiecte de succes pentru clienți din diverse industrii',
     experience: 'Ani experiență',
+    experienceDesc: 'Construim produse web de la marketplace-uri la agenți AI autonomi',
     satisfaction: 'Satisfacție clienți',
+    satisfactionDesc: 'Fiecare proiect livrat la timp, cu suport post-lansare inclus',
   },
   en: {
     projects: 'Projects delivered',
     projectsDesc: 'Successful projects for clients across industries',
     experience: 'Years experience',
+    experienceDesc: 'Building web products from marketplaces to autonomous AI agents',
     satisfaction: 'Client satisfaction',
+    satisfactionDesc: 'Every project delivered on time, with post-launch support included',
   },
 };
 
@@ -38,22 +42,24 @@ const l = labels[locale];
         <p class="text-base-400 text-sm mt-2">{l.projectsDesc}</p>
       </div>
       <!-- Smaller stat: experience -->
-      <div class="lg:col-span-3 glass-card p-8" data-animate>
+      <div class="lg:col-span-3 p-8" data-animate>
         <div
           class="text-4xl lg:text-5xl font-bold gradient-text font-heading"
           data-counter="7"
           data-suffix="+"
         >0+</div>
         <span class="text-base-400 text-sm mt-2 block uppercase tracking-wider">{l.experience}</span>
+        <p class="text-base-500 text-xs mt-2">{l.experienceDesc}</p>
       </div>
       <!-- Smaller stat: satisfaction -->
-      <div class="lg:col-span-3 glass-card p-8" data-animate>
+      <div class="lg:col-span-3 p-8" data-animate>
         <div
           class="text-4xl lg:text-5xl font-bold gradient-text font-heading"
           data-counter="100"
           data-suffix="%"
         >0%</div>
         <span class="text-base-400 text-sm mt-2 block uppercase tracking-wider">{l.satisfaction}</span>
+        <p class="text-base-500 text-xs mt-2">{l.satisfactionDesc}</p>
       </div>
     </div>
   </div>
