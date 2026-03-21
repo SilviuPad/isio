@@ -1,0 +1,8 @@
+{
+  "title": { "ro": "StoryPic", "en": "StoryPic" },
+  "description": { "ro": "Platformă de generare povești personalizate cu imagini AI.", "en": "Personalized story generation platform with AI images." },
+  "screenshot": "/images/portfolio/storypic.png",
+  "techStack": ["Astro", "TypeScript", "Genkit", "Neon PostgreSQL", "Cloudflare"],
+  "liveUrl": "https://storypicbooks.com",
+  "order": 1
+}

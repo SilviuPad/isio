@@ -1,0 +1,9 @@
+{
+  "serviceKey": "seo",
+  "slug": { "ro": "seo", "en": "seo" },
+  "title": { "ro": "SEO", "en": "SEO" },
+  "description": { "ro": "Optimizare pentru motoarele de căutare — audit tehnic, conținut, link building.", "en": "Search engine optimization — technical audit, content, link building." },
+  "metaTitle": { "ro": "SEO — Isio", "en": "SEO — Isio" },
+  "metaDescription": { "ro": "Servicii SEO profesionale.", "en": "Professional SEO services." },
+  "order": 3
+}

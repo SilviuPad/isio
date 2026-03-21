@@ -3,20 +3,13 @@ export const prerender = true;
 
 import Page from '../layouts/Page.astro';
 import { slugMap } from '../i18n/utils';
-import { getAllPricingTiers, localize } from '../lib/sanity';
+import { getAllPricingTiers, localize } from '../lib/content';
 import type { Locale } from '../i18n/utils';
 
 const locale: Locale = 'ro';
 const { roSlug, enSlug } = { roSlug: slugMap.pricing.ro, enSlug: slugMap.pricing.en };
 
-// Fetch pricing tiers from Sanity CMS at build time
-let tiers = [];
-try {
-  tiers = await getAllPricingTiers();
-} catch (e) {
-  // Sanity not configured yet — show placeholder
-  console.warn('Sanity fetch failed (expected during initial setup):', e instanceof Error ? e.message : e);
-}
+const tiers = await getAllPricingTiers();
 ---
 <Page
   title="Prețuri — Isio"
@@ -39,7 +32,7 @@ try {
       </div>
     ) : (
       <p class="mt-6 text-gray-500">
-        [Prețurile vor fi încărcate din CMS odată ce proiectul Sanity este configurat]
+        Niciun pachet de prețuri disponibil momentan.
       </p>
     )}
   </section>

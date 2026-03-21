@@ -1,0 +1,9 @@
+{
+  "serviceKey": "consulting",
+  "slug": { "ro": "consultanta", "en": "consulting" },
+  "title": { "ro": "Consultanță", "en": "Consulting" },
+  "description": { "ro": "Consultanță tehnică pentru proiecte web și strategie digitală.", "en": "Technical consulting for web projects and digital strategy." },
+  "metaTitle": { "ro": "Consultanță — Isio", "en": "Consulting — Isio" },
+  "metaDescription": { "ro": "Consultanță tehnică web.", "en": "Web technical consulting." },
+  "order": 5
+}

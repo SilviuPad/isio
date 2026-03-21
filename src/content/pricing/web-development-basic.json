@@ -1,0 +1,18 @@
+{
+  "service": "web-development",
+  "order": 1,
+  "name": { "ro": "Basic", "en": "Basic" },
+  "priceEur": 500,
+  "pricePrefix": null,
+  "deliveryDays": 14,
+  "revisions": 2,
+  "isRecommended": false,
+  "description": { "ro": "Website simplu cu până la 5 pagini.", "en": "Simple website with up to 5 pages." },
+  "features": [
+    { "ro": "Până la 5 pagini", "en": "Up to 5 pages", "included": true },
+    { "ro": "Design responsive", "en": "Responsive design", "included": true },
+    { "ro": "Formular de contact", "en": "Contact form", "included": true },
+    { "ro": "SEO de bază", "en": "Basic SEO", "included": true },
+    { "ro": "CMS personalizat", "en": "Custom CMS", "included": false }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "serviceKey": "web-development",
+  "slug": { "ro": "dezvoltare-web", "en": "web-development" },
+  "title": { "ro": "Dezvoltare Web", "en": "Web Development" },
+  "description": { "ro": "Website-uri moderne, rapide și optimizate pentru motoarele de căutare.", "en": "Modern, fast websites optimized for search engines." },
+  "metaTitle": { "ro": "Dezvoltare Web — Isio", "en": "Web Development — Isio" },
+  "metaDescription": { "ro": "Servicii profesionale de dezvoltare web.", "en": "Professional web development services." },
+  "order": 1
+}

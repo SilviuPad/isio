@@ -1,0 +1,9 @@
+{
+  "serviceKey": "accessibility",
+  "slug": { "ro": "accesibilitate", "en": "accessibility" },
+  "title": { "ro": "Accesibilitate", "en": "Accessibility" },
+  "description": { "ro": "Audituri de accesibilitate web conform WCAG 2.1.", "en": "Web accessibility audits following WCAG 2.1 guidelines." },
+  "metaTitle": { "ro": "Accesibilitate — Isio", "en": "Accessibility — Isio" },
+  "metaDescription": { "ro": "Audituri de accesibilitate web.", "en": "Web accessibility audits." },
+  "order": 4
+}

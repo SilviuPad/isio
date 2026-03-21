@@ -1,0 +1,9 @@
+{
+  "siteTitle": { "ro": "Isio — Agenție Web", "en": "Isio — Web Agency" },
+  "siteDescription": { "ro": "Agenție web specializată în dezvoltare website-uri, aplicații web, SEO și accesibilitate.", "en": "Web agency specializing in website development, web apps, SEO, and accessibility audits." },
+  "contactEmail": "contact@isio.ro",
+  "socialLinks": {
+    "linkedin": "https://linkedin.com/company/isio",
+    "github": "https://github.com/isio"
+  }
+}

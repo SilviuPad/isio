@@ -3,18 +3,13 @@ export const prerender = true;
 
 import Page from '../../layouts/Page.astro';
 import { slugMap } from '../../i18n/utils';
-import { getAllPricingTiers, localize } from '../../lib/sanity';
+import { getAllPricingTiers, localize } from '../../lib/content';
 import type { Locale } from '../../i18n/utils';
 
 const locale: Locale = 'en';
 const { roSlug, enSlug } = { roSlug: slugMap.pricing.ro, enSlug: slugMap.pricing.en };
 
-let tiers = [];
-try {
-  tiers = await getAllPricingTiers();
-} catch (e) {
-  console.warn('Sanity fetch failed (expected during initial setup):', e instanceof Error ? e.message : e);
-}
+const tiers = await getAllPricingTiers();
 ---
 <Page
   title="Pricing — Isio"
@@ -37,7 +32,7 @@ try {
       </div>
     ) : (
       <p class="mt-6 text-gray-500">
-        [Pricing will be loaded from CMS once the Sanity project is configured]
+        No pricing packages available at the moment.
       </p>
     )}
   </section>

@@ -1,0 +1,9 @@
+{
+  "serviceKey": "web-apps",
+  "slug": { "ro": "aplicatii-web", "en": "web-apps" },
+  "title": { "ro": "Aplicații Web", "en": "Web Applications" },
+  "description": { "ro": "Aplicații web personalizate cu funcționalități complexe.", "en": "Custom web applications with complex functionality." },
+  "metaTitle": { "ro": "Aplicații Web — Isio", "en": "Web Applications — Isio" },
+  "metaDescription": { "ro": "Dezvoltare aplicații web la comandă.", "en": "Custom web application development." },
+  "order": 2
+}

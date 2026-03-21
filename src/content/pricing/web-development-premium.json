@@ -1,0 +1,18 @@
+{
+  "service": "web-development",
+  "order": 3,
+  "name": { "ro": "Premium", "en": "Premium" },
+  "priceEur": 2500,
+  "pricePrefix": null,
+  "deliveryDays": 30,
+  "revisions": -1,
+  "isRecommended": false,
+  "description": { "ro": "Proiect complet la cheie cu suport extins.", "en": "Complete turnkey project with extended support." },
+  "features": [
+    { "ro": "Pagini nelimitate", "en": "Unlimited pages", "included": true },
+    { "ro": "Design responsive", "en": "Responsive design", "included": true },
+    { "ro": "Formulare avansate", "en": "Advanced forms", "included": true },
+    { "ro": "SEO avansat", "en": "Advanced SEO", "included": true },
+    { "ro": "CMS personalizat", "en": "Custom CMS", "included": true }
+  ]
+}

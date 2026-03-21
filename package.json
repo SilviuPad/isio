@@ -15,12 +15,9 @@
     "@astrojs/sitemap": "latest",
     "@cloudflare/workerd-windows-64": "^1.20260317.1",
     "@inlang/paraglide-js": "^2.15.0",
-    "@sanity/astro": "^3",
-    "@sanity/client": "^7",
     "@tailwindcss/vite": "^4.2",
     "astro": "^6.0",
     "astro-seo": "^1.1.0",
-    "sanity": "^3",
     "tailwindcss": "^4.2"
   },
   "devDependencies": {
