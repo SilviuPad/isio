@@ -1,0 +1,21 @@
+---
+export const prerender = true;
+
+import Page from '../../../layouts/Page.astro';
+import ServicePageLayout from '../../../components/services/ServicePageLayout.astro';
+import { getServiceByKey, localize } from '../../../lib/content';
+import { slugMap } from '../../../i18n/utils';
+import type { Locale } from '../../../i18n/utils';
+
+const locale: Locale = 'en';
+const serviceKey = 'web-development';
+const slugMapKey = 'website';
+const { roSlug, enSlug } = { roSlug: slugMap[slugMapKey].ro, enSlug: slugMap[slugMapKey].en };
+
+const service = await getServiceByKey(serviceKey);
+const title = service ? localize(service.metaTitle, locale) : 'Web Development — Isio';
+const description = service ? localize(service.metaDescription, locale) : '';
+---
+<Page title={title} description={description} locale={locale} roSlug={roSlug} enSlug={enSlug}>
+  <ServicePageLayout serviceKey={serviceKey} locale={locale} />
+</Page>
