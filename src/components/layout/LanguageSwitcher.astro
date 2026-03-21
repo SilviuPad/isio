@@ -1,0 +1,40 @@
+---
+interface Props {
+  currentLocale: 'ro' | 'en';
+  roSlug: string;
+  enSlug: string;
+}
+
+const { currentLocale, roSlug, enSlug } = Astro.props;
+---
+<nav aria-label="Language switcher" class="flex items-center gap-1 text-sm">
+  <a
+    href={roSlug}
+    aria-current={currentLocale === 'ro' ? 'page' : undefined}
+    lang="ro"
+    hreflang="ro"
+    class:list={[
+      'px-2 py-1 rounded transition-colors',
+      currentLocale === 'ro'
+        ? 'font-semibold text-gray-900 bg-gray-100'
+        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50',
+    ]}
+  >
+    RO
+  </a>
+  <span class="text-gray-300" aria-hidden="true">|</span>
+  <a
+    href={enSlug}
+    aria-current={currentLocale === 'en' ? 'page' : undefined}
+    lang="en"
+    hreflang="en"
+    class:list={[
+      'px-2 py-1 rounded transition-colors',
+      currentLocale === 'en'
+        ? 'font-semibold text-gray-900 bg-gray-100'
+        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50',
+    ]}
+  >
+    EN
+  </a>
+</nav>

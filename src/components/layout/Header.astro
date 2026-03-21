@@ -1,0 +1,65 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { localePath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  roSlug: string;
+  enSlug: string;
+}
+
+const { locale, roSlug, enSlug } = Astro.props;
+
+// Navigation labels sourced from i18n message catalog values.
+// These match the values in src/i18n/messages/ro.json and en.json.
+// Will be replaced by Paraglide m.nav_*() function calls once compiler output is wired.
+const navLabels: Record<Locale, Record<string, string>> = {
+  ro: {
+    services: 'Servicii',
+    portfolio: 'Portofoliu',
+    pricing: 'Pre\u021Buri',
+    about: 'Despre',
+    contact: 'Contact',
+  },
+  en: {
+    services: 'Services',
+    portfolio: 'Portfolio',
+    pricing: 'Pricing',
+    about: 'About',
+    contact: 'Contact',
+  },
+};
+
+const labels = navLabels[locale];
+
+const navItems = [
+  { key: 'services', label: labels.services, href: localePath('services', locale) },
+  { key: 'portfolio', label: labels.portfolio, href: localePath('portfolio', locale) },
+  { key: 'pricing', label: labels.pricing, href: localePath('pricing', locale) },
+  { key: 'about', label: labels.about, href: localePath('about', locale) },
+  { key: 'contact', label: labels.contact, href: localePath('contact', locale) },
+];
+---
+<header class="border-b border-gray-100">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <a href={localePath('home', locale)} class="text-xl font-bold tracking-tight">
+        Isio
+      </a>
+      <nav aria-label="Main navigation" class="hidden md:flex items-center gap-6">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <div class="flex items-center gap-4">
+        <LanguageSwitcher currentLocale={locale} roSlug={roSlug} enSlug={enSlug} />
+      </div>
+    </div>
+  </div>
+</header>
