@@ -1,0 +1,98 @@
+---
+import type { Locale } from '../../i18n/utils';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const faqs = [
+  {
+    q: { ro: 'Ce include un proiect de dezvoltare web?', en: 'What does a web development project include?' },
+    a: { ro: 'Fiecare proiect include design responsive, optimizare SEO, integrare CMS, deployment pe Cloudflare, certificat SSL, și 30 de zile suport post-lansare. Codul sursă complet este al tău.', en: 'Every project includes responsive design, SEO optimization, CMS integration, Cloudflare deployment, SSL certificate, and 30 days post-launch support. The complete source code is yours.' },
+  },
+  {
+    q: { ro: 'Cât durează un proiect tipic?', en: 'How long does a typical project take?' },
+    a: { ro: 'Website-uri: 14-45 zile. Aplicații web: 30-60 zile. Agenți AI: 21-60 zile. Timelines exacte sunt stabilite după apelul de descoperire, în funcție de complexitate.', en: 'Websites: 14-45 days. Web apps: 30-60 days. AI agents: 21-60 days. Exact timelines are set after the discovery call, depending on complexity.' },
+  },
+  {
+    q: { ro: 'Ce diferențiază Isio de alte agenții?', en: 'What makes Isio different from other agencies?' },
+    a: { ro: 'Un singur dezvoltator, zero overhead. Vorbești direct cu persoana care scrie codul. Totul este construit pentru a funcționa autonom — fără retainere, fără taxe lunare de mentenanță.', en: 'One developer, zero overhead. You talk directly to the person who writes the code. Everything is built to run autonomously — no retainers, no monthly maintenance fees.' },
+  },
+  {
+    q: { ro: 'Oferiți suport după lansare?', en: 'Do you offer post-launch support?' },
+    a: { ro: 'Da. Fiecare proiect include 30-90 de zile suport post-lansare (în funcție de pachet). După această perioadă, suport continuu este disponibil la cerere.', en: 'Yes. Every project includes 30-90 days post-launch support (depending on the plan). After that, ongoing support is available on demand.' },
+  },
+];
+---
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left: visual (4 cols like Aiero) -->
+      <div class="lg:col-span-4" data-animate>
+        <div class="aspect-square rounded-2xl bg-gradient-to-br from-electric-500/10 via-base-800 to-base-900 relative overflow-hidden flex items-center justify-center sticky top-24">
+          <div class="absolute inset-0 dot-mesh opacity-30"></div>
+          <svg class="w-20 h-20 text-electric-400/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+          </svg>
+        </div>
+      </div>
+      <!-- Right: FAQ accordion (8 cols like Aiero) -->
+      <div class="lg:col-span-8">
+        <div class="mb-12">
+          <span class="section-tag">{locale === 'ro' ? '[ 06 ] întrebări frecvente' : '[ 06 ] faq'}</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">
+            {locale === 'ro' ? 'Tot ce trebuie să știi' : 'Everything you need to know'}
+          </h2>
+        </div>
+        <div class="space-y-4" id="faq-accordion">
+          {faqs.map((faq, i) => (
+            <div class="glass-card overflow-hidden faq-item" data-animate>
+              <button
+                class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 faq-trigger"
+                data-faq={i}
+                aria-expanded={i === 0 ? 'true' : 'false'}
+              >
+                <span class="text-white font-semibold font-heading pr-4">{faq.q[locale]}</span>
+                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 faq-icon transition-transform duration-300">
+                  <svg class="w-4 h-4 text-base-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                  </svg>
+                </span>
+              </button>
+              <div class={`faq-content px-6 overflow-hidden transition-all duration-300 ${i === 0 ? 'max-h-40 pb-5' : 'max-h-0'}`}>
+                <p class="text-base-300 text-sm leading-relaxed">{faq.a[locale]}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const content = item?.querySelector('.faq-content') as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all
+      document.querySelectorAll('.faq-trigger').forEach((b) => {
+        b.setAttribute('aria-expanded', 'false');
+        const c = b.closest('.faq-item')?.querySelector('.faq-content') as HTMLElement;
+        const ic = b.querySelector('.faq-icon') as HTMLElement;
+        if (c) { c.style.maxHeight = '0'; c.classList.remove('pb-5'); }
+        if (ic) ic.style.transform = 'rotate(0deg)';
+      });
+
+      // Toggle clicked
+      if (!isOpen && content) {
+        btn.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.classList.add('pb-5');
+        if (icon) icon.style.transform = 'rotate(45deg)';
+      }
+    });
+  });
+</script>

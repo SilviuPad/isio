@@ -1,0 +1,88 @@
+---
+import type { Locale } from '../../i18n/utils';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const testimonials = [
+  {
+    quote: {
+      ro: 'Lucrul cu Isio a fost un game-changer pentru afacerea noastră. Soluțiile lor au revoluționat operațiunile noastre, permițându-ne să automatizăm sarcinile repetitive și să luăm decizii bazate pe date.',
+      en: 'Working with Isio has been a game-changer for our business. Their solutions have revolutionized our operations, enabling us to automate repetitive tasks and make data-driven decisions with ease.',
+    },
+    author: 'Alex M.',
+    role: { ro: 'CEO, TechStart România', en: 'CEO, TechStart Romania' },
+  },
+];
+---
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left: quote (7 cols like Aiero) -->
+      <div class="lg:col-span-7" data-animate>
+        <div class="glass-card p-10 lg:p-14">
+          <!-- Quote icon -->
+          <svg class="w-10 h-10 text-electric-400/40 mb-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z"/>
+          </svg>
+          <p class="text-xl lg:text-2xl text-white leading-relaxed font-light">
+            {testimonials[0].quote[locale]}
+          </p>
+          <div class="mt-8 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-electric-500/30 to-cyan-400/20 flex items-center justify-center text-white font-heading font-bold">
+              {testimonials[0].author.charAt(0)}
+            </div>
+            <div>
+              <span class="text-white font-semibold block">— {testimonials[0].author}</span>
+              <span class="text-base-400 text-sm">{testimonials[0].role[locale]}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: info area (5 cols like Aiero) -->
+      <div class="lg:col-span-5" data-animate>
+        <div class="h-full rounded-2xl bg-gradient-to-br from-electric-500/10 via-base-800 to-base-900 relative overflow-hidden p-10 flex flex-col justify-between">
+          <div class="absolute inset-0 dot-mesh opacity-30"></div>
+          <div class="relative z-10">
+            <span class="section-tag">{locale === 'ro' ? '[ 05 ] testimoniale' : '[ 05 ] testimonials'}</span>
+            <h2 class="mt-4 text-2xl sm:text-3xl font-bold font-heading text-white">
+              {locale === 'ro' ? 'Ce spun clienții noștri despre soluțiile Isio' : 'What our clients say about Isio solutions'}
+            </h2>
+          </div>
+          <div class="relative z-10 mt-8">
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl font-bold gradient-text font-heading" data-counter="50" data-suffix="+">0+</span>
+            </div>
+            <span class="text-base-400 text-sm mt-1 block">{locale === 'ro' ? 'Clienți mulțumiți' : 'Happy clients'}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray<Element>('[data-animate]').forEach((el) => {
+    gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
+  // Counter
+  document.querySelectorAll('[data-counter]').forEach((el) => {
+    const target = parseFloat((el as HTMLElement).dataset.counter || '0');
+    const suffix = (el as HTMLElement).dataset.suffix || '';
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%', once: true,
+      onEnter: () => {
+        const start = performance.now();
+        function update(now: number) {
+          const p = Math.min((now - start) / 4000, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          (el as HTMLElement).textContent = Math.ceil(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+    });
+  });
+</script>

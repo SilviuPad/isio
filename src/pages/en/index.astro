@@ -3,11 +3,17 @@ export const prerender = true;
 
 import Page from '../../layouts/Page.astro';
 import Hero from '../../components/home/Hero.astro';
+import TechCarousel from '../../components/home/TechCarousel.astro';
 import ServicesPreview from '../../components/home/ServicesPreview.astro';
-import Stats from '../../components/home/Stats.astro';
-import PortfolioPreview from '../../components/home/PortfolioPreview.astro';
-import CallToAction from '../../components/home/CallToAction.astro';
 import Marquee from '../../components/home/Marquee.astro';
+import Features from '../../components/home/Features.astro';
+import AboutPreview from '../../components/home/AboutPreview.astro';
+import Stats from '../../components/home/Stats.astro';
+import ServiceBlocks from '../../components/home/ServiceBlocks.astro';
+import Testimonials from '../../components/home/Testimonials.astro';
+import FAQ from '../../components/home/FAQ.astro';
+import ContactInline from '../../components/home/ContactInline.astro';
+import CallToAction from '../../components/home/CallToAction.astro';
 import { slugMap } from '../../i18n/utils';
 import type { Locale } from '../../i18n/utils';
 
@@ -20,11 +26,18 @@ const { roSlug, enSlug } = { roSlug: slugMap.home.ro, enSlug: slugMap.home.en };
   locale={locale}
   roSlug={roSlug}
   enSlug={enSlug}
+  pageType="home"
 >
   <Hero locale={locale} />
+  <TechCarousel locale={locale} />
   <ServicesPreview locale={locale} />
   <Marquee locale={locale} />
+  <Features locale={locale} />
+  <AboutPreview locale={locale} />
   <Stats locale={locale} />
-  <PortfolioPreview locale={locale} />
+  <ServiceBlocks locale={locale} />
+  <Testimonials locale={locale} />
+  <FAQ locale={locale} />
+  <ContactInline locale={locale} />
   <CallToAction locale={locale} />
 </Page>
