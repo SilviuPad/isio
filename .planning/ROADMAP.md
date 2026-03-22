@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Bilingual routing, Astro content collections, Cloudflare deployment — the infrastructure every other phase depends on
 - [x] **Phase 2: Public Site** - All public-facing pages, tiered pricing, portfolio, SEO markup, and mobile-responsive design built on Phase 1 foundations
-- [ ] **Phase 3: Booking + Contact** - Discovery call booking synced to Google Calendar and contact form with email notification
+- [x] **Phase 3: Booking + Contact** - Discovery call booking synced to Google Calendar and contact form with email notification
 - [ ] **Phase 4: Document Generation** - Bilingual PDF output for proposals, contracts, invoices, and reports with Romanian diacritic support
 
 ## Phase Details
@@ -90,5 +90,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 5/5 | Complete | 2026-03-22 |
-| 3. Booking + Contact | 2/2 | Ready for verification | - |
+| 3. Booking + Contact | 2/2 | Complete | 2026-03-22 |
 | 4. Document Generation | 0/TBD | Not started | - |

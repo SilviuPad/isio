@@ -12,7 +12,8 @@ Clients can discover services, understand pricing, and book a discovery call —
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Custom booking form for discovery calls, synced with Google Calendar — Validated in Phase 3: Booking + Contact (Cal.com embed)
+- [x] Contact form with email notification — Validated in Phase 3: Booking + Contact (Resend + Turnstile)
 
 ### Active
 
@@ -21,7 +22,7 @@ Clients can discover services, understand pricing, and book a discovery call —
 - [ ] Fiverr-style tiered pricing (Basic/Standard/Premium) for each service category
 - [ ] Service pages for: website builds, web apps, SEO packages, accessibility audits
 - [ ] Portfolio grid showcasing past work (Vpatify, IsioPilot, StartupJunior.ro)
-- [ ] Custom booking form for discovery calls, synced with Google Calendar
+- [x] Custom booking form for discovery calls, synced with Google Calendar
 - [ ] CMS-powered admin panel (headless CMS) for content and business management
 - [ ] Bilingual document generation: proposals, contracts, invoices, reports (RO + EN)
 - [ ] Client deadline tracker/scheduler in admin
@@ -54,7 +55,7 @@ Clients can discover services, understand pricing, and book a discovery call —
 ## Constraints
 
 - **Architecture**: Static-first/SSG for SEO performance — Astro is the natural fit
-- **CMS**: Headless CMS (Sanity, Strapi, or similar) for content management and admin
+- **CMS**: Astro content collections (JSON) for site content; admin dashboard TBD for Phase 4
 - **Complexity**: Must be maintainable by a solo developer — no overengineering
 - **i18n**: Full bilingual support (RO + EN) across all public pages
 - **Plugins**: Use existing ecosystem plugins where possible (calendar sync, i18n, document generation, CMS integrations)
@@ -65,7 +66,7 @@ Clients can discover services, understand pricing, and book a discovery call —
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | Static-first architecture (Astro/SSG) | SEO is a core service — site must practice what it preaches | — Pending |
-| Headless CMS for admin | Solo dev needs easy content management without custom admin UI | — Pending |
+| Astro content collections for content | Solo dev needs version-controlled content without external CMS dependency | — Pending |
 | Fiverr-style tiered pricing | Clear, comparable tiers reduce friction for client decision-making | — Pending |
 | Plugin-first approach | Solo dev can't maintain custom solutions for everything | — Pending |
 | Bilingual (RO + EN) | Targeting both Romanian and international markets | — Pending |
@@ -88,4 +89,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after initialization*
+*Last updated: 2026-03-22 after Phase 3 completion*

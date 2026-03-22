@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** Clients can discover services, understand pricing, and book a discovery call — all self-service — while the solo developer manages everything from a single CMS-powered admin panel.
-**Current focus:** Phase 3 — Booking + Contact
+**Current focus:** Phase 3 complete — ready for Phase 4
 
 ## Current Position
 
-Phase: 3 of 4 (Booking + Contact) — IN PROGRESS
-Plan: 1 of 2 in current phase
-Status: Plan 03-01 complete — contact form backend + Turnstile + Resend
-Last activity: 2026-03-22 — Plan 03-01 complete
+Phase: 3 of 4 (Booking + Contact) — COMPLETE
+Plan: 2 of 2 in current phase
+Status: Phase 3 complete — contact form + Cal.com booking embed verified
+Last activity: 2026-03-22 — Phase 3 execution complete
 
-Progress: [█████░░░░░] 50% Phase 3
+Progress: [██████████] 100% Phase 3
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 11
 - Average duration: ~15 min/plan
-- Total execution time: ~2.5 hours (Phase 1 + Phase 2)
+- Total execution time: ~3 hours (Phase 1 + Phase 2 + Phase 3)
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [█████░░░░░] 50% Phase 3
 |-------|-------|-------|----------|
 | 1. Foundation | 4/4 | ~1h | ~15 min |
 | 2. Public Site | 5/5 | ~1.5h | ~18 min |
+| 3. Booking + Contact | 2/2 | ~30m | ~15 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01, 02-02, 02-03, 02-04, 02-05
-- Trend: Steady execution, cross-cutting concerns (02-05) pre-implemented during earlier plans
+- Last 5 plans: 02-04, 02-05, 03-01, 03-02
+- Trend: Consistent execution speed, Phase 3 lean (2 plans, no blockers)
 
 *Updated after each plan completion*
 
@@ -63,13 +64,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Research flag] Phase 3: If custom Google Calendar API is used instead of Cal.com, OAuth service account vs. user OAuth flow needs research before implementation
 - [Research flag] Phase 4: `@react-pdf/renderer` Noto Sans font embedding API needs verification; admin dashboard UI approach needs deciding
 - [Risk] Phase 4: Romanian diacritic variants — ensure all templates use comma-below (ș/ț) not cedilla (ş/ţ) Unicode code points
 
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Phase 3 Plan 01 complete — contact form backend, Turnstile, Resend wired
-Resume signal: Continue Phase 3 with Plan 02 (Cal.com booking embed)
-Resume file: .planning/phases/03-booking-contact/03-01-SUMMARY.md
+Stopped at: Phase 3 complete — all plans executed, verification approved
+Resume signal: Start Phase 4 with `/gsd:discuss-phase 04` or `/gsd:plan-phase 04`
+Resume file: .planning/phases/03-booking-contact/03-02-SUMMARY.md
