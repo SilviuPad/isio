@@ -14,9 +14,9 @@
     "postinstall": "node scripts/patch-workerd.cjs"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "latest",
+    "@astrojs/cloudflare": "^12",
     "@tailwindcss/vite": "^4.2",
-    "astro": "^6.0",
+    "astro": "^5",
     "drizzle-orm": "^0.45.1",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",

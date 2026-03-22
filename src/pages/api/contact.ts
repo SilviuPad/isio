@@ -26,34 +26,37 @@ export async function POST({ request }: { request: Request }): Promise<Response>
   const { name, email, service, message, turnstileToken } = body;
 
   // Validate required fields
-  if (!name || !email || !message || !turnstileToken) {
+  const disableTurnstile = import.meta.env.DISABLE_TURNSTILE === 'true';
+  if (!name || !email || !message || (!disableTurnstile && !turnstileToken)) {
     return new Response(JSON.stringify({ error: 'Missing required fields' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  // Verify Cloudflare Turnstile token
-  const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
-  const turnstileVerifyResponse = await fetch(
-    'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        secret: turnstileSecret,
-        response: turnstileToken,
-      }),
+  // Verify Cloudflare Turnstile token (skip in dev when DISABLE_TURNSTILE=true)
+  if (!disableTurnstile) {
+    const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
+    const turnstileVerifyResponse = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          secret: turnstileSecret,
+          response: turnstileToken,
+        }),
+      }
+    );
+
+    const turnstileResult = await turnstileVerifyResponse.json() as { success: boolean };
+
+    if (!turnstileResult.success) {
+      return new Response(JSON.stringify({ error: 'Spam check failed' }), {
+        status: 403,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
-  );
-
-  const turnstileResult = await turnstileVerifyResponse.json() as { success: boolean };
-
-  if (!turnstileResult.success) {
-    return new Response(JSON.stringify({ error: 'Spam check failed' }), {
-      status: 403,
-      headers: { 'Content-Type': 'application/json' },
-    });
   }
 
   // Send email via Resend

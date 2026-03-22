@@ -1,5 +1,6 @@
 ---
 import Nav from './Nav.astro';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -14,13 +15,13 @@ const currentPath = Astro.url.pathname;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>{title} — Isio Admin</title>
-  <link rel="stylesheet" href="/styles/global.css" />
 </head>
-<body class="bg-gray-50 text-gray-900 min-h-screen">
+<body class="bg-surface-alt text-gray-900 min-h-screen">
   <Nav currentPath={currentPath} />
-  <main class="max-w-6xl mx-auto px-6 py-8">
-    <slot />
+  <main class="ml-56 min-h-screen">
+    <div class="max-w-6xl mx-auto px-8 py-8">
+      <slot />
+    </div>
   </main>
 </body>
 </html>

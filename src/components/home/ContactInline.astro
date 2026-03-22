@@ -46,7 +46,9 @@ const { locale } = Astro.props;
             <input type="text" name="name" placeholder={locale === 'ro' ? 'Nume complet' : 'Full name'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
             <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors" />
             <textarea name="message" rows={5} placeholder={locale === 'ro' ? 'Scrie mesajul tău...' : 'Write your message...'} required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-base-500 focus:border-electric-400 focus:ring-1 focus:ring-electric-400 focus:outline-none transition-colors resize-none"></textarea>
-            <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ''} data-theme="dark" data-size="invisible"></div>
+            {import.meta.env.PUBLIC_TURNSTILE_SITE_KEY && (
+              <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} data-theme="dark" data-size="invisible"></div>
+            )}
             <button type="submit" class="btn-outline inline-flex items-center gap-2 group">
               {locale === 'ro' ? 'Trimite mesajul' : 'Send message'}
               <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,7 +63,9 @@ const { locale } = Astro.props;
   </div>
 </section>
 
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{import.meta.env.PUBLIC_TURNSTILE_SITE_KEY && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
 
 <script is:inline>
   (function () {

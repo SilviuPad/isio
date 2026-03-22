@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-# Block Sanity Studio from indexing
-Disallow: /studio/
-Disallow: /studio
+# Block admin routes from indexing
+Disallow: /admin/
+Disallow: /admin
 
 Sitemap: https://isio.ro/sitemap-index.xml

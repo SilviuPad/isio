@@ -5,147 +5,87 @@ import Layout from '../../components/Layout.astro';
 ---
 
 <Layout title="Add Client">
-  <div class="max-w-3xl">
-    <div class="flex items-center gap-4 mb-6">
-      <a href="/clients" class="text-gray-500 hover:text-gray-700 text-sm">← Back to clients</a>
-      <h1 class="text-2xl font-bold text-gray-900">Add Client</h1>
+  <div class="max-w-2xl">
+    <div class="mb-6">
+      <a href="/clients" class="text-muted hover:text-gray-900 text-sm transition-colors inline-flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to clients
+      </a>
+      <h1 class="text-2xl font-bold text-gray-900 mt-2">Add Client</h1>
     </div>
 
-    <div id="error-msg" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm"></div>
+    <div id="error-msg" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm"></div>
 
-    <form id="client-form" class="bg-white border border-gray-200 rounded-lg p-6 space-y-6">
-      <!-- Client Information -->
-      <div>
-        <h2 class="text-base font-semibold text-gray-900 mb-4">Client Information</h2>
+    <form id="client-form" class="space-y-8">
+      <div class="bg-surface border border-border rounded-xl p-6">
+        <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Client Information</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">
+            <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1.5">
               Company / Person Name <span class="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              id="companyName"
-              name="companyName"
-              required
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <input type="text" id="companyName" name="companyName" required
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="contactPerson" class="block text-sm font-medium text-gray-700 mb-1">
-              Contact Person
-            </label>
-            <input
-              type="text"
-              id="contactPerson"
-              name="contactPerson"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <label for="contactPerson" class="block text-sm font-medium text-gray-700 mb-1.5">Contact Person</label>
+            <input type="text" id="contactPerson" name="contactPerson"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
               Email <span class="text-red-500">*</span>
             </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <input type="email" id="email" name="email" required
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-              Phone
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1.5">Phone</label>
+            <input type="tel" id="phone" name="phone"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="cui" class="block text-sm font-medium text-gray-700 mb-1">
-              CUI / Fiscal Code
-            </label>
-            <input
-              type="text"
-              id="cui"
-              name="cui"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <label for="cui" class="block text-sm font-medium text-gray-700 mb-1.5">CUI / Fiscal Code</label>
+            <input type="text" id="cui" name="cui"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="iban" class="block text-sm font-medium text-gray-700 mb-1">
-              IBAN / Bank Details
-            </label>
-            <input
-              type="text"
-              id="iban"
-              name="iban"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <label for="iban" class="block text-sm font-medium text-gray-700 mb-1.5">IBAN / Bank Details</label>
+            <input type="text" id="iban" name="iban"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div class="md:col-span-2">
-            <label for="address" class="block text-sm font-medium text-gray-700 mb-1">
-              Address
-            </label>
-            <textarea
-              id="address"
-              name="address"
-              rows="2"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            ></textarea>
+            <label for="address" class="block text-sm font-medium text-gray-700 mb-1.5">Address</label>
+            <textarea id="address" name="address" rows="2"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"></textarea>
           </div>
           <div class="md:col-span-2">
-            <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">
-              Notes
-            </label>
-            <textarea
-              id="notes"
-              name="notes"
-              rows="3"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            ></textarea>
+            <label for="notes" class="block text-sm font-medium text-gray-700 mb-1.5">Notes</label>
+            <textarea id="notes" name="notes" rows="3"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"></textarea>
           </div>
         </div>
       </div>
 
-      <!-- Project Information -->
-      <div class="border-t border-gray-100 pt-6">
-        <h2 class="text-base font-semibold text-gray-900 mb-4">Project (optional)</h2>
+      <div class="bg-surface border border-border rounded-xl p-6">
+        <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Project (optional)</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="projectName" class="block text-sm font-medium text-gray-700 mb-1">
-              Project Name
-            </label>
-            <input
-              type="text"
-              id="projectName"
-              name="projectName"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <label for="projectName" class="block text-sm font-medium text-gray-700 mb-1.5">Project Name</label>
+            <input type="text" id="projectName" name="projectName"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="projectDueDate" class="block text-sm font-medium text-gray-700 mb-1">
-              Due Date
-            </label>
-            <input
-              type="date"
-              id="projectDueDate"
-              name="projectDueDate"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+            <label for="projectDueDate" class="block text-sm font-medium text-gray-700 mb-1.5">Due Date</label>
+            <input type="date" id="projectDueDate" name="projectDueDate"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
           </div>
           <div>
-            <label for="projectStatus" class="block text-sm font-medium text-gray-700 mb-1">
-              Status
-            </label>
-            <select
-              id="projectStatus"
-              name="projectStatus"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-            >
+            <label for="projectStatus" class="block text-sm font-medium text-gray-700 mb-1.5">Status</label>
+            <select id="projectStatus" name="projectStatus"
+              class="border border-border rounded-lg px-3.5 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent bg-white">
               <option value="not_started">Not started</option>
               <option value="in_progress">In progress</option>
               <option value="review">Review</option>
@@ -156,16 +96,12 @@ import Layout from '../../components/Layout.astro';
         </div>
       </div>
 
-      <!-- Actions -->
-      <div class="flex items-center gap-3 border-t border-gray-100 pt-6">
-        <button
-          type="submit"
-          id="submit-btn"
-          class="bg-blue-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-        >
+      <div class="flex items-center gap-3">
+        <button type="submit" id="submit-btn"
+          class="bg-brand-600 text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50 transition-colors shadow-sm">
           Save Client
         </button>
-        <a href="/clients" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Cancel</a>
+        <a href="/clients" class="text-muted hover:text-gray-900 text-sm font-medium transition-colors">Cancel</a>
       </div>
     </form>
   </div>

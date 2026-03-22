@@ -2,8 +2,7 @@ import { jsPDF } from 'jspdf';
 import { ISIO_BRAND, BRAND_COLORS } from './branding';
 import type { Locale } from './types';
 
-let fontLoaded = false;
-let fontBinaryString = '';
+let fontBase64: string | null = null;
 
 export async function createDocWithFont(): Promise<jsPDF> {
   const doc = new jsPDF({
@@ -12,19 +11,25 @@ export async function createDocWithFont(): Promise<jsPDF> {
     format: 'a4',
   });
 
-  if (!fontLoaded) {
+  if (!fontBase64) {
     const response = await fetch('/fonts/NotoSans-Regular.ttf');
-    const buffer = await response.arrayBuffer();
-    const uint8 = new Uint8Array(buffer);
-    let binaryStr = '';
-    for (let i = 0; i < uint8.length; i++) {
-      binaryStr += String.fromCharCode(uint8[i]);
+    if (!response.ok) {
+      console.error('Failed to load font:', response.status);
+      return doc;
     }
-    fontBinaryString = btoa(binaryStr);
-    fontLoaded = true;
+    const buffer = await response.arrayBuffer();
+    // Convert ArrayBuffer to base64 in chunks to avoid stack overflow
+    const bytes = new Uint8Array(buffer);
+    const chunkSize = 8192;
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      const chunk = bytes.subarray(i, i + chunkSize);
+      binary += String.fromCharCode.apply(null, chunk as unknown as number[]);
+    }
+    fontBase64 = btoa(binary);
   }
 
-  doc.addFileToVFS('NotoSans-Regular.ttf', fontBinaryString);
+  doc.addFileToVFS('NotoSans-Regular.ttf', fontBase64);
   doc.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
   doc.setFont('NotoSans');
 

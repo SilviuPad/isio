@@ -1,0 +1,8 @@
+{
+  "title": { "ro": "Upicu", "en": "Upicu" },
+  "description": { "ro": "Platformă cu diverse instrumente pentru accelerarea creării de conținut — email builder, PDF builder și altele.", "en": "Platform with diverse tools to speed up content creation — email builder, PDF builder, and more." },
+  "screenshot": "/images/portfolio/upicu.png",
+  "techStack": ["Astro", "TypeScript", "Tailwind CSS"],
+  "liveUrl": "https://upicu.com",
+  "order": 5
+}

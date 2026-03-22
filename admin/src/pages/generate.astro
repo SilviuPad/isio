@@ -4,17 +4,12 @@ export const prerender = false;
 import Layout from '../components/Layout.astro';
 import type { Client } from '../lib/schema';
 
+import { getDb } from '../lib/db';
+import { clients as clientsTable } from '../lib/schema';
+
 // Server-side: fetch client list for the dropdown
-let clients: Client[] = [];
-try {
-  const response = await fetch(new URL('/api/clients', Astro.url));
-  if (response.ok) {
-    clients = await response.json() as Client[];
-  }
-} catch {
-  // Graceful fallback — empty dropdown if API unavailable
-  clients = [];
-}
+const db = getDb(Astro.locals.runtime.env.DB);
+const clients: Client[] = await db.select().from(clientsTable).all();
 
 // Compute defaults for date inputs (used as initial values in client-side script)
 const todayStr = new Date().toISOString().split('T')[0];

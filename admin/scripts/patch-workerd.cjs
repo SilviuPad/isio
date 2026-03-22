@@ -4,6 +4,7 @@
  * but Windows ARM64 can run x64 binaries via built-in emulation.
  *
  * This script is run as a postinstall hook.
+ * It finds ALL copies of workerd in node_modules (including nested ones).
  */
 const fs = require('fs');
 const path = require('path');
@@ -13,37 +14,72 @@ if (process.platform !== 'win32' || os.arch() !== 'arm64') {
   process.exit(0); // Only needed on win32 arm64
 }
 
-const files = [
-  path.join(__dirname, '..', 'node_modules', 'workerd', 'install.js'),
-  path.join(__dirname, '..', 'node_modules', 'workerd', 'bin', 'workerd'),
-  path.join(__dirname, '..', 'node_modules', 'workerd', 'lib', 'main.js'),
-];
-
 const ARM64_PATCH = '"win32 arm64 LE": "@cloudflare/workerd-windows-64"';
+const SEARCH_TARGET = '"win32 x64 LE": "@cloudflare/workerd-windows-64"';
 
-for (const filePath of files) {
-  if (!fs.existsSync(filePath)) {
-    console.log(`[patch-workerd] ${path.basename(filePath)} not found — skipping`);
-    continue;
-  }
+const nodeModules = path.join(__dirname, '..', 'node_modules');
 
-  const content = fs.readFileSync(filePath, 'utf8');
-
-  if (content.includes(ARM64_PATCH)) {
-    console.log(`[patch-workerd] ${path.basename(filePath)} already patched — skipping`);
-    continue;
-  }
-
-  const patched = content.replace(
-    '"win32 x64 LE": "@cloudflare/workerd-windows-64"',
-    `"win32 x64 LE": "@cloudflare/workerd-windows-64",\n  ${ARM64_PATCH}`
-  );
-
-  if (patched === content) {
-    console.log(`[patch-workerd] Could not find replacement target in ${path.basename(filePath)}`);
-    continue;
-  }
-
-  fs.writeFileSync(filePath, patched, 'utf8');
-  console.log(`[patch-workerd] Patched ${path.basename(filePath)} for win32 arm64 support`);
+// Recursively find all workerd directories in node_modules
+function findWorkerdDirs(dir, depth = 0) {
+  const results = [];
+  if (depth > 5) return results;
+  try {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      const full = path.join(dir, entry.name);
+      if (entry.name === 'workerd') {
+        results.push(full);
+      } else if (entry.name === 'node_modules') {
+        results.push(...findWorkerdDirs(full, depth + 1));
+      } else if (entry.name.startsWith('@')) {
+        // Scan scoped package dirs for nested node_modules
+        const scopedEntries = fs.readdirSync(full, { withFileTypes: true });
+        for (const se of scopedEntries) {
+          if (se.isDirectory()) {
+            const nested = path.join(full, se.name, 'node_modules');
+            if (fs.existsSync(nested)) {
+              results.push(...findWorkerdDirs(nested, depth + 1));
+            }
+          }
+        }
+      }
+    }
+  } catch (e) { /* ignore permission errors */ }
+  return results;
 }
+
+const workerdDirs = findWorkerdDirs(nodeModules);
+
+if (workerdDirs.length === 0) {
+  console.log('[patch-workerd] No workerd installations found — skipping');
+  process.exit(0);
+}
+
+let patched = 0;
+for (const workerdDir of workerdDirs) {
+  const filesToPatch = [
+    path.join(workerdDir, 'install.js'),
+    path.join(workerdDir, 'bin', 'workerd'),
+    path.join(workerdDir, 'lib', 'main.js'),
+  ];
+
+  for (const filePath of filesToPatch) {
+    if (!fs.existsSync(filePath)) continue;
+
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    if (content.includes(ARM64_PATCH)) continue;
+
+    const updated = content.replace(SEARCH_TARGET, `${SEARCH_TARGET},\n  ${ARM64_PATCH}`);
+
+    if (updated === content) continue;
+
+    fs.writeFileSync(filePath, updated, 'utf8');
+    const rel = path.relative(nodeModules, filePath);
+    console.log(`[patch-workerd] Patched ${rel}`);
+    patched++;
+  }
+}
+
+console.log(`[patch-workerd] Done — ${patched} file(s) patched across ${workerdDirs.length} workerd installation(s)`);

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @theme {
-  /* Base - near black */
+  /* Base - dark theme (cards, panels, sections) */
   --color-base-950: #0a0a0f;
   --color-base-900: #0f0f18;
   --color-base-800: #161625;

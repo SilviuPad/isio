@@ -1,0 +1,8 @@
+{
+  "title": { "ro": "QRtist", "en": "QRtist" },
+  "description": { "ro": "Platformă pentru artiști care doresc să-și monetizeze creațiile folosind coduri QR.", "en": "Platform for artists to monetize their creations using QR codes." },
+  "screenshot": "/images/portfolio/qrtist.png",
+  "techStack": ["Astro", "TypeScript", "Tailwind CSS"],
+  "liveUrl": "https://qrtist.net",
+  "order": 6
+}
