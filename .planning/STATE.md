@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 4 of 4 (Document Generation) — IN PROGRESS
-Plan: 2 of 4 in current phase
-Status: Executing phase 4 — dashboard UI and client directory complete, next: PDF generation
-Last activity: 2026-03-22 — Plan 04-02 complete
+Plan: 3 of 4 in current phase
+Status: Executing phase 4 — PDF generation engine complete, next: document generation UI
+Last activity: 2026-03-22 — Plan 04-03 complete
 
-Progress: [████░░░░░░] 50% Phase 4
+Progress: [██████░░░░] 75% Phase 4
 
 ## Performance Metrics
 
@@ -30,7 +30,7 @@ Progress: [████░░░░░░] 50% Phase 4
 | 1. Foundation | 4/4 | ~1h | ~15 min |
 | 2. Public Site | 5/5 | ~1.5h | ~18 min |
 | 3. Booking + Contact | 2/2 | ~30m | ~15 min |
-| 4. Document Generation | 2/4 | ~17m | ~8 min |
+| 4. Document Generation | 3/4 | ~23m | ~8 min |
 
 **Recent Trend:**
 - Last 5 plans: 02-05, 03-01, 03-02, 04-01
@@ -63,6 +63,9 @@ Recent decisions affecting current work:
 - [04-01]: Text (ISO string) columns for dates in D1/SQLite — avoids integer epoch conversion complexity
 - [04-02]: Server-side fetch uses new URL('/api/clients', Astro.url) — works in both dev and prod without hardcoded host
 - [04-02]: PUT sends null for cleared optional fields (not empty string) — ensures DB nullifies cleared date/text fields
+- [04-03]: Noto Sans fetched from GitHub raw (notofonts/latin-greek-cyrillic) — Google Fonts ZIP requires extraction; direct TTF URL simpler
+- [04-03]: Module-level font cache (fontLoaded + fontBinaryString) avoids re-fetching 298KB TTF on every PDF generation call
+- [04-03]: EUR-only pricing in all templates — per D-13, no RON conversion complexity for solo agency
 
 ### Pending Todos
 
@@ -70,12 +73,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Risk] Phase 4: Romanian diacritic variants — ensure all templates use comma-below (ș/ț) not cedilla (ş/ţ) Unicode code points
+- [Resolved] Phase 4: Romanian diacritic variants — all 04-03 templates verified: zero cedilla (ş/ţ), only comma-below (ș/ț) present
 - [Note] admin/wrangler.toml has placeholder database_id — requires `wrangler d1 create isio-admin` before deployment
 
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Plan 04-02 complete — dashboard UI, client directory CRUD, deadline tracker done
-Resume signal: Continue Phase 4 with `/gsd:execute-phase 04` (plan 03: PDF generation)
-Resume file: .planning/phases/04-document-generation/04-02-SUMMARY.md
+Stopped at: Plan 04-03 complete — PDF generation engine, all 4 document templates done
+Resume signal: Continue Phase 4 with `/gsd:execute-phase 04` (plan 04: document generation UI)
+Resume file: .planning/phases/04-document-generation/04-03-SUMMARY.md
