@@ -1,0 +1,16 @@
+name = "isio-admin"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist/client"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "isio-admin"
+database_id = "placeholder-run-wrangler-d1-create"
+
+# Required secrets (set via `wrangler secret put <NAME>`):
+# ADMIN_PASSWORD — the shared admin password
+# RESEND_API_KEY — from Resend dashboard

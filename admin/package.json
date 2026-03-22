@@ -1,0 +1,31 @@
+{
+  "name": "isio-admin",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "astro build",
+    "preview": "wrangler dev",
+    "astro": "astro",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply isio-admin --local",
+    "db:migrate:remote": "wrangler d1 migrations apply isio-admin --remote",
+    "postinstall": "node scripts/patch-workerd.cjs"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "latest",
+    "@tailwindcss/vite": "^4.2",
+    "astro": "^6.0",
+    "drizzle-orm": "^0.45.1",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.7",
+    "resend": "^6.9.4",
+    "tailwindcss": "^4.2"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^5",
+    "wrangler": "^4"
+  }
+}
