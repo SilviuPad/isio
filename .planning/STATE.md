@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 4 of 4 (Document Generation) — IN PROGRESS
-Plan: 1 of 4 in current phase
-Status: Executing phase 4 — admin app scaffold complete, next: dashboard UI
-Last activity: 2026-03-22 — Plan 04-01 complete
+Plan: 2 of 4 in current phase
+Status: Executing phase 4 — dashboard UI and client directory complete, next: PDF generation
+Last activity: 2026-03-22 — Plan 04-02 complete
 
-Progress: [██░░░░░░░░] 25% Phase 4
+Progress: [████░░░░░░] 50% Phase 4
 
 ## Performance Metrics
 
@@ -30,7 +30,7 @@ Progress: [██░░░░░░░░] 25% Phase 4
 | 1. Foundation | 4/4 | ~1h | ~15 min |
 | 2. Public Site | 5/5 | ~1.5h | ~18 min |
 | 3. Booking + Contact | 2/2 | ~30m | ~15 min |
-| 4. Document Generation | 1/4 | ~9m | ~9 min |
+| 4. Document Generation | 2/4 | ~17m | ~8 min |
 
 **Recent Trend:**
 - Last 5 plans: 02-05, 03-01, 03-02, 04-01
@@ -61,6 +61,8 @@ Recent decisions affecting current work:
 - [04-01]: Admin uses npm install --ignore-scripts + manual workerd patch (same ARM64 issue); added scripts/patch-workerd.cjs to admin as postinstall
 - [04-01]: Single clients table with inline project fields — no separate projects table (D-15 one-to-one constraint)
 - [04-01]: Text (ISO string) columns for dates in D1/SQLite — avoids integer epoch conversion complexity
+- [04-02]: Server-side fetch uses new URL('/api/clients', Astro.url) — works in both dev and prod without hardcoded host
+- [04-02]: PUT sends null for cleared optional fields (not empty string) — ensures DB nullifies cleared date/text fields
 
 ### Pending Todos
 
@@ -74,6 +76,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Plan 04-01 complete — admin scaffold, auth, client CRUD API done
-Resume signal: Continue Phase 4 with `/gsd:execute-phase 04` (plan 02: dashboard UI)
-Resume file: .planning/phases/04-document-generation/04-01-SUMMARY.md
+Stopped at: Plan 04-02 complete — dashboard UI, client directory CRUD, deadline tracker done
+Resume signal: Continue Phase 4 with `/gsd:execute-phase 04` (plan 03: PDF generation)
+Resume file: .planning/phases/04-document-generation/04-02-SUMMARY.md
