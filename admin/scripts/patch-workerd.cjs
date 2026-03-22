@@ -16,6 +16,7 @@ if (process.platform !== 'win32' || os.arch() !== 'arm64') {
 const files = [
   path.join(__dirname, '..', 'node_modules', 'workerd', 'install.js'),
   path.join(__dirname, '..', 'node_modules', 'workerd', 'bin', 'workerd'),
+  path.join(__dirname, '..', 'node_modules', 'workerd', 'lib', 'main.js'),
 ];
 
 const ARM64_PATCH = '"win32 arm64 LE": "@cloudflare/workerd-windows-64"';

@@ -1,0 +1,835 @@
+---
+export const prerender = false;
+
+import Layout from '../components/Layout.astro';
+import type { Client } from '../lib/schema';
+
+// Server-side: fetch client list for the dropdown
+let clients: Client[] = [];
+try {
+  const response = await fetch(new URL('/api/clients', Astro.url));
+  if (response.ok) {
+    clients = await response.json() as Client[];
+  }
+} catch {
+  // Graceful fallback — empty dropdown if API unavailable
+  clients = [];
+}
+
+// Compute defaults for date inputs (used as initial values in client-side script)
+const todayStr = new Date().toISOString().split('T')[0];
+const thirtyDaysLater = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+---
+
+<Layout title="Generate Document">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-900">Generate Document</h1>
+      <a href="/dashboard" class="text-sm text-blue-600 hover:underline">Back to Dashboard</a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- LEFT: Configuration Form -->
+      <div class="space-y-6">
+
+        <!-- Step 1: Document Type -->
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">Step 1: Document Type</h2>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="flex items-center gap-2 cursor-pointer p-2 rounded border border-gray-200 hover:border-blue-400 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+              <input type="radio" name="docType" value="proposal" class="text-blue-600" checked />
+              <span class="text-sm font-medium text-gray-700">Proposal</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer p-2 rounded border border-gray-200 hover:border-blue-400 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+              <input type="radio" name="docType" value="contract" class="text-blue-600" />
+              <span class="text-sm font-medium text-gray-700">Contract</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer p-2 rounded border border-gray-200 hover:border-blue-400 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+              <input type="radio" name="docType" value="invoice" class="text-blue-600" />
+              <span class="text-sm font-medium text-gray-700">Invoice</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer p-2 rounded border border-gray-200 hover:border-blue-400 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+              <input type="radio" name="docType" value="report" class="text-blue-600" />
+              <span class="text-sm font-medium text-gray-700">Report</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 2: Client Selection -->
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">Step 2: Select Client</h2>
+          <select id="clientSelect" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">— Select a client —</option>
+            {clients.map(c => (
+              <option
+                value={c.id}
+                data-company={c.companyName}
+                data-contact={c.contactPerson ?? ''}
+                data-email={c.email}
+                data-phone={c.phone ?? ''}
+                data-cui={c.cui ?? ''}
+                data-address={c.address ?? ''}
+                data-iban={c.iban ?? ''}
+                data-project={c.projectName ?? ''}
+              >
+                {c.companyName}
+              </option>
+            ))}
+          </select>
+          <p id="clientSelectHelp" class="text-xs text-gray-500 mt-1">Selecting a client will auto-fill the fields below.</p>
+        </div>
+
+        <!-- Step 3: Locale -->
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">Step 3: Language</h2>
+          <div class="flex gap-4">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="locale" value="ro" class="text-blue-600" checked />
+              <span class="text-sm font-medium text-gray-700">Romanian (ro)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="locale" value="en" class="text-blue-600" />
+              <span class="text-sm font-medium text-gray-700">English (en)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Document-type specific fields -->
+
+        <!-- PROPOSAL SECTION -->
+        <div data-section="proposal" class="bg-white border border-gray-200 rounded-lg p-5 space-y-4">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Proposal Details</h2>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Project Name</label>
+            <input type="text" id="prop-projectName" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Redesign & SEO" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Project Summary</label>
+            <textarea id="prop-projectSummary" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Brief description of the project..."></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Scope Items <span class="font-normal text-gray-400">(one per line)</span></label>
+            <textarea id="prop-scopeItems" rows="4" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Custom website design&#10;On-page SEO optimization&#10;Monthly performance reports"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-2">Pricing Breakdown</label>
+            <div id="prop-pricingRows" class="space-y-2">
+              <div class="flex gap-2 pricing-row">
+                <input type="text" placeholder="Item description" class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm pricing-item focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="number" placeholder="Amount (EUR)" min="0" step="0.01" class="w-32 border border-gray-300 rounded px-3 py-2 text-sm pricing-amount focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <button type="button" class="remove-pricing-row text-red-500 hover:text-red-700 px-2 text-lg font-bold" title="Remove">×</button>
+              </div>
+            </div>
+            <button type="button" id="addPricingRow" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-medium">+ Add Item</button>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Total Price (EUR)</label>
+            <input type="number" id="prop-totalPrice" min="0" step="0.01" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Auto-calculated or enter manually" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Date</label>
+              <input type="date" id="prop-date" value={todayStr} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Valid Until</label>
+              <input type="date" id="prop-validUntil" value={thirtyDaysLater} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Timeline</label>
+            <input type="text" id="prop-timeline" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. 4–6 weeks from contract signing" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Payment Terms</label>
+            <textarea id="prop-paymentTerms" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. 50% upfront, 50% on delivery"></textarea>
+          </div>
+        </div>
+
+        <!-- CONTRACT SECTION -->
+        <div data-section="contract" class="bg-white border border-gray-200 rounded-lg p-5 space-y-4" style="display:none">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Contract Details</h2>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Project Name</label>
+            <input type="text" id="con-projectName" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Corporate Website Redesign" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Scope of Work</label>
+            <textarea id="con-scopeOfWork" rows="4" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Detailed description of the work to be performed..."></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Deliverables <span class="font-normal text-gray-400">(one per line)</span></label>
+            <textarea id="con-deliverables" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Fully developed website&#10;Source code repository access&#10;Deployment to production server"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Total Price (EUR)</label>
+            <input type="number" id="con-totalPrice" min="0" step="0.01" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Payment Schedule</label>
+            <textarea id="con-paymentSchedule" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. 50% on signing, 50% on delivery"></textarea>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Start Date</label>
+              <input type="date" id="con-startDate" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">End Date</label>
+              <input type="date" id="con-endDate" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Date</label>
+              <input type="date" id="con-date" value={todayStr} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <!-- INVOICE SECTION -->
+        <div data-section="invoice" class="bg-white border border-gray-200 rounded-lg p-5 space-y-4" style="display:none">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Invoice Details</h2>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Invoice Number</label>
+              <input type="text" id="inv-invoiceNumber" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="INV-2026-001" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Date</label>
+              <input type="date" id="inv-date" value={todayStr} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Due Date</label>
+            <input type="date" id="inv-dueDate" value={thirtyDaysLater} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-2">Line Items</label>
+            <div id="inv-lineItemRows" class="space-y-2">
+              <div class="flex gap-2 line-item-row">
+                <input type="text" placeholder="Description" class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm line-item-desc focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="number" placeholder="Qty" min="1" step="1" value="1" class="w-16 border border-gray-300 rounded px-3 py-2 text-sm line-item-qty focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="number" placeholder="Unit Price" min="0" step="0.01" class="w-28 border border-gray-300 rounded px-3 py-2 text-sm line-item-price focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <button type="button" class="remove-line-item text-red-500 hover:text-red-700 px-2 text-lg font-bold" title="Remove">×</button>
+              </div>
+            </div>
+            <button type="button" id="addLineItem" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-medium">+ Add Item</button>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Notes <span class="font-normal text-gray-400">(optional)</span></label>
+            <textarea id="inv-notes" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Payment due 30 days from invoice date"></textarea>
+          </div>
+        </div>
+
+        <!-- REPORT SECTION -->
+        <div data-section="report" class="bg-white border border-gray-200 rounded-lg p-5 space-y-4" style="display:none">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Report Details</h2>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Report Type</label>
+            <select id="rep-reportType" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="seo_audit">SEO Audit</option>
+              <option value="accessibility_audit">Accessibility Audit</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Project Name</label>
+            <input type="text" id="rep-projectName" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. isio.ro website" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Date</label>
+              <input type="date" id="rep-date" value={todayStr} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-600 mb-1">Overall Score (0–100)</label>
+              <input type="number" id="rep-overallScore" min="0" max="100" step="1" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="85" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Executive Summary</label>
+            <textarea id="rep-summary" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Overall assessment of the audit findings..."></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-2">Sections</label>
+            <div id="rep-sectionRows" class="space-y-3">
+              <div class="section-row border border-gray-100 rounded p-3 space-y-2 bg-gray-50">
+                <div class="flex gap-2">
+                  <input type="text" placeholder="Section title" class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm section-title focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <select class="w-28 border border-gray-300 rounded px-2 py-2 text-sm section-severity focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="pass">Pass</option>
+                    <option value="info">Info</option>
+                    <option value="warning">Warning</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                  <button type="button" class="remove-section text-red-500 hover:text-red-700 px-2 text-lg font-bold" title="Remove">×</button>
+                </div>
+                <textarea placeholder="Findings (one per line)" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm section-findings focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+              </div>
+            </div>
+            <button type="button" id="addSection" class="mt-2 text-sm text-blue-600 hover:text-blue-800 font-medium">+ Add Section</button>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-gray-600 mb-1">Recommendations <span class="font-normal text-gray-400">(one per line)</span></label>
+            <textarea id="rep-recommendations" rows="4" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Fix meta descriptions on all pages&#10;Add alt text to images&#10;Improve page load speed"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Preview + Actions -->
+      <div class="lg:sticky lg:top-6 space-y-4 self-start">
+        <div class="bg-white border border-gray-200 rounded-lg p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Preview</h2>
+            <span id="previewStatus" class="text-xs text-gray-400">Click Preview to generate</span>
+          </div>
+          <iframe
+            id="pdf-preview"
+            class="w-full border border-gray-200 rounded bg-gray-50"
+            style="height: 500px;"
+            title="PDF Preview"
+          ></iframe>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-5 space-y-3">
+          <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">Actions</h2>
+
+          <button
+            id="btnPreview"
+            type="button"
+            class="w-full bg-blue-600 text-white rounded px-4 py-2.5 text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Preview PDF
+          </button>
+
+          <button
+            id="btnDownload"
+            type="button"
+            disabled
+            class="w-full bg-green-600 text-white rounded px-4 py-2.5 text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Download PDF
+          </button>
+
+          <div class="flex gap-2">
+            <input
+              type="email"
+              id="emailRecipient"
+              placeholder="Recipient email"
+              class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              id="btnEmail"
+              type="button"
+              disabled
+              class="bg-purple-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            >
+              Email PDF
+            </button>
+          </div>
+
+          <p id="actionStatus" class="text-xs text-gray-500 text-center"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { generateProposal } from '../pdf/templates/proposal';
+  import { generateContract } from '../pdf/templates/contract';
+  import { generateInvoice } from '../pdf/templates/invoice';
+  import { generateReport } from '../pdf/templates/report';
+  import type { Locale } from '../pdf/types';
+  import type { jsPDF } from 'jspdf';
+
+  // -----------------------------------------------------------------------
+  // State
+  // -----------------------------------------------------------------------
+  let currentDoc: jsPDF | null = null;
+  let currentFilename = 'document.pdf';
+
+  // -----------------------------------------------------------------------
+  // Section switching
+  // -----------------------------------------------------------------------
+  function switchSection(docType: string) {
+    document.querySelectorAll('[data-section]').forEach(el => {
+      (el as HTMLElement).style.display = 'none';
+    });
+    const target = document.querySelector(`[data-section="${docType}"]`);
+    if (target) (target as HTMLElement).style.display = 'block';
+  }
+
+  // Initialise with proposal
+  switchSection('proposal');
+
+  document.querySelectorAll<HTMLInputElement>('input[name="docType"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      switchSection(radio.value);
+      resetDocState();
+    });
+  });
+
+  function getDocType(): string {
+    const checked = document.querySelector<HTMLInputElement>('input[name="docType"]:checked');
+    return checked?.value ?? 'proposal';
+  }
+
+  function getLocale(): Locale {
+    const checked = document.querySelector<HTMLInputElement>('input[name="locale"]:checked');
+    return (checked?.value === 'en' ? 'en' : 'ro') as Locale;
+  }
+
+  // -----------------------------------------------------------------------
+  // Client auto-fill with nullable coalescing
+  // -----------------------------------------------------------------------
+  const clientSelect = document.getElementById('clientSelect') as HTMLSelectElement;
+  clientSelect.addEventListener('change', () => {
+    const opt = clientSelect.selectedOptions[0];
+    if (!opt || !opt.value) return;
+
+    const docClient = {
+      companyName: opt.dataset.company ?? '',
+      contactPerson: opt.dataset.contact ?? '',
+      email: opt.dataset.email ?? '',
+      phone: opt.dataset.phone ?? '',
+      cui: opt.dataset.cui ?? '',
+      address: opt.dataset.address ?? '',
+      iban: opt.dataset.iban ?? '',
+    };
+
+    const projectName = opt.dataset.project ?? '';
+    const email = docClient.email;
+
+    // Fill email recipient
+    const emailInput = document.getElementById('emailRecipient') as HTMLInputElement;
+    if (emailInput && email) emailInput.value = email;
+
+    // Fill proposal fields
+    const propProject = document.getElementById('prop-projectName') as HTMLInputElement;
+    if (propProject && projectName) propProject.value = projectName;
+
+    // Fill contract fields
+    const conProject = document.getElementById('con-projectName') as HTMLInputElement;
+    if (conProject && projectName) conProject.value = projectName;
+
+    // Fill report project name
+    const repProject = document.getElementById('rep-projectName') as HTMLInputElement;
+    if (repProject && projectName) repProject.value = projectName;
+
+    resetDocState();
+  });
+
+  // -----------------------------------------------------------------------
+  // Dynamic rows — Pricing Breakdown (Proposal)
+  // -----------------------------------------------------------------------
+  function addPricingRow() {
+    const container = document.getElementById('prop-pricingRows')!;
+    const row = document.createElement('div');
+    row.className = 'flex gap-2 pricing-row';
+    row.innerHTML = `
+      <input type="text" placeholder="Item description" class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm pricing-item focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <input type="number" placeholder="Amount (EUR)" min="0" step="0.01" class="w-32 border border-gray-300 rounded px-3 py-2 text-sm pricing-amount focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button type="button" class="remove-pricing-row text-red-500 hover:text-red-700 px-2 text-lg font-bold" title="Remove">×</button>
+    `;
+    container.appendChild(row);
+    attachRemoveHandlers();
+  }
+
+  document.getElementById('addPricingRow')?.addEventListener('click', addPricingRow);
+
+  // Auto-calculate total from pricing rows
+  function recalcTotal() {
+    const amounts = Array.from(document.querySelectorAll<HTMLInputElement>('.pricing-amount'))
+      .map(el => parseFloat(el.value) || 0);
+    const total = amounts.reduce((s, v) => s + v, 0);
+    const totalInput = document.getElementById('prop-totalPrice') as HTMLInputElement;
+    if (totalInput && total > 0) totalInput.value = total.toFixed(2);
+  }
+
+  document.getElementById('prop-pricingRows')?.addEventListener('input', (e) => {
+    if ((e.target as HTMLElement).classList.contains('pricing-amount')) recalcTotal();
+  });
+
+  // -----------------------------------------------------------------------
+  // Dynamic rows — Line Items (Invoice)
+  // -----------------------------------------------------------------------
+  function addLineItemRow() {
+    const container = document.getElementById('inv-lineItemRows')!;
+    const row = document.createElement('div');
+    row.className = 'flex gap-2 line-item-row';
+    row.innerHTML = `
+      <input type="text" placeholder="Description" class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm line-item-desc focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <input type="number" placeholder="Qty" min="1" step="1" value="1" class="w-16 border border-gray-300 rounded px-3 py-2 text-sm line-item-qty focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <input type="number" placeholder="Unit Price" min="0" step="0.01" class="w-28 border border-gray-300 rounded px-3 py-2 text-sm line-item-price focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button type="button" class="remove-line-item text-red-500 hover:text-red-700 px-2 text-lg font-bold" title="Remove">×</button>
+    `;
+    container.appendChild(row);
+    attachRemoveHandlers();
+  }
+
+  document.getElementById('addLineItem')?.addEventListener('click', addLineItemRow);
+
+  // -----------------------------------------------------------------------
+  // Dynamic rows — Report Sections
+  // -----------------------------------------------------------------------
+  function addReportSection() {
+    const container = document.getElementById('rep-sectionRows')!;
+    const row = document.createElement('div');
+    row.className = 'section-row border border-gray-100 rounded p-3 space-y-2 bg-gray-50';
+    row.innerHTML = `
+      <div class="flex gap-2">
+        <input type="text" placeholder="Section title" class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm section-title focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <select class="w-28 border border-gray-300 rounded px-2 py-2 text-sm section-severity focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="pass">Pass</option>
+          <option value="info">Info</option>
+          <option value="warning">Warning</option>
+          <option value="critical">Critical</option>
+        </select>
+        <button type="button" class="remove-section text-red-500 hover:text-red-700 px-2 text-lg font-bold" title="Remove">×</button>
+      </div>
+      <textarea placeholder="Findings (one per line)" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm section-findings focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    `;
+    container.appendChild(row);
+    attachRemoveHandlers();
+  }
+
+  document.getElementById('addSection')?.addEventListener('click', addReportSection);
+
+  // -----------------------------------------------------------------------
+  // Remove button handler
+  // -----------------------------------------------------------------------
+  function attachRemoveHandlers() {
+    document.querySelectorAll('.remove-pricing-row').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const row = (e.currentTarget as HTMLElement).closest('.pricing-row');
+        const container = document.getElementById('prop-pricingRows')!;
+        if (container.querySelectorAll('.pricing-row').length > 1) {
+          row?.remove();
+          recalcTotal();
+        }
+      });
+    });
+
+    document.querySelectorAll('.remove-line-item').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const row = (e.currentTarget as HTMLElement).closest('.line-item-row');
+        const container = document.getElementById('inv-lineItemRows')!;
+        if (container.querySelectorAll('.line-item-row').length > 1) {
+          row?.remove();
+        }
+      });
+    });
+
+    document.querySelectorAll('.remove-section').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const row = (e.currentTarget as HTMLElement).closest('.section-row');
+        const container = document.getElementById('rep-sectionRows')!;
+        if (container.querySelectorAll('.section-row').length > 1) {
+          row?.remove();
+        }
+      });
+    });
+  }
+
+  // Initial handler bind for the rows already in DOM
+  attachRemoveHandlers();
+
+  // -----------------------------------------------------------------------
+  // Assemble document data from form
+  // -----------------------------------------------------------------------
+  function getDocClient() {
+    const opt = clientSelect.selectedOptions[0];
+    if (opt?.value) {
+      return {
+        companyName: opt.dataset.company ?? '',
+        contactPerson: opt.dataset.contact ?? '',
+        email: opt.dataset.email ?? '',
+        phone: opt.dataset.phone ?? '',
+        cui: opt.dataset.cui ?? '',
+        address: opt.dataset.address ?? '',
+        iban: opt.dataset.iban ?? '',
+      };
+    }
+    return { companyName: '', contactPerson: '', email: '', phone: '', cui: '', address: '', iban: '' };
+  }
+
+  function val(id: string): string {
+    return (document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null)?.value?.trim() ?? '';
+  }
+
+  function numVal(id: string): number {
+    return parseFloat((document.getElementById(id) as HTMLInputElement | null)?.value ?? '0') || 0;
+  }
+
+  function assembleData() {
+    const docType = getDocType();
+    const client = getDocClient();
+
+    if (docType === 'proposal') {
+      const pricingBreakdown = Array.from(document.querySelectorAll<HTMLElement>('.pricing-row')).map(row => ({
+        item: row.querySelector<HTMLInputElement>('.pricing-item')?.value.trim() ?? '',
+        amount: parseFloat(row.querySelector<HTMLInputElement>('.pricing-amount')?.value ?? '0') || 0,
+      })).filter(r => r.item);
+
+      return {
+        docType,
+        data: {
+          client,
+          projectName: val('prop-projectName'),
+          projectSummary: val('prop-projectSummary'),
+          scopeItems: val('prop-scopeItems').split('\n').map(s => s.trim()).filter(Boolean),
+          pricingBreakdown,
+          totalPrice: numVal('prop-totalPrice'),
+          timeline: val('prop-timeline'),
+          paymentTerms: val('prop-paymentTerms'),
+          date: val('prop-date'),
+          validUntil: val('prop-validUntil'),
+        },
+      };
+    }
+
+    if (docType === 'contract') {
+      return {
+        docType,
+        data: {
+          client,
+          projectName: val('con-projectName'),
+          scopeOfWork: val('con-scopeOfWork'),
+          deliverables: val('con-deliverables').split('\n').map(s => s.trim()).filter(Boolean),
+          totalPrice: numVal('con-totalPrice'),
+          paymentSchedule: val('con-paymentSchedule'),
+          startDate: val('con-startDate'),
+          endDate: val('con-endDate'),
+          date: val('con-date'),
+        },
+      };
+    }
+
+    if (docType === 'invoice') {
+      const lineItems = Array.from(document.querySelectorAll<HTMLElement>('.line-item-row')).map(row => ({
+        description: row.querySelector<HTMLInputElement>('.line-item-desc')?.value.trim() ?? '',
+        quantity: parseInt(row.querySelector<HTMLInputElement>('.line-item-qty')?.value ?? '1') || 1,
+        unitPrice: parseFloat(row.querySelector<HTMLInputElement>('.line-item-price')?.value ?? '0') || 0,
+      })).filter(r => r.description);
+
+      return {
+        docType,
+        data: {
+          client,
+          invoiceNumber: val('inv-invoiceNumber'),
+          date: val('inv-date'),
+          dueDate: val('inv-dueDate'),
+          lineItems,
+          notes: val('inv-notes'),
+        },
+      };
+    }
+
+    if (docType === 'report') {
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('.section-row')).map(row => ({
+        title: row.querySelector<HTMLInputElement>('.section-title')?.value.trim() ?? '',
+        findings: (row.querySelector<HTMLTextAreaElement>('.section-findings')?.value ?? '').split('\n').map(s => s.trim()).filter(Boolean),
+        severity: (row.querySelector<HTMLSelectElement>('.section-severity')?.value ?? 'info') as 'critical' | 'warning' | 'info' | 'pass',
+      })).filter(s => s.title);
+
+      return {
+        docType,
+        data: {
+          client,
+          reportType: (document.getElementById('rep-reportType') as HTMLSelectElement)?.value as 'seo_audit' | 'accessibility_audit',
+          projectName: val('rep-projectName'),
+          date: val('rep-date'),
+          overallScore: numVal('rep-overallScore'),
+          summary: val('rep-summary'),
+          sections,
+          recommendations: val('rep-recommendations').split('\n').map(s => s.trim()).filter(Boolean),
+        },
+      };
+    }
+
+    return null;
+  }
+
+  // -----------------------------------------------------------------------
+  // Generate PDF
+  // -----------------------------------------------------------------------
+  async function generatePdf() {
+    const assembled = assembleData();
+    if (!assembled) throw new Error('Unknown document type');
+
+    const locale = getLocale();
+    const { docType, data } = assembled;
+
+    if (docType === 'proposal') {
+      return generateProposal(data as Parameters<typeof generateProposal>[0], locale);
+    }
+    if (docType === 'contract') {
+      return generateContract(data as Parameters<typeof generateContract>[0], locale);
+    }
+    if (docType === 'invoice') {
+      return generateInvoice(data as Parameters<typeof generateInvoice>[0], locale);
+    }
+    if (docType === 'report') {
+      return generateReport(data as Parameters<typeof generateReport>[0], locale);
+    }
+
+    throw new Error(`Unknown doc type: ${docType}`);
+  }
+
+  function buildFilename(): string {
+    const docType = getDocType();
+    const opt = clientSelect.selectedOptions[0];
+    const clientName = opt?.value
+      ? (opt.dataset.company ?? 'client').replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, '')
+      : 'client';
+    const locale = getLocale();
+    const date = new Date().toISOString().split('T')[0];
+    return `${docType}_${clientName}_${locale}_${date}.pdf`;
+  }
+
+  function resetDocState() {
+    currentDoc = null;
+    const iframe = document.getElementById('pdf-preview') as HTMLIFrameElement;
+    iframe.src = '';
+    const btnDownload = document.getElementById('btnDownload') as HTMLButtonElement;
+    const btnEmail = document.getElementById('btnEmail') as HTMLButtonElement;
+    btnDownload.disabled = true;
+    btnEmail.disabled = true;
+    const status = document.getElementById('previewStatus')!;
+    status.textContent = 'Click Preview to generate';
+    status.className = 'text-xs text-gray-400';
+  }
+
+  function setActionStatus(msg: string, type: 'success' | 'error' | 'info' = 'info') {
+    const el = document.getElementById('actionStatus')!;
+    el.textContent = msg;
+    el.className = type === 'success' ? 'text-xs text-green-600 text-center' :
+                   type === 'error'   ? 'text-xs text-red-600 text-center' :
+                                        'text-xs text-gray-500 text-center';
+  }
+
+  // -----------------------------------------------------------------------
+  // Preview button
+  // -----------------------------------------------------------------------
+  document.getElementById('btnPreview')?.addEventListener('click', async () => {
+    const btn = document.getElementById('btnPreview') as HTMLButtonElement;
+    const status = document.getElementById('previewStatus')!;
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
+    status.textContent = 'Generating PDF...';
+    status.className = 'text-xs text-blue-500';
+    setActionStatus('');
+
+    try {
+      const doc = await generatePdf();
+      currentDoc = doc;
+      currentFilename = buildFilename();
+
+      const blob = doc.output('blob');
+      const url = URL.createObjectURL(blob);
+      const iframe = document.getElementById('pdf-preview') as HTMLIFrameElement;
+      iframe.src = url;
+
+      const btnDownload = document.getElementById('btnDownload') as HTMLButtonElement;
+      const btnEmail = document.getElementById('btnEmail') as HTMLButtonElement;
+      btnDownload.disabled = false;
+      btnEmail.disabled = false;
+
+      status.textContent = 'Preview ready';
+      status.className = 'text-xs text-green-600';
+    } catch (err) {
+      console.error('PDF generation error:', err);
+      status.textContent = 'Generation failed';
+      status.className = 'text-xs text-red-600';
+      setActionStatus('Failed to generate PDF. Check the console for details.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Preview PDF';
+    }
+  });
+
+  // -----------------------------------------------------------------------
+  // Download button
+  // -----------------------------------------------------------------------
+  document.getElementById('btnDownload')?.addEventListener('click', () => {
+    if (!currentDoc) return;
+    currentDoc.save(currentFilename);
+    setActionStatus(`Downloaded: ${currentFilename}`, 'success');
+  });
+
+  // -----------------------------------------------------------------------
+  // Email button
+  // -----------------------------------------------------------------------
+  document.getElementById('btnEmail')?.addEventListener('click', async () => {
+    if (!currentDoc) return;
+
+    const emailInput = document.getElementById('emailRecipient') as HTMLInputElement;
+    const to = emailInput?.value?.trim();
+    if (!to) {
+      setActionStatus('Enter a recipient email address first.', 'error');
+      emailInput?.focus();
+      return;
+    }
+
+    const btn = document.getElementById('btnEmail') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    setActionStatus('Sending email...', 'info');
+
+    try {
+      // Convert PDF to base64
+      const pdfBase64 = currentDoc.output('datauristring').split(',')[1];
+
+      const response = await fetch('/api/email-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to,
+          filename: currentFilename,
+          pdfBase64,
+          subject: `Document from Isio: ${currentFilename}`,
+        }),
+      });
+
+      const result = await response.json() as { success?: boolean; error?: string };
+
+      if (response.ok && result.success) {
+        setActionStatus(`Email sent to ${to}`, 'success');
+      } else {
+        setActionStatus(result.error ?? 'Failed to send email.', 'error');
+      }
+    } catch (err) {
+      console.error('Email error:', err);
+      setActionStatus('Failed to send email. Check the console.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Email PDF';
+      const btnEmail = document.getElementById('btnEmail') as HTMLButtonElement;
+      btnEmail.disabled = false;
+    }
+  });
+</script>
