@@ -82,7 +82,7 @@ Plans:
 **Plans:** 4 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Admin Astro app scaffold, Cloudflare D1 + Drizzle schema, shared-secret auth, client CRUD API routes
+- [x] 04-01-PLAN.md — Admin Astro app scaffold, Cloudflare D1 + Drizzle schema, shared-secret auth, client CRUD API routes
 - [ ] 04-02-PLAN.md — Dashboard with deadline tracker, client directory UI (list, add, edit, delete)
 - [ ] 04-03-PLAN.md — PDF engine (jsPDF + Noto Sans font), all 4 document templates (proposal, contract, invoice, report)
 - [ ] 04-04-PLAN.md — Document generation UI with form, preview, download, email delivery, end-to-end verification
@@ -97,4 +97,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 5/5 | Complete | 2026-03-22 |
 | 3. Booking + Contact | 2/2 | Complete | 2026-03-22 |
-| 4. Document Generation | 0/4 | Not started | - |
+| 4. Document Generation | 1/4 | In progress | - |

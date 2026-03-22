@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** Clients can discover services, understand pricing, and book a discovery call — all self-service — while the solo developer manages everything from a single CMS-powered admin panel.
-**Current focus:** Phase 3 complete — ready for Phase 4
+**Current focus:** Phase 4 — Document Generation (admin dashboard + PDF templates + integration)
 
 ## Current Position
 
-Phase: 3 of 4 (Booking + Contact) — COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase 3 complete — contact form + Cal.com booking embed verified
-Last activity: 2026-03-22 — Phase 3 execution complete
+Phase: 4 of 4 (Document Generation) — IN PROGRESS
+Plan: 1 of 4 in current phase
+Status: Executing phase 4 — admin app scaffold complete, next: dashboard UI
+Last activity: 2026-03-22 — Plan 04-01 complete
 
-Progress: [██████████] 100% Phase 3
+Progress: [██░░░░░░░░] 25% Phase 4
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: ~15 min/plan
-- Total execution time: ~3 hours (Phase 1 + Phase 2 + Phase 3)
+- Total execution time: ~3h 10m (Phase 1 + Phase 2 + Phase 3 + Phase 4 so far)
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [██████████] 100% Phase 3
 | 1. Foundation | 4/4 | ~1h | ~15 min |
 | 2. Public Site | 5/5 | ~1.5h | ~18 min |
 | 3. Booking + Contact | 2/2 | ~30m | ~15 min |
+| 4. Document Generation | 1/4 | ~9m | ~9 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-04, 02-05, 03-01, 03-02
-- Trend: Consistent execution speed, Phase 3 lean (2 plans, no blockers)
+- Last 5 plans: 02-05, 03-01, 03-02, 04-01
+- Trend: Consistent execution speed, 04-01 fast (scaffold + codegen)
 
 *Updated after each plan completion*
 
@@ -57,6 +58,9 @@ Recent decisions affecting current work:
 - [03-01]: is:inline scripts for form fetch submission — avoids Astro bundler scope issues with DOM manipulation
 - [03-01]: PUBLIC_TURNSTILE_SITE_KEY via import.meta.env at build time — Astro PUBLIC_ convention for client-safe vars
 - [03-01]: npm install --force needed on ARM64 Windows dev machine — workerd package is x64-only (deploy target is x64)
+- [04-01]: Admin uses npm install --ignore-scripts + manual workerd patch (same ARM64 issue); added scripts/patch-workerd.cjs to admin as postinstall
+- [04-01]: Single clients table with inline project fields — no separate projects table (D-15 one-to-one constraint)
+- [04-01]: Text (ISO string) columns for dates in D1/SQLite — avoids integer epoch conversion complexity
 
 ### Pending Todos
 
@@ -64,12 +68,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Research flag] Phase 4: `@react-pdf/renderer` Noto Sans font embedding API needs verification; admin dashboard UI approach needs deciding
 - [Risk] Phase 4: Romanian diacritic variants — ensure all templates use comma-below (ș/ț) not cedilla (ş/ţ) Unicode code points
+- [Note] admin/wrangler.toml has placeholder database_id — requires `wrangler d1 create isio-admin` before deployment
 
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Phase 3 complete — all plans executed, verification approved
-Resume signal: Start Phase 4 with `/gsd:discuss-phase 04` or `/gsd:plan-phase 04`
-Resume file: .planning/phases/03-booking-contact/03-02-SUMMARY.md
+Stopped at: Plan 04-01 complete — admin scaffold, auth, client CRUD API done
+Resume signal: Continue Phase 4 with `/gsd:execute-phase 04` (plan 02: dashboard UI)
+Resume file: .planning/phases/04-document-generation/04-01-SUMMARY.md
