@@ -79,7 +79,13 @@ Plans:
   2. All Romanian diacritics (a with breve, a with circumflex, i with circumflex, s with comma-below, t with comma-below) render correctly in generated PDFs — no question marks or empty boxes
   3. The client deadline tracker in the admin dashboard displays client name, project, milestones, due dates, and status for each active client
   4. The PDF generation endpoint returns 401 Unauthorized for any request without a valid admin token
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Admin Astro app scaffold, Cloudflare D1 + Drizzle schema, shared-secret auth, client CRUD API routes
+- [ ] 04-02-PLAN.md — Dashboard with deadline tracker, client directory UI (list, add, edit, delete)
+- [ ] 04-03-PLAN.md — PDF engine (jsPDF + Noto Sans font), all 4 document templates (proposal, contract, invoice, report)
+- [ ] 04-04-PLAN.md — Document generation UI with form, preview, download, email delivery, end-to-end verification
 
 ## Progress
 
@@ -91,4 +97,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 4/4 | Complete | 2026-03-21 |
 | 2. Public Site | 5/5 | Complete | 2026-03-22 |
 | 3. Booking + Contact | 2/2 | Complete | 2026-03-22 |
-| 4. Document Generation | 0/TBD | Not started | - |
+| 4. Document Generation | 0/4 | Not started | - |
