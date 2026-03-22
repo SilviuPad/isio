@@ -116,6 +116,54 @@ export async function POST({ request }: { request: Request }): Promise<Response>
       });
     }
 
+    // Auto-reply to visitor
+    const isRo = body.locale === 'ro';
+    const autoReplySubject = isRo
+      ? 'Am primit mesajul tău — Isio'
+      : 'We received your message — Isio';
+
+    const autoReplyHtml = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #f1f5f9; margin: 0; padding: 0;">
+  <div style="max-width: 600px; margin: 40px auto; background: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155;">
+    <div style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); padding: 32px;">
+      <h1 style="margin: 0; color: #fff; font-size: 24px; font-weight: 700;">${isRo ? 'Mulțumim, ' + name + '!' : 'Thank you, ' + name + '!'}</h1>
+      <p style="margin: 8px 0 0; color: rgba(255,255,255,0.8); font-size: 14px;">${isRo ? 'Am primit mesajul tău' : 'We received your message'}</p>
+    </div>
+    <div style="padding: 32px;">
+      <p style="color: #e2e8f0; font-size: 15px; line-height: 1.7; margin: 0 0 16px;">
+        ${isRo
+          ? 'Mesajul tău a ajuns la noi și revenim cu un răspuns în maxim <strong style="color: #60a5fa;">24 de ore</strong>.'
+          : 'Your message has been received and we\'ll get back to you within <strong style="color: #60a5fa;">24 hours</strong>.'}
+      </p>
+      <div style="background: #0f172a; border-radius: 8px; padding: 16px; margin: 16px 0;">
+        <p style="color: #94a3b8; font-size: 13px; margin: 0 0 8px;">${isRo ? 'Mesajul tău:' : 'Your message:'}</p>
+        <p style="color: #e2e8f0; font-size: 14px; line-height: 1.6; margin: 0; white-space: pre-wrap;">${message}</p>
+      </div>
+      <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 16px 0 0;">
+        ${isRo
+          ? 'Între timp, poți programa direct un <a href="https://cal.eu/isioserv/discovery-call" style="color: #60a5fa; text-decoration: none;">apel de descoperire gratuit</a>.'
+          : 'In the meantime, you can schedule a <a href="https://cal.eu/isioserv/discovery-call" style="color: #60a5fa; text-decoration: none;">free discovery call</a>.'}
+      </p>
+    </div>
+    <div style="padding: 0 32px 32px; text-align: center;">
+      <p style="color: #475569; font-size: 12px; margin: 0;">Isio — ${isRo ? 'Servicii web profesionale' : 'Professional web services'}</p>
+    </div>
+  </div>
+</body>
+</html>
+    `.trim();
+
+    await resend.emails.send({
+      from: 'Isio <onboarding@resend.dev>',
+      to: email,
+      replyTo: contactEmail,
+      subject: autoReplySubject,
+      html: autoReplyHtml,
+    }).catch((err) => console.error('Auto-reply error:', err));
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
