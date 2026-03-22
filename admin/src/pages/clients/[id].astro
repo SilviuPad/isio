@@ -1,0 +1,275 @@
+---
+export const prerender = false;
+
+import Layout from '../../components/Layout.astro';
+import type { Client } from '../../lib/schema';
+
+const { id } = Astro.params;
+const response = await fetch(new URL(`/api/clients/${id}`, Astro.url));
+const client: Client | null = response.ok ? await response.json() : null;
+---
+
+<Layout title={client ? `Edit ${client.companyName}` : 'Client Not Found'}>
+  {!client ? (
+    <div class="text-center py-16">
+      <h1 class="text-2xl font-bold text-gray-900 mb-3">Client not found</h1>
+      <p class="text-gray-500 mb-6">This client does not exist or has been deleted.</p>
+      <a href="/clients" class="text-blue-600 hover:underline">← Back to clients</a>
+    </div>
+  ) : (
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-4 mb-6">
+        <a href="/clients" class="text-gray-500 hover:text-gray-700 text-sm">← Back to clients</a>
+        <h1 class="text-2xl font-bold text-gray-900">Edit Client</h1>
+      </div>
+
+      <div id="error-msg" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm"></div>
+
+      <form id="client-form" class="bg-white border border-gray-200 rounded-lg p-6 space-y-6">
+        <!-- Client Information -->
+        <div>
+          <h2 class="text-base font-semibold text-gray-900 mb-4">Client Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">
+                Company / Person Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                required
+                value={client.companyName}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="contactPerson" class="block text-sm font-medium text-gray-700 mb-1">
+                Contact Person
+              </label>
+              <input
+                type="text"
+                id="contactPerson"
+                name="contactPerson"
+                value={client.contactPerson ?? ''}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                Email <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                value={client.email}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                Phone
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={client.phone ?? ''}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="cui" class="block text-sm font-medium text-gray-700 mb-1">
+                CUI / Fiscal Code
+              </label>
+              <input
+                type="text"
+                id="cui"
+                name="cui"
+                value={client.cui ?? ''}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="iban" class="block text-sm font-medium text-gray-700 mb-1">
+                IBAN / Bank Details
+              </label>
+              <input
+                type="text"
+                id="iban"
+                name="iban"
+                value={client.iban ?? ''}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div class="md:col-span-2">
+              <label for="address" class="block text-sm font-medium text-gray-700 mb-1">
+                Address
+              </label>
+              <textarea
+                id="address"
+                name="address"
+                rows="2"
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >{client.address ?? ''}</textarea>
+            </div>
+            <div class="md:col-span-2">
+              <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">
+                Notes
+              </label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >{client.notes ?? ''}</textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Information -->
+        <div class="border-t border-gray-100 pt-6">
+          <h2 class="text-base font-semibold text-gray-900 mb-4">Project (optional)</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="projectName" class="block text-sm font-medium text-gray-700 mb-1">
+                Project Name
+              </label>
+              <input
+                type="text"
+                id="projectName"
+                name="projectName"
+                value={client.projectName ?? ''}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="projectDueDate" class="block text-sm font-medium text-gray-700 mb-1">
+                Due Date
+              </label>
+              <input
+                type="date"
+                id="projectDueDate"
+                name="projectDueDate"
+                value={client.projectDueDate ?? ''}
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="projectStatus" class="block text-sm font-medium text-gray-700 mb-1">
+                Status
+              </label>
+              <select
+                id="projectStatus"
+                name="projectStatus"
+                class="border border-gray-300 rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              >
+                <option value="not_started" selected={client.projectStatus === 'not_started'}>Not started</option>
+                <option value="in_progress" selected={client.projectStatus === 'in_progress'}>In progress</option>
+                <option value="review" selected={client.projectStatus === 'review'}>Review</option>
+                <option value="blocked" selected={client.projectStatus === 'blocked'}>Blocked</option>
+                <option value="done" selected={client.projectStatus === 'done'}>Done</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3 border-t border-gray-100 pt-6">
+          <button
+            type="submit"
+            id="save-btn"
+            class="bg-blue-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+          >
+            Save Changes
+          </button>
+          <button
+            type="button"
+            id="delete-btn"
+            class="bg-red-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          >
+            Delete Client
+          </button>
+          <a href="/clients" class="text-gray-600 hover:text-gray-900 text-sm font-medium ml-auto">Cancel</a>
+        </div>
+      </form>
+    </div>
+  )}
+</Layout>
+
+<script is:inline>
+  var form = document.getElementById('client-form');
+  if (!form) {
+    // Client not found page — no form to handle
+  } else {
+    var errorMsg = document.getElementById('error-msg');
+    var saveBtn = document.getElementById('save-btn');
+    var deleteBtn = document.getElementById('delete-btn');
+    var clientId = window.location.pathname.split('/').pop();
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      errorMsg.classList.add('hidden');
+      errorMsg.textContent = '';
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      var data = new FormData(form);
+      var body = {};
+      data.forEach(function(value, key) {
+        body[key] = value !== '' ? value : null;
+      });
+
+      try {
+        var res = await fetch('/api/clients/' + clientId, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+          window.location.href = '/clients';
+        } else {
+          var result = await res.json();
+          errorMsg.textContent = result.error || 'Failed to save changes.';
+          errorMsg.classList.remove('hidden');
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Network error. Please try again.';
+        errorMsg.classList.remove('hidden');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Changes';
+      }
+    });
+
+    deleteBtn.addEventListener('click', async function() {
+      if (!confirm('Delete this client? This action cannot be undone.')) return;
+      deleteBtn.disabled = true;
+      deleteBtn.textContent = 'Deleting...';
+
+      try {
+        var res = await fetch('/api/clients/' + clientId, {
+          method: 'DELETE',
+        });
+
+        if (res.ok) {
+          window.location.href = '/clients';
+        } else {
+          var result = await res.json();
+          errorMsg.textContent = result.error || 'Failed to delete client.';
+          errorMsg.classList.remove('hidden');
+          deleteBtn.disabled = false;
+          deleteBtn.textContent = 'Delete Client';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Network error. Please try again.';
+        errorMsg.classList.remove('hidden');
+        deleteBtn.disabled = false;
+        deleteBtn.textContent = 'Delete Client';
+      }
+    });
+  }
+</script>

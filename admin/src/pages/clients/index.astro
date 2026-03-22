@@ -1,0 +1,101 @@
+---
+export const prerender = false;
+
+import Layout from '../../components/Layout.astro';
+import type { Client } from '../../lib/schema';
+
+const response = await fetch(new URL('/api/clients', Astro.url));
+const allClients: Client[] = await response.json();
+
+const statusLabel: Record<string, string> = {
+  not_started: 'Not started',
+  in_progress: 'In progress',
+  review: 'Review',
+  blocked: 'Blocked',
+  done: 'Done',
+};
+---
+
+<Layout title="Clients">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-900">Clients</h1>
+      <a href="/clients/new" class="bg-blue-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-blue-700">
+        Add Client
+      </a>
+    </div>
+
+    {allClients.length === 0 ? (
+      <div class="bg-white border border-gray-200 rounded-lg p-12 text-center">
+        <p class="text-gray-500 mb-3">No clients yet.</p>
+        <a href="/clients/new" class="text-blue-600 hover:underline font-medium">Add your first client.</a>
+      </div>
+    ) : (
+      <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Company / Name</th>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Contact</th>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Email</th>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Phone</th>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Project</th>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Status</th>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {allClients.map(client => (
+              <tr class="hover:bg-gray-50">
+                <td class="px-4 py-3 font-medium text-gray-900">{client.companyName}</td>
+                <td class="px-4 py-3 text-gray-600">{client.contactPerson || '—'}</td>
+                <td class="px-4 py-3 text-gray-600">{client.email}</td>
+                <td class="px-4 py-3 text-gray-600">{client.phone || '—'}</td>
+                <td class="px-4 py-3 text-gray-600">{client.projectName || '—'}</td>
+                <td class="px-4 py-3">
+                  {client.projectName ? (
+                    <span class="text-gray-600 text-xs">{statusLabel[client.projectStatus ?? 'not_started']}</span>
+                  ) : (
+                    <span class="text-gray-400 text-xs">—</span>
+                  )}
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-3">
+                    <a href={`/clients/${client.id}`} class="text-blue-600 hover:underline text-sm">Edit</a>
+                    <button
+                      class="text-red-600 hover:text-red-800 text-sm delete-btn"
+                      data-id={client.id}
+                      data-name={client.companyName}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+</Layout>
+
+<script is:inline>
+  document.querySelectorAll('.delete-btn').forEach(function(btn) {
+    btn.addEventListener('click', async function() {
+      var id = btn.getAttribute('data-id');
+      var name = btn.getAttribute('data-name');
+      if (!confirm('Delete this client?')) return;
+      try {
+        var res = await fetch('/api/clients/' + id, { method: 'DELETE' });
+        if (res.ok) {
+          window.location.reload();
+        } else {
+          alert('Failed to delete client: ' + name);
+        }
+      } catch (e) {
+        alert('Network error. Please try again.');
+      }
+    });
+  });
+</script>

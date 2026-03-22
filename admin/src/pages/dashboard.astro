@@ -1,0 +1,133 @@
+---
+export const prerender = false;
+
+import Layout from '../components/Layout.astro';
+import type { Client } from '../lib/schema';
+
+const response = await fetch(new URL('/api/clients', Astro.url));
+const allClients: Client[] = await response.json();
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+// Stats
+const totalClients = allClients.length;
+const activeProjects = allClients.filter(c => c.projectName && c.projectStatus !== 'done');
+const overdueClients = activeProjects.filter(c => {
+  if (!c.projectDueDate) return false;
+  return new Date(c.projectDueDate) < today;
+});
+
+// Deadline tracker: clients with projects, sorted by due date ascending (nulls last)
+const projectClients = allClients
+  .filter(c => c.projectName)
+  .sort((a, b) => {
+    if (!a.projectDueDate && !b.projectDueDate) return 0;
+    if (!a.projectDueDate) return 1;
+    if (!b.projectDueDate) return -1;
+    return new Date(a.projectDueDate).getTime() - new Date(b.projectDueDate).getTime();
+  });
+
+const statusBadge: Record<string, string> = {
+  not_started: 'bg-gray-100 text-gray-700',
+  in_progress: 'bg-blue-100 text-blue-700',
+  review: 'bg-yellow-100 text-yellow-700',
+  blocked: 'bg-red-100 text-red-700',
+  done: 'bg-green-100 text-green-700',
+};
+
+const statusLabel: Record<string, string> = {
+  not_started: 'Not started',
+  in_progress: 'In progress',
+  review: 'Review',
+  blocked: 'Blocked',
+  done: 'Done',
+};
+
+function formatDate(dateStr: string | null): string {
+  if (!dateStr) return '—';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function isOverdue(dateStr: string | null): boolean {
+  if (!dateStr) return false;
+  return new Date(dateStr) < today;
+}
+---
+
+<Layout title="Dashboard">
+  <div class="space-y-8">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+      <a href="/generate" class="bg-blue-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-blue-700">
+        Generate Document
+      </a>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-3 gap-4">
+      <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <p class="text-sm text-gray-500">Total clients</p>
+        <p class="text-2xl font-bold text-gray-900 mt-1">{totalClients}</p>
+        <a href="/clients" class="text-xs text-blue-600 hover:underline mt-1 inline-block">View all</a>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <p class="text-sm text-gray-500">Active projects</p>
+        <p class="text-2xl font-bold text-gray-900 mt-1">{activeProjects.length}</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <p class="text-sm text-gray-500">Overdue</p>
+        <p class={`text-2xl font-bold mt-1 ${overdueClients.length > 0 ? 'text-red-600' : 'text-gray-900'}`}>
+          {overdueClients.length}
+        </p>
+      </div>
+    </div>
+
+    <!-- Deadline Tracker -->
+    <div>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-gray-900">Deadline Tracker</h2>
+        <a href="/clients" class="text-sm text-blue-600 hover:underline">View client directory</a>
+      </div>
+
+      {projectClients.length === 0 ? (
+        <div class="bg-white border border-gray-200 rounded-lg p-8 text-center text-gray-500">
+          No active projects. <a href="/clients/new" class="text-blue-600 hover:underline">Add a client with a project</a> to get started.
+        </div>
+      ) : (
+        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th class="text-left px-4 py-3 font-medium text-gray-600">Client</th>
+                <th class="text-left px-4 py-3 font-medium text-gray-600">Project</th>
+                <th class="text-left px-4 py-3 font-medium text-gray-600">Due Date</th>
+                <th class="text-left px-4 py-3 font-medium text-gray-600">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {projectClients.map(client => (
+                <tr class="hover:bg-gray-50">
+                  <td class="px-4 py-3 font-medium text-gray-900">
+                    <a href={`/clients/${client.id}`} class="hover:text-blue-600">{client.companyName}</a>
+                  </td>
+                  <td class="px-4 py-3 text-gray-700">{client.projectName}</td>
+                  <td class={`px-4 py-3 ${isOverdue(client.projectDueDate) ? 'text-red-600 font-medium' : 'text-gray-700'}`}>
+                    {formatDate(client.projectDueDate)}
+                    {isOverdue(client.projectDueDate) && <span class="ml-1 text-xs">(overdue)</span>}
+                  </td>
+                  <td class="px-4 py-3">
+                    <span class={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${statusBadge[client.projectStatus ?? 'not_started']}`}>
+                      {statusLabel[client.projectStatus ?? 'not_started']}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>
