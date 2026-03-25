@@ -14,7 +14,7 @@ const baseUrl = 'https://isio.ro';
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Isio',
+  name: 'ISIO',
   url: baseUrl,
   inLanguage: locale === 'ro' ? 'ro-RO' : 'en-US',
   description: locale === 'ro'
@@ -26,7 +26,7 @@ const websiteSchema = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Isio',
+  name: 'ISIO',
   url: baseUrl,
   logo: `${baseUrl}/favicon.svg`,
   description: locale === 'ro'
@@ -58,7 +58,7 @@ const serviceSchema = serviceName ? {
   name: serviceName,
   provider: {
     '@type': 'ProfessionalService',
-    name: 'Isio',
+    name: 'ISIO',
     url: baseUrl,
   },
   areaServed: {

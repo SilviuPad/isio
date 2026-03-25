@@ -1,86 +1,120 @@
 ---
 import type { Locale } from '../../i18n/utils';
+import { localePath } from '../../i18n/utils';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 
-const testimonials = [
-  {
-    quote: {
-      ro: 'Lucrul cu Isio a fost un game-changer pentru afacerea noastră. Soluțiile lor au revoluționat operațiunile noastre, permițându-ne să automatizăm sarcinile repetitive și să luăm decizii bazate pe date.',
-      en: 'Working with Isio has been a game-changer for our business. Their solutions have revolutionized our operations, enabling us to automate repetitive tasks and make data-driven decisions with ease.',
-    },
-    author: 'Alex M.',
-    role: { ro: 'CEO, TechStart România', en: 'CEO, TechStart Romania' },
+const content = {
+  ro: {
+    tag: '[ 05 ] partenerul tău',
+    heading: 'Accelerează-ți drumul spre succes cu Isio',
+    subheading: 'De la idee la lansare — și mai departe. Soluții digitale complete care elimină bătaia de cap, reduc timpul de dezvoltare și îți dau un avantaj competitiv real.',
+    cta: 'Hai să vorbim',
+    pillars: [
+      { icon: 'rocket', title: 'Lansare rapidă', desc: 'De la concept la produs funcțional într-o fracțiune din timpul tradițional. Fără echipe mari, fără procese birocratice.' },
+      { icon: 'shield', title: 'Partener, nu furnizor', desc: 'Investim în succesul tău pe termen lung. Strategia, execuția și suportul — toate sub același acoperiș.' },
+      { icon: 'chart', title: 'Scalare inteligentă', desc: 'Arhitectură construită de la început pentru creștere. Când afacerea ta crește, soluția crește odată cu ea.' },
+    ],
+    stat: { value: '10x', label: 'Mai rapid decât o echipă tradițională' },
   },
-];
+  en: {
+    tag: '[ 05 ] your partner',
+    heading: 'Fast-track your way to success with Isio',
+    subheading: 'From idea to launch — and beyond. End-to-end digital solutions that remove the headaches, cut development time, and give you a real competitive edge.',
+    cta: "Let's talk",
+    pillars: [
+      { icon: 'rocket', title: 'Rapid launch', desc: 'From concept to working product in a fraction of the traditional timeline. No large teams, no bureaucracy.' },
+      { icon: 'shield', title: 'Partner, not vendor', desc: 'We invest in your long-term success. Strategy, execution, and support — all under one roof.' },
+      { icon: 'chart', title: 'Smart scaling', desc: 'Architecture built for growth from day one. When your business scales, the solution scales with it.' },
+    ],
+    stat: { value: '10x', label: 'Faster than a traditional team' },
+  },
+};
+
+const c = content[locale];
 ---
-<section class="py-24">
+<section class="py-24 relative overflow-hidden">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- Left: quote (7 cols) -->
+      <!-- Left: main pitch (7 cols) -->
       <div class="lg:col-span-7" data-animate>
         <div class="glass-card p-10 lg:p-14">
-          <!-- Quote icon -->
-          <svg class="w-10 h-10 text-electric-400/40 mb-8" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z"/>
-          </svg>
-          <p class="text-xl lg:text-2xl text-white leading-relaxed font-light">
-            {testimonials[0].quote[locale]}
+          <span class="section-tag">{c.tag}</span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white leading-tight">
+            {c.heading}
+          </h2>
+          <p class="mt-6 text-base-300 leading-relaxed text-lg">
+            {c.subheading}
           </p>
-          <div class="mt-8 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-electric-500/30 to-cyan-400/20 flex items-center justify-center text-white font-heading font-bold">
-              {testimonials[0].author.charAt(0)}
-            </div>
-            <div>
-              <span class="text-white font-semibold block">— {testimonials[0].author}</span>
-              <span class="text-base-300 text-sm">{testimonials[0].role[locale]}</span>
-            </div>
+
+          <!-- Pillars -->
+          <div class="mt-10 space-y-6">
+            {c.pillars.map((p) => (
+              <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-electric-500/20 to-cyan-400/10 flex items-center justify-center">
+                  {p.icon === 'rocket' && (
+                    <svg class="w-5 h-5 text-electric-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 003.46-1.25 11.33 11.33 0 00-3.46-7.05 11.36 11.36 0 00-7.05-3.46A14.98 14.98 0 007.29 3.8m8.3 10.57L12 18.9m0 0l-3.59-4.03M12 18.9V9.53m0 0a3 3 0 10-4.24-4.24" />
+                    </svg>
+                  )}
+                  {p.icon === 'shield' && (
+                    <svg class="w-5 h-5 text-electric-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    </svg>
+                  )}
+                  {p.icon === 'chart' && (
+                    <svg class="w-5 h-5 text-electric-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                    </svg>
+                  )}
+                </div>
+                <div>
+                  <h3 class="text-white font-semibold font-heading">{p.title}</h3>
+                  <p class="text-base-300 text-sm mt-1 leading-relaxed">{p.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
+
+          <a href={localePath('contact', locale)} class="mt-10 btn-primary inline-flex items-center gap-2 group">
+            {c.cta}
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
         </div>
       </div>
-      <!-- Right: info area (5 cols) -->
+
+      <!-- Right: highlight card (5 cols) -->
       <div class="lg:col-span-5" data-animate>
         <div class="h-full rounded-2xl bg-gradient-to-br from-electric-500/10 via-base-800 to-base-900 relative overflow-hidden p-10 flex flex-col justify-between">
-          <img src="/images/services/web-development.svg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" width="640" height="400" loading="lazy" />
           <div class="absolute inset-0 dot-mesh opacity-30"></div>
           <div class="relative z-10">
-            <span class="section-tag">{locale === 'ro' ? '[ 05 ] testimoniale' : '[ 05 ] testimonials'}</span>
-            <h2 class="mt-4 text-2xl sm:text-3xl font-bold font-heading text-white">
-              {locale === 'ro' ? 'Ce spun clienții noștri despre soluțiile Isio' : 'What our clients say about Isio solutions'}
-            </h2>
-          </div>
-          <div class="relative z-10 mt-8">
             <div class="flex items-baseline gap-2">
-              <span class="text-5xl font-bold gradient-text font-heading" data-counter="50" data-suffix="+">0+</span>
+              <span class="text-6xl lg:text-7xl font-bold gradient-text font-heading">{c.stat.value}</span>
             </div>
-            <span class="text-base-300 text-sm mt-1 block">{locale === 'ro' ? 'Clienți mulțumiți' : 'Happy clients'}</span>
+            <span class="text-base-300 text-sm mt-2 block">{c.stat.label}</span>
+          </div>
+          <div class="relative z-10 mt-12 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-electric-400"></div>
+              <span class="text-white text-sm">{locale === 'ro' ? 'Un singur punct de contact' : 'Single point of contact'}</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+              <span class="text-white text-sm">{locale === 'ro' ? 'Cod curat, arhitectură solidă' : 'Clean code, solid architecture'}</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-electric-400"></div>
+              <span class="text-white text-sm">{locale === 'ro' ? 'Suport continuu post-lansare' : 'Ongoing post-launch support'}</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+              <span class="text-white text-sm">{locale === 'ro' ? 'Zero overhead, rezultate maxime' : 'Zero overhead, maximum results'}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-  // Counter
-  document.querySelectorAll('[data-counter]').forEach((el) => {
-    const target = parseFloat((el as HTMLElement).dataset.counter || '0');
-    const suffix = (el as HTMLElement).dataset.suffix || '';
-    ScrollTrigger.create({
-      trigger: el, start: 'top 85%', once: true,
-      onEnter: () => {
-        const start = performance.now();
-        function update(now: number) {
-          const p = Math.min((now - start) / 4000, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          (el as HTMLElement).textContent = Math.ceil(target * eased) + suffix;
-          if (p < 1) requestAnimationFrame(update);
-        }
-        requestAnimationFrame(update);
-      }
-    });
-  });
-</script>
