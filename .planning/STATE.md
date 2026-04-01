@@ -9,11 +9,11 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 
 ## Current Position
 
-Milestone: v1.0 MVP — SHIPPED 2026-03-22
-Status: All 4 phases, 15 plans complete and archived
-Last activity: 2026-03-22 — v1.0 milestone completion
+Milestone: v1.1 SEO Fixes — In Progress
+Status: Phase 8 (Sitemap & i18n) — Plan 02 complete
+Last activity: 2026-04-01 — 08-02 language-aware 404 page
 
-Progress: [██████████] 100% v1.0 complete
+Progress: v1.1 in progress
 
 ## Performance Metrics
 
@@ -36,6 +36,8 @@ Progress: [██████████] 100% v1.0 complete
 ### Decisions
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table.
+- [08-02] Removed prerender=true on 404.astro to enable SSR locale detection via Cloudflare Workers
+- [08-02] Reused getLocaleFromUrl utility for 404 page locale detection
 
 ### Pending Todos
 
@@ -48,7 +50,7 @@ None — v1.0 milestone complete. Start next milestone with `/gsd:new-milestone`
 
 ## Session Continuity
 
-Last session: 2026-03-22
-Stopped at: v1.0 milestone archived and tagged
-Resume signal: `/gsd:new-milestone` to start next cycle
+Last session: 2026-04-01
+Stopped at: Completed 08-02-PLAN.md (language-aware 404)
+Resume signal: Continue v1.1 phase execution
 Resume file: .planning/ROADMAP.md
