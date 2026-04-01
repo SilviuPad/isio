@@ -20,6 +20,7 @@ export const slugMap: Record<string, Record<Locale, string>> = {
   pricing:        { ro: '/pret/',                         en: '/en/pricing/' },
   about:          { ro: '/despre/',                       en: '/en/about/' },
   contact:        { ro: '/contact/',                      en: '/en/contact/' },
+  privacy:        { ro: '/politica-confidentialitate/',   en: '/en/privacy-policy/' },
 };
 
 /**

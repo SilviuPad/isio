@@ -9,13 +9,11 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 
 ## Current Position
 
-Milestone: SEO & AI Readiness
-Phase: 10-ai-search-readiness
-Current Plan: 10-01 complete, 10-02 pending
-Status: Executing phase 10
-Last activity: 2026-04-01 — Phase 10 Plan 01 complete
+Milestone: v1.0 MVP — SHIPPED 2026-03-22
+Status: All 4 phases, 15 plans complete and archived
+Last activity: 2026-03-22 — v1.0 milestone completion
 
-Progress: [█████-----] 50% phase 10 (1/2 plans)
+Progress: [██████████] 100% v1.0 complete
 
 ## Performance Metrics
 
@@ -39,12 +37,9 @@ Progress: [█████-----] 50% phase 10 (1/2 plans)
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table.
 
-- [10-01] Block only CCBot and anthropic-ai; keep all search crawlers allowed for AI search visibility
-- [10-01] Use fixed filename indexnow-key.txt with key value inside
-
 ### Pending Todos
 
-- Execute 10-02 plan (privacy policy pages)
+None — v1.0 milestone complete. Start next milestone with `/gsd:new-milestone`.
 
 ### Blockers/Concerns
 
@@ -54,6 +49,6 @@ All v1.0 decisions logged in PROJECT.md Key Decisions table.
 ## Session Continuity
 
 Last session: 2026-04-01
-Stopped at: Completed 10-01-PLAN.md
-Resume signal: Execute 10-02-PLAN.md
-Resume file: .planning/phases/10-ai-search-readiness/10-02-PLAN.md
+Stopped at: Completed 10-02-PLAN.md (Bilingual GDPR privacy policy)
+Resume signal: Continue with remaining phase 10 plans
+Resume file: .planning/ROADMAP.md

@@ -1,0 +1,137 @@
+---
+export const prerender = true;
+
+import Page from '../../layouts/Page.astro';
+import { slugMap } from '../../i18n/utils';
+import type { Locale } from '../../i18n/utils';
+
+const locale: Locale = 'en';
+const { roSlug, enSlug } = { roSlug: slugMap.privacy.ro, enSlug: slugMap.privacy.en };
+---
+<Page title="Privacy Policy — Isio" description="Isio privacy policy — how we collect, use, and protect your personal data under GDPR." locale={locale} roSlug={roSlug} enSlug={enSlug}>
+  <!-- Hero -->
+  <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+    <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <span class="section-tag" data-animate>Legal</span>
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white mt-4" data-animate>Privacy Policy</h1>
+      <p class="mt-6 text-xl text-base-300 max-w-3xl" data-animate>
+        Last updated: April 1, 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-24">
+      <div class="prose prose-invert prose-base max-w-none space-y-12">
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">1. Who we are</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            Isio is a web development agency based in Iasi, Romania, founded by Silviu Paduraru. We offer web development, web application, SEO, accessibility, and AI agent implementation services.
+          </p>
+          <p class="text-base-300 leading-relaxed mt-3">
+            <strong class="text-white">Contact email:</strong> <a href="mailto:contact@isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">contact@isio.ro</a><br/>
+            <strong class="text-white">Website:</strong> <a href="https://isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">https://isio.ro</a>
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">2. What data we collect</h2>
+          <p class="text-base-300 leading-relaxed mt-4">We only collect data strictly necessary to respond to your inquiries:</p>
+          <ul class="list-disc list-inside text-base-300 mt-3 space-y-2">
+            <li><strong class="text-white">Contact form:</strong> your name, email address, requested service (optional), and your message.</li>
+            <li><strong class="text-white">Call booking:</strong> when you use Cal.com to schedule a discovery call, Cal.com collects your name and email according to their own privacy policy.</li>
+            <li><strong class="text-white">Technical data:</strong> Cloudflare automatically collects your IP address, browser type, and country — data necessary for security and performance (DDoS protection, CDN).</li>
+          </ul>
+          <p class="text-base-300 leading-relaxed mt-3">
+            <strong class="text-white">We do not collect:</strong> We do not use tracking cookies, we do not run Google Analytics, we do not collect browsing data, and we do not create user profiles.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">3. How we use your data</h2>
+          <ul class="list-disc list-inside text-base-300 mt-4 space-y-2">
+            <li>To respond to messages sent through the contact form (within 24 hours).</li>
+            <li>To manage discovery call bookings.</li>
+            <li>To send an automated confirmation email after form submission.</li>
+          </ul>
+          <p class="text-base-300 leading-relaxed mt-3">
+            We do not use your data for marketing, we do not sell it, and we do not share it with third parties beyond those listed below.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">4. Third-party services</h2>
+          <p class="text-base-300 leading-relaxed mt-4">We use the following third-party services to operate this website:</p>
+          <div class="mt-4 space-y-4">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Cloudflare (CDN and security)</p>
+              <p class="text-base-300 text-sm mt-1">Provides fast site delivery and attack protection. Processes your IP address and browser technical data. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Cloudflare Privacy Policy</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Cloudflare Turnstile (CAPTCHA verification)</p>
+              <p class="text-base-300 text-sm mt-1">Verifies that contact form submissions are made by a real person, not a bot. Does not set tracking cookies. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Cloudflare Privacy Policy</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Resend (transactional email)</p>
+              <p class="text-base-300 text-sm mt-1">Sends the confirmation email after contact form submission. Processes your email address and name. <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Resend Privacy Policy</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Cal.com (call scheduling)</p>
+              <p class="text-base-300 text-sm mt-1">Manages discovery call bookings. Collects your name and email when you schedule a call. <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Cal.com Privacy Policy</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Google Fonts (web fonts)</p>
+              <p class="text-base-300 text-sm mt-1">Loads the fonts used on this website. Google may collect your IP address when downloading fonts. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Google Privacy Policy</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">5. Cookies</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            This website does not use its own tracking or analytics cookies. Cloudflare may set strictly necessary technical cookies for security purposes (for example, <code class="text-electric-400 bg-white/5 px-1 rounded">__cfruid</code>). These cookies are essential for site operation and do not require consent under GDPR.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">6. Data retention</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            Contact form messages are stored in our email inbox. We retain them for as long as necessary to respond to your inquiry and for business communication records. Automated confirmation emails are sent once and are not stored.
+          </p>
+          <p class="text-base-300 leading-relaxed mt-3">
+            You can request deletion of your data at any time by emailing <a href="mailto:contact@isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">contact@isio.ro</a>.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">7. Your rights (GDPR)</h2>
+          <p class="text-base-300 leading-relaxed mt-4">Under the General Data Protection Regulation (GDPR), you have the following rights:</p>
+          <ul class="list-disc list-inside text-base-300 mt-3 space-y-2">
+            <li><strong class="text-white">Right of access</strong> — you can request a copy of the data we hold about you.</li>
+            <li><strong class="text-white">Right to rectification</strong> — you can ask us to correct inaccurate data.</li>
+            <li><strong class="text-white">Right to erasure</strong> — you can ask us to delete your data.</li>
+            <li><strong class="text-white">Right to data portability</strong> — you can request your data in a structured format.</li>
+            <li><strong class="text-white">Right to object</strong> — you can object to the processing of your data.</li>
+          </ul>
+          <p class="text-base-300 leading-relaxed mt-3">
+            To exercise any of these rights, send an email to <a href="mailto:contact@isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">contact@isio.ro</a>. We will respond within 30 days.
+          </p>
+          <p class="text-base-300 leading-relaxed mt-3">
+            If you believe your data is not being handled properly, you have the right to lodge a complaint with the <a href="https://www.dataprotection.ro/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Romanian National Supervisory Authority for Personal Data Processing (ANSPDCP)</a>.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">8. Changes to this policy</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            This policy may be updated periodically. Any changes will be published on this page with the updated date. We will not send separate notifications for minor changes.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Page>
