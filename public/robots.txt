@@ -5,4 +5,15 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
+# Block AI training-only crawlers (not search crawlers)
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Sitemap
 Sitemap: https://isio.ro/sitemap-index.xml
+
+# IndexNow
+# Key file: https://isio.ro/indexnow-key.txt
