@@ -98,6 +98,10 @@ Plans:
 - [ ] Consistent hreflang subtags between sitemap and HTML head
 - [ ] x-default hreflang present in sitemap
 - [ ] 404 page renders in correct language based on URL path
+**Plans:** 2 plans
+Plans:
+- [ ] 08-01-PLAN.md — Fix sitemap hreflang, lastmod, x-default, and subtag consistency
+- [ ] 08-02-PLAN.md — Make 404 page language-aware with locale detection from URL
 
 #### Phase 9: SEO Meta & On-Page Optimization
 **Goal:** Improve on-page SEO signals: titles, meta descriptions, heading structure, and homepage optimization.
@@ -147,7 +151,7 @@ Plans:
 | 5. Performance & Security | v1.1 | 0/1 | Planned | |
 | 6. Schema & Structured Data | v1.1 | 0/2 | Planned | |
 | 7. Content Cleanup & Trust | v1.1 | 1/2 | In Progress | |
-| 8. Sitemap & i18n | v1.1 | 0/? | Not Started | |
+| 8. Sitemap & i18n | v1.1 | 0/2 | Planned | |
 | 9. SEO Meta & On-Page | v1.1 | 0/? | Not Started | |
 | 10. AI Search Readiness | v1.1 | 0/? | Not Started | |
 | 11. Content Expansion | v1.1 | 0/? | Not Started | |
