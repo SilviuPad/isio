@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @theme {
   /* Base - dark theme (cards, panels, sections) */
@@ -190,51 +189,6 @@ html.lenis, html.lenis body {
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-}
-
-/* Preloader */
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #0a0a0f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1.5rem;
-  transition: opacity 0.5s ease;
-}
-
-.preloader-logo {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--color-electric-400), var(--color-cyan-400));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.preloader-bar {
-  width: 120px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.preloader-bar-fill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--color-electric-500), var(--color-cyan-400));
-  border-radius: 2px;
-  animation: preloaderFill 1.5s ease-out forwards;
-}
-
-@keyframes preloaderFill {
-  0% { width: 0%; }
-  100% { width: 100%; }
 }
 
 /* Magnetic button */

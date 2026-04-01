@@ -25,6 +25,9 @@ const defaultOgImage = `${baseUrl}/og.png`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap" />
     <SEO
       title={title}
       description={description}
@@ -60,28 +63,7 @@ const defaultOgImage = `${baseUrl}/og.png`;
     )}
   </head>
   <body class="bg-base-950 text-base-100 min-h-screen antialiased">
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-      <img src="/images/logo.svg" alt="Isio" class="preloader-logo h-10 w-auto" />
-      <div class="preloader-bar">
-        <div class="preloader-bar-fill"></div>
-      </div>
-    </div>
     <slot />
-
-    <!-- Preloader (inline, no dependencies — runs immediately) -->
-    <script is:inline>
-      (function() {
-        var preloader = document.getElementById('preloader');
-        function hidePreloader() {
-          if (!preloader) return;
-          preloader.style.opacity = '0';
-          setTimeout(function() { preloader.style.display = 'none'; }, 500);
-        }
-        window.addEventListener('load', function() { setTimeout(hidePreloader, 1600); }, { once: true });
-        setTimeout(hidePreloader, 3500);
-      })();
-    </script>
 
     <!-- Global animations (deferred — breaks the critical chain) -->
     <script>
