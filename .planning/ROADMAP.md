@@ -24,3 +24,4 @@
 | 2. Public Site | v1.0 | 5/5 | Complete | 2026-03-22 |
 | 3. Booking + Contact | v1.0 | 2/2 | Complete | 2026-03-22 |
 | 4. Document Generation | v1.0 | 4/4 | Complete | 2026-03-22 |
+| 9. SEO Meta & On-Page | v1.1 | 1/2 | In Progress | |
