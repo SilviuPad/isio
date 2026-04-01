@@ -115,6 +115,10 @@ Plans:
 - [ ] All service meta descriptions are 120-160 characters
 - [ ] At least 3 question-based H2 headings on homepage
 - [ ] FAQ answers are 100+ words each with "Isio" mentioned
+**Plans:** 2 plans
+Plans:
+- [ ] 09-01-PLAN.md — Homepage titles, question-based H2 headings, FAQ answer expansion
+- [ ] 09-02-PLAN.md — Expand all service page meta descriptions to 120-160 chars
 
 #### Phase 10: AI Search Readiness & Crawlers
 **Goal:** Optimize for AI search engines (GEO) and implement IndexNow for faster indexing.
@@ -152,6 +156,6 @@ Plans:
 | 6. Schema & Structured Data | v1.1 | 0/2 | Planned | |
 | 7. Content Cleanup & Trust | v1.1 | 1/2 | In Progress | |
 | 8. Sitemap & i18n | v1.1 | 0/2 | Planned | |
-| 9. SEO Meta & On-Page | v1.1 | 0/? | Not Started | |
+| 9. SEO Meta & On-Page | v1.1 | 0/2 | Planned | |
 | 10. AI Search Readiness | v1.1 | 0/? | Not Started | |
 | 11. Content Expansion | v1.1 | 0/? | Not Started | |
