@@ -82,7 +82,7 @@ Plans:
 **Plans:** 2 plans
 Plans:
 - [ ] 07-01-PLAN.md — Remove fake blog section, fix stats counters, rename Partners
-- [ ] 07-02-PLAN.md — Fix social links, standardize entity name, create OG image, add footer legal info
+- [x] 07-02-PLAN.md — Fix social links, standardize entity name, create OG image, add footer legal info
 
 #### Phase 8: Sitemap & Internationalization
 **Goal:** Fix sitemap hreflang coverage and resolve i18n inconsistencies for proper multi-language indexing.
@@ -146,7 +146,7 @@ Plans:
 | 4. Document Generation | v1.0 | 4/4 | Complete | 2026-03-22 |
 | 5. Performance & Security | v1.1 | 0/1 | Planned | |
 | 6. Schema & Structured Data | v1.1 | 0/2 | Planned | |
-| 7. Content Cleanup & Trust | v1.1 | 0/2 | Planned | |
+| 7. Content Cleanup & Trust | v1.1 | 1/2 | In Progress | |
 | 8. Sitemap & i18n | v1.1 | 0/? | Not Started | |
 | 9. SEO Meta & On-Page | v1.1 | 0/? | Not Started | |
 | 10. AI Search Readiness | v1.1 | 0/? | Not Started | |
