@@ -16,6 +16,7 @@ const routePairs = [
   ['/servicii/seo/', '/en/services/seo/'],
   ['/servicii/accesibilitate/', '/en/services/accessibility/'],
   ['/servicii/implementare-agenti/', '/en/services/ai-agents/'],
+  ['/politica-confidentialitate/', '/en/privacy-policy/'],
 ];
 
 const baseUrl = 'https://isio.ro';
