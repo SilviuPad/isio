@@ -1,54 +1,68 @@
+---
+gsd_state_version: 1.0
+milestone: v1.1
+milestone_name: SEO Fixes
+status: verifying
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-04-01T18:57:33.510Z"
+last_activity: 2026-04-01
+progress:
+  total_phases: 7
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
+  percent: 0
+---
+
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-22)
+See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** Clients can discover services, understand pricing, and book a discovery call — all self-service — while the solo developer manages everything from a single admin panel.
-**Current focus:** v1.0 shipped — planning next milestone
+**Current focus:** Phase 05 — Performance & Security
 
 ## Current Position
 
-Milestone: v1.0 MVP — SHIPPED 2026-03-22
-Status: All 4 phases, 15 plans complete and archived
-Last activity: 2026-03-22 — v1.0 milestone completion
+Phase: 05 (Performance & Security) — EXECUTING
+Plan: 1 of 1
+Milestone: v1.1 SEO Fixes
+Status: Phase complete — ready for verification
+Last activity: 2026-04-01
 
-Progress: [██████████] 100% v1.0 complete
+Progress: [░░░░░░░░░░] 0% v1.1
 
 ## Performance Metrics
 
-**Velocity:**
+**v1.0 Velocity:**
+
 - Total plans completed: 15
 - Average duration: ~13 min/plan
 - Total execution time: ~3h 18m
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 1. Foundation | 4/4 | ~1h | ~15 min |
-| 2. Public Site | 5/5 | ~1.5h | ~18 min |
-| 3. Booking + Contact | 2/2 | ~30m | ~15 min |
-| 4. Document Generation | 4/4 | ~31m | ~8 min |
 
 ## Accumulated Context
 
 ### Decisions
 
-All v1.0 decisions logged in PROJECT.md Key Decisions table.
+See SEO-AUDIT.md for full issue list and prioritization.
+
+- [Phase 05]: Removed preloader entirely instead of shortening delay -- eliminates LCP bottleneck
+- [Phase 05]: Trimmed font weights to only those used -- Sora 600,700 / Space Grotesk 500,600,700 / Inter 400,500
+- [Phase 05]: CSP requires unsafe-inline and unsafe-eval for Astro inline scripts and GSAP
 
 ### Pending Todos
 
-None — v1.0 milestone complete. Start next milestone with `/gsd:new-milestone`.
+None — executing via autonomous mode.
 
 ### Blockers/Concerns
 
-- [Note] admin/wrangler.toml has placeholder database_id — requires `wrangler d1 create isio-admin` before deployment
-- [Pre-existing] ARM64 Windows build issue — doesn't affect wrangler dev or deployment
+- [Pre-existing] admin/wrangler.toml has placeholder database_id
+- [Pre-existing] ARM64 Windows build issue
 
 ## Session Continuity
 
-Last session: 2026-03-22
-Stopped at: v1.0 milestone archived and tagged
-Resume signal: `/gsd:new-milestone` to start next cycle
-Resume file: .planning/ROADMAP.md
+Last session: 2026-04-01T18:57:33.507Z
+Stopped at: Completed 05-01-PLAN.md
+Resume signal: `/gsd:autonomous --from 5`
+Resume file: None

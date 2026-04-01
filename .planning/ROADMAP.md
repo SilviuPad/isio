@@ -34,7 +34,7 @@
 - [ ] Cache-Control headers configured for /_astro/* and HTML
 **Plans:** 1 plan
 Plans:
-- [ ] 05-01-PLAN.md — Fix font loading, remove preloader, add security/cache headers
+- [x] 05-01-PLAN.md — Fix font loading, remove preloader, add security/cache headers
 
 #### Phase 6: Schema & Structured Data Overhaul
 **Goal:** Fix the schema prop-passing bug and rewrite JsonLd.astro with @graph pattern to enable all structured data types.
