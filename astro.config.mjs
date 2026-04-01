@@ -4,6 +4,32 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 
+const routePairs = [
+  ['/', '/en/'],
+  ['/contact/', '/en/contact/'],
+  ['/despre/', '/en/about/'],
+  ['/portofoliu/', '/en/portfolio/'],
+  ['/pret/', '/en/pricing/'],
+  ['/servicii/', '/en/services/'],
+  ['/servicii/website/', '/en/services/website/'],
+  ['/servicii/aplicatii-web/', '/en/services/web-apps/'],
+  ['/servicii/seo/', '/en/services/seo/'],
+  ['/servicii/accesibilitate/', '/en/services/accessibility/'],
+  ['/servicii/implementare-agenti/', '/en/services/ai-agents/'],
+];
+
+const baseUrl = 'https://isio.ro';
+const hreflangMap = new Map();
+for (const [ro, en] of routePairs) {
+  const links = [
+    { lang: 'ro', url: `${baseUrl}${ro}` },
+    { lang: 'en', url: `${baseUrl}${en}` },
+    { lang: 'x-default', url: `${baseUrl}${ro}` },
+  ];
+  hreflangMap.set(`${baseUrl}${ro}`, links);
+  hreflangMap.set(`${baseUrl}${en}`, links);
+}
+
 export default defineConfig({
   site: 'https://isio.ro',
   output: 'server',
@@ -18,9 +44,13 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      i18n: {
-        defaultLocale: 'ro',
-        locales: { ro: 'ro-RO', en: 'en-US' },
+      lastmod: new Date(),
+      serialize(item) {
+        const links = hreflangMap.get(item.url);
+        if (links) {
+          item.links = links;
+        }
+        return item;
       },
     }),
   ],
