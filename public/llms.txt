@@ -1,0 +1,26 @@
+# Isio
+
+> Isio is a web development agency based in Iasi, Romania, founded by Silviu Paduraru. We build modern websites, web applications, and autonomous AI agents. Solo developer agency — you work directly with the person who writes the code.
+
+## Services
+
+- [Web Development](https://isio.ro/en/services/website/): Modern, fast websites built with Astro and TypeScript. Responsive design, technical SEO, Cloudflare deployment. From EUR 500 (Basic, 5 pages, 14 days) to EUR 2,500 (Premium, unlimited pages, 30 days).
+- [Web Applications](https://isio.ro/en/services/web-apps/): Custom web apps with full-stack TypeScript. Dashboards, SaaS platforms, API integrations. From EUR 1,500 (Basic, 30 days) to EUR 5,000 (Premium, 60 days).
+- [SEO](https://isio.ro/en/services/seo/): Technical SEO audit with 140+ checks, keyword research, on-page optimization, Schema.org structured data, rank monitoring. From EUR 300 (Basic audit, 14 days) to EUR 1,500 (Premium with link building, 30 days).
+- [Accessibility](https://isio.ro/en/services/accessibility/): WCAG 2.1 web accessibility audits — evaluation, detailed priority report, screen reader testing, remediation support. From EUR 500 (Standard) to EUR 1,500 (Premium with ongoing monitoring).
+- [AI Agent Implementation](https://isio.ro/en/services/ai-agents/): Autonomous AI agents that automate SEO, marketing, and customer support. API integration, monitoring dashboards, continuous learning. From EUR 2,000 (Basic, single task) to EUR 10,000 (Premium, multi-agent enterprise system).
+
+## Tech Stack
+
+Astro, TypeScript, Tailwind CSS, Cloudflare Workers, PostgreSQL (Neon), Drizzle ORM, Node.js. AI tooling: Genkit, Gemini, Runware.
+
+## Contact
+
+- Website: https://isio.ro
+- Email: contact@isio.ro
+- Booking: https://cal.eu/isioserv/discovery-call
+- LinkedIn: https://www.linkedin.com/in/silviu-paduraru/
+
+## Location
+
+Iasi, Romania. Remote services worldwide.
