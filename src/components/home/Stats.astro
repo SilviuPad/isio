@@ -35,9 +35,9 @@ const l = labels[locale];
       <div class="col-span-2 lg:col-span-6 glass-card p-10" data-animate>
         <div
           class="text-5xl lg:text-7xl font-bold gradient-text font-heading"
-          data-counter="50"
+          data-counter="6"
           data-suffix="+"
-        >0+</div>
+        >6+</div>
         <span class="text-white font-heading font-semibold text-lg mt-4 block">{l.projects}</span>
         <p class="text-base-300 text-sm mt-2">{l.projectsDesc}</p>
       </div>
@@ -47,7 +47,7 @@ const l = labels[locale];
           class="text-4xl lg:text-5xl font-bold gradient-text font-heading"
           data-counter="7"
           data-suffix="+"
-        >0+</div>
+        >7+</div>
         <span class="text-base-300 text-sm mt-2 block uppercase tracking-wider">{l.experience}</span>
         <p class="text-base-500 text-xs mt-2">{l.experienceDesc}</p>
       </div>
@@ -57,7 +57,7 @@ const l = labels[locale];
           class="text-4xl lg:text-5xl font-bold gradient-text font-heading"
           data-counter="100"
           data-suffix="%"
-        >0%</div>
+        >100%</div>
         <span class="text-base-300 text-sm mt-2 block uppercase tracking-wider">{l.satisfaction}</span>
         <p class="text-base-500 text-xs mt-2">{l.satisfactionDesc}</p>
       </div>
@@ -84,6 +84,7 @@ const l = labels[locale];
       onEnter: () => {
         if (started) return;
         started = true;
+        el.textContent = '0' + suffix; // Reset for animation
         const duration = 4000; // 4 seconds
 
         const startTime = performance.now();
