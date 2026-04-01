@@ -16,25 +16,6 @@
 
 </details>
 
-### Phase 10: AI Search Readiness & Crawlers
-**Goal:** Optimize for AI search engines (GEO), implement IndexNow, block training crawlers, and add GDPR privacy policy
-**Requirements:** [AI-CRAWL-01, AI-CRAWL-02, AI-CRAWL-03, AI-CRAWL-04]
-**Plans:** 2/2 plans complete
-
-Plans:
-- [ ] 10-01-PLAN.md — Create llms.txt, IndexNow key, and block training crawlers in robots.txt
-- [x] 10-02-PLAN.md — Bilingual GDPR privacy policy pages with footer links and hreflang
-
-### Phase 11: Content Expansion
-**Goal:** Expand thin content pages to meet minimum word count thresholds for competitive SEO
-**Requirements:** [CONTENT-01, CONTENT-02, CONTENT-03]
-**Plans:** 3 plans
-
-Plans:
-- [ ] 11-01-PLAN.md — Extend ServiceDetail with prose/FAQ, populate web-development, web-apps, seo content
-- [ ] 11-02-PLAN.md — Populate accessibility and ai-agents service content
-- [ ] 11-03-PLAN.md — Expand about pages (RO + EN) to 500+ words
-
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -43,5 +24,4 @@ Plans:
 | 2. Public Site | v1.0 | 5/5 | Complete | 2026-03-22 |
 | 3. Booking + Contact | v1.0 | 2/2 | Complete | 2026-03-22 |
 | 4. Document Generation | v1.0 | 4/4 | Complete | 2026-03-22 |
-| 10. AI Search Readiness | v1.1 | 1/2 | Complete    | 2026-04-01 |
-| 11. Content Expansion | v1.1 | 0/3 | Planning complete | — |
+| 11. Content Expansion | SEO | 1/3 | In Progress | - |
