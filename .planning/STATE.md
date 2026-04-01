@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: SEO Fixes
-status: executing
-stopped_at: Completed 06-01-PLAN.md
-last_updated: "2026-04-01T19:13:11.601Z"
+status: verifying
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-04-01T19:17:33.779Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 3
-  completed_plans: 2
+  completed_plans: 3
   percent: 0
 ---
 
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 Phase: 06 (Schema & Structured Data) — EXECUTING
 Plan: 2 of 2
 Milestone: v1.1 SEO Fixes
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-01
 
 Progress: [░░░░░░░░░░] 0% v1.1
@@ -52,6 +52,7 @@ See SEO-AUDIT.md for full issue list and prioritization.
 - [Phase 05]: CSP requires unsafe-inline and unsafe-eval for Astro inline scripts and GSAP
 - [Phase 06]: Used single @graph pattern with @id linking instead of multiple @context blocks
 - [Phase 06]: Used og.png raster image for schema logo instead of favicon.svg
+- [Phase 06]: Used title.split for clean serviceName extraction from meta title
 
 ### Pending Todos
 
@@ -64,7 +65,7 @@ None — executing via autonomous mode.
 
 ## Session Continuity
 
-Last session: 2026-04-01T19:13:11.598Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-04-01T19:17:33.776Z
+Stopped at: Completed 06-02-PLAN.md
 Resume signal: `/gsd:autonomous --from 5`
 Resume file: None

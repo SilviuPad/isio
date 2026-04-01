@@ -57,7 +57,7 @@ Plans:
 **Plans:** 2 plans
 Plans:
 - [x] 06-01-PLAN.md — Fix prop-passing bug and rewrite JsonLd.astro with @graph pattern
-- [ ] 06-02-PLAN.md — Update all page files with pageType/serviceName and verify build output
+- [x] 06-02-PLAN.md — Update all page files with pageType/serviceName and verify build output
 
 #### Phase 7: Content Cleanup & Trust Signals
 **Goal:** Remove fake/misleading content and fix trust-damaging elements that hurt E-E-A-T scores.
