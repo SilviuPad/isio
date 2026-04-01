@@ -28,13 +28,13 @@ const { roSlug, enSlug } = { roSlug: slugMap.about.ro, enSlug: slugMap.about.en 
         <div class="glass-card p-8" data-animate>
           <h2 class="text-2xl font-bold font-heading text-white">Developer & Founder</h2>
           <p class="mt-6 text-base-300 leading-relaxed">
-            Isio was founded by <span class="text-electric-400 font-semibold">Silviu Paduraru</span>, a full-stack developer with 7+ years of experience building web products.
-            From accessibility marketplaces to autonomous AI agents, every project is approached with the same
-            attention to technical detail and user experience.
+            Isio was founded by <span class="text-electric-400 font-semibold">Silviu Paduraru</span>, a full-stack developer with 7+ years of experience building web products. I started writing code in 2018, working on projects ranging from landing pages to complex SaaS platforms with thousands of active users.
           </p>
           <p class="mt-4 text-base-300 leading-relaxed">
-            Our philosophy: deliver solutions that run independently, with clean code, exceptional performance,
-            and accessibility from the very first line of code.
+            Throughout my career I have built: web accessibility marketplaces (AudioEye), real-time analytics dashboards, automated PDF document generation systems, bilingual sites optimized for search engines, and autonomous AI agents that manage marketing campaigns without human intervention. Each project reinforced my belief that web solutions must be fast, accessible, and autonomous.
+          </p>
+          <p class="mt-4 text-base-300 leading-relaxed">
+            I founded Isio with a simple premise: a dedicated developer working directly with the client delivers better results than a large team with layers of management. No agency overhead, no intermediary "account managers", no delegation to juniors — you communicate directly with the person writing the code and making the technical decisions.
           </p>
           <a href="https://www.linkedin.com/in/silviu-paduraru/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-electric-400 hover:text-electric-300 transition-colors">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -58,6 +58,53 @@ const { roSlug, enSlug } = { roSlug: slugMap.about.ro, enSlug: slugMap.about.en 
                 <span class="text-sm font-semibold text-base-200">{skill}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="glass-card p-8" data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white mb-6">Methodology</h2>
+          <p class="text-base-300 leading-relaxed">
+            Every project follows a structured four-stage process: <span class="text-white font-semibold">Discovery</span> (requirements analysis, competitor audit, scope definition), <span class="text-white font-semibold">Design</span> (technical architecture, wireframes, prototypes), <span class="text-white font-semibold">Development</span> (iterative code with weekly approval checkpoints), and <span class="text-white font-semibold">Launch</span> (deployment, monitoring, post-launch support).
+          </p>
+          <p class="mt-4 text-base-300 leading-relaxed">
+            I use agile development principles adapted for a solo developer: short 1-2 week iterations, frequent demos, and direct communication without intermediaries. Each stage includes an approval checkpoint — I do not move forward until you are satisfied with the result.
+          </p>
+        </div>
+        <div class="glass-card p-8" data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white mb-6">Tools and technologies</h2>
+          <p class="text-base-300 leading-relaxed">
+            My primary stack includes <span class="text-white font-semibold">Astro</span> and <span class="text-white font-semibold">TypeScript</span> for fast static sites, <span class="text-white font-semibold">React</span> for interactive applications, <span class="text-white font-semibold">PostgreSQL</span> with <span class="text-white font-semibold">Drizzle ORM</span> for type-safe databases, and <span class="text-white font-semibold">Cloudflare Workers</span> for global hosting with sub-50ms latency.
+          </p>
+          <p class="mt-4 text-base-300 leading-relaxed">
+            For SEO I use Google Search Console, Lighthouse, and manual audits of 140+ checks. For accessibility: axe-core, NVDA, VoiceOver, and manual keyboard testing. For AI agents: Genkit with Gemini Flash, cron scheduling, and audit trail systems. I choose tools based on project needs, not trends.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why solo -->
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="glass-card p-8" data-animate>
+        <h2 class="text-2xl font-bold font-heading text-white mb-6">Why a solo developer?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-base-300 leading-relaxed">
+              The traditional agency model involves large teams with specialized roles: project manager, designer, frontend developer, backend developer, QA tester. Each layer adds communication, coordination, and cost. In reality, for a small-to-medium complexity website or web application, a single senior developer who masters the entire stack delivers faster and more consistently than a fragmented team.
+            </p>
+          </div>
+          <div>
+            <p class="text-base-300 leading-relaxed">
+              At Isio, the benefits are concrete: direct communication without intermediaries (you talk to the person writing the code), vision consistency (one person understands the entire project), lower cost (no management overhead), and clear accountability (there is no "it was another department's fault"). For projects that exceed the capacity of a single developer, I collaborate with trusted specialists whom I have personally vetted.
+            </p>
           </div>
         </div>
       </div>
