@@ -57,7 +57,7 @@ const defaultOgImage = `${baseUrl}/og.png`;
         image: ogImage || defaultOgImage,
       }}
     />
-    <JsonLd locale={locale} pageType={pageType} serviceName={serviceName} />
+    <JsonLd locale={locale} pageType={pageType} serviceName={serviceName} title={title} roSlug={roSlug} enSlug={enSlug} />
     {pageType === 'home' && (
       <link rel="preload" href="/images/services/ai-agents.svg" as="image" type="image/svg+xml" />
     )}
