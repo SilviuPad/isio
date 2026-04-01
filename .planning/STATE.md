@@ -9,11 +9,13 @@ See: .planning/PROJECT.md (updated 2026-03-22)
 
 ## Current Position
 
-Milestone: v1.0 MVP — SHIPPED 2026-03-22
-Status: All 4 phases, 15 plans complete and archived
-Last activity: 2026-03-22 — v1.0 milestone completion
+Milestone: SEO Optimization Sprint
+Phase: 11-content-expansion
+Current Plan: 1 of 3
+Status: Executing
+Last activity: 2026-04-01 — Plan 11-01 complete (service content expansion)
 
-Progress: [██████████] 100% v1.0 complete
+Progress: [███-------] 33% Phase 11
 
 ## Performance Metrics
 
@@ -37,9 +39,12 @@ Progress: [██████████] 100% v1.0 complete
 
 All v1.0 decisions logged in PROJECT.md Key Decisions table.
 
+- [11-01] Used native HTML details/summary for FAQ accordion (zero JS, accessible by default)
+- [11-01] Prose paragraphs render before feature checklists to establish context
+
 ### Pending Todos
 
-None — v1.0 milestone complete. Start next milestone with `/gsd:new-milestone`.
+- Complete plans 11-02 and 11-03 for remaining content expansion
 
 ### Blockers/Concerns
 
@@ -48,7 +53,7 @@ None — v1.0 milestone complete. Start next milestone with `/gsd:new-milestone`
 
 ## Session Continuity
 
-Last session: 2026-03-22
-Stopped at: v1.0 milestone archived and tagged
-Resume signal: `/gsd:new-milestone` to start next cycle
-Resume file: .planning/ROADMAP.md
+Last session: 2026-04-01
+Stopped at: Completed 11-01-PLAN.md (service content expansion)
+Resume signal: Continue with 11-02-PLAN.md
+Resume file: .planning/phases/11-content-expansion/11-02-PLAN.md
