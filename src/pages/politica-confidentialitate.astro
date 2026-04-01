@@ -1,0 +1,137 @@
+---
+export const prerender = true;
+
+import Page from '../layouts/Page.astro';
+import { slugMap } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+
+const locale: Locale = 'ro';
+const { roSlug, enSlug } = { roSlug: slugMap.privacy.ro, enSlug: slugMap.privacy.en };
+---
+<Page title="Politica de Confidentialitate — Isio" description="Politica de confidentialitate Isio — cum colectam, folosim si protejam datele tale personale conform GDPR." locale={locale} roSlug={roSlug} enSlug={enSlug}>
+  <!-- Hero -->
+  <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
+    <div class="radial-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <span class="section-tag" data-animate>Legal</span>
+      <h1 class="text-4xl sm:text-5xl font-bold font-heading text-white mt-4" data-animate>Politica de Confidentialitate</h1>
+      <p class="mt-6 text-xl text-base-300 max-w-3xl" data-animate>
+        Ultima actualizare: 1 aprilie 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-base-950">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-24">
+      <div class="prose prose-invert prose-base max-w-none space-y-12">
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">1. Cine suntem</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            Isio este o agentie web cu sediul in Iasi, Romania, fondata de Silviu Paduraru. Oferim servicii de dezvoltare web, aplicatii web, SEO, accesibilitate si implementare agenti AI.
+          </p>
+          <p class="text-base-300 leading-relaxed mt-3">
+            <strong class="text-white">Email de contact:</strong> <a href="mailto:contact@isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">contact@isio.ro</a><br/>
+            <strong class="text-white">Website:</strong> <a href="https://isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">https://isio.ro</a>
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">2. Ce date colectam</h2>
+          <p class="text-base-300 leading-relaxed mt-4">Colectam doar datele strict necesare pentru a raspunde solicitarilor tale:</p>
+          <ul class="list-disc list-inside text-base-300 mt-3 space-y-2">
+            <li><strong class="text-white">Formularul de contact:</strong> nume, adresa de email, serviciul solicitat (optional) si mesajul tau.</li>
+            <li><strong class="text-white">Programare apel:</strong> cand folosesti Cal.com pentru a programa un apel de descoperire, Cal.com colecteaza numele si emailul tau conform propriei lor politici de confidentialitate.</li>
+            <li><strong class="text-white">Date tehnice:</strong> Cloudflare colecteaza automat adresa IP, tipul browserului si tara — date necesare pentru securitate si performanta (protectie DDoS, CDN).</li>
+          </ul>
+          <p class="text-base-300 leading-relaxed mt-3">
+            <strong class="text-white">Nu colectam:</strong> Nu folosim cookie-uri de tracking, nu avem Google Analytics, nu colectam date de navigare si nu cream profile de utilizator.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">3. Cum folosim datele</h2>
+          <ul class="list-disc list-inside text-base-300 mt-4 space-y-2">
+            <li>Raspundem la mesajele trimise prin formularul de contact (in maxim 24 de ore).</li>
+            <li>Gestionam programarile pentru apeluri de descoperire.</li>
+            <li>Trimitem un email de confirmare automata dupa trimiterea formularului.</li>
+          </ul>
+          <p class="text-base-300 leading-relaxed mt-3">
+            Nu folosim datele tale pentru marketing, nu le vindem si nu le partajam cu terte parti in afara celor mentionate mai jos.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">4. Servicii terte</h2>
+          <p class="text-base-300 leading-relaxed mt-4">Folosim urmatoarele servicii terte in operarea site-ului:</p>
+          <div class="mt-4 space-y-4">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Cloudflare (CDN si securitate)</p>
+              <p class="text-base-300 text-sm mt-1">Asigura livrarea rapida a site-ului si protectie impotriva atacurilor. Proceseaza adresa IP si date tehnice ale browserului. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Politica Cloudflare</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Cloudflare Turnstile (verificare CAPTCHA)</p>
+              <p class="text-base-300 text-sm mt-1">Verifica ca trimiterea formularului de contact este facuta de o persoana reala, nu de un bot. Nu plaseaza cookie-uri de tracking. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Politica Cloudflare</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Resend (email tranzactional)</p>
+              <p class="text-base-300 text-sm mt-1">Trimite emailul de confirmare dupa completarea formularului de contact. Proceseaza adresa ta de email si numele. <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Politica Resend</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Cal.com (programare apeluri)</p>
+              <p class="text-base-300 text-sm mt-1">Gestioneaza programarea apelurilor de descoperire. Colecteaza numele si emailul tau cand programezi un apel. <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Politica Cal.com</a></p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-white font-semibold">Google Fonts (fonturi web)</p>
+              <p class="text-base-300 text-sm mt-1">Incarca fonturile utilizate pe site. Google poate colecta adresa IP la descarcarea fonturilor. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Politica Google</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">5. Cookie-uri</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            Acest site nu foloseste cookie-uri proprii de tracking sau analiza. Cloudflare poate seta cookie-uri tehnice strict necesare pentru securitate (de exemplu, <code class="text-electric-400 bg-white/5 px-1 rounded">__cfruid</code>). Aceste cookie-uri sunt esentiale pentru functionarea site-ului si nu necesita consimtamant conform GDPR.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">6. Stocarea datelor</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            Mesajele din formularul de contact sunt stocate in casuta noastra de email. Le pastram cat timp este necesar pentru a raspunde solicitarii tale si pentru evidenta comunicarilor de afaceri. Emailurile de confirmare automata sunt trimise o singura data si nu sunt stocate.
+          </p>
+          <p class="text-base-300 leading-relaxed mt-3">
+            Poti solicita stergerea datelor tale in orice moment prin email la <a href="mailto:contact@isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">contact@isio.ro</a>.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">7. Drepturile tale (GDPR)</h2>
+          <p class="text-base-300 leading-relaxed mt-4">Conform Regulamentului General privind Protectia Datelor (GDPR), ai urmatoarele drepturi:</p>
+          <ul class="list-disc list-inside text-base-300 mt-3 space-y-2">
+            <li><strong class="text-white">Dreptul de acces</strong> — poti solicita o copie a datelor pe care le detinem despre tine.</li>
+            <li><strong class="text-white">Dreptul la rectificare</strong> — poti cere corectarea datelor incorecte.</li>
+            <li><strong class="text-white">Dreptul la stergere</strong> — poti cere stergerea datelor tale.</li>
+            <li><strong class="text-white">Dreptul la portabilitate</strong> — poti solicita datele intr-un format structurat.</li>
+            <li><strong class="text-white">Dreptul la opozitie</strong> — poti te opune prelucrarii datelor tale.</li>
+          </ul>
+          <p class="text-base-300 leading-relaxed mt-3">
+            Pentru a exercita oricare dintre aceste drepturi, trimite un email la <a href="mailto:contact@isio.ro" class="text-electric-400 hover:text-electric-300 transition-colors">contact@isio.ro</a>. Vom raspunde in maxim 30 de zile.
+          </p>
+          <p class="text-base-300 leading-relaxed mt-3">
+            Daca consideri ca datele tale nu sunt tratate corespunzator, ai dreptul sa depui o plangere la <a href="https://www.dataprotection.ro/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:text-electric-300 transition-colors">Autoritatea Nationala de Supraveghere a Prelucrarii Datelor cu Caracter Personal (ANSPDCP)</a>.
+          </p>
+        </div>
+
+        <div data-animate>
+          <h2 class="text-2xl font-bold font-heading text-white">8. Modificari ale politicii</h2>
+          <p class="text-base-300 leading-relaxed mt-4">
+            Aceasta politica poate fi actualizata periodic. Orice modificare va fi publicata pe aceasta pagina cu data actualizarii. Nu vom trimite notificari separate pentru modificari minore.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Page>
