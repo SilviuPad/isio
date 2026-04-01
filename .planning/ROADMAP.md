@@ -16,6 +16,15 @@
 
 </details>
 
+### Phase 10: AI Search Readiness & Crawlers
+**Goal:** Optimize for AI search engines (GEO), implement IndexNow, block training crawlers, and add GDPR privacy policy
+**Requirements:** [AI-CRAWL-01, AI-CRAWL-02, AI-CRAWL-03, AI-CRAWL-04]
+**Plans:** 2 plans
+
+Plans:
+- [ ] 10-01-PLAN.md — Create llms.txt, IndexNow key, and block training crawlers in robots.txt
+- [x] 10-02-PLAN.md — Bilingual GDPR privacy policy pages with footer links and hreflang
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -24,3 +33,4 @@
 | 2. Public Site | v1.0 | 5/5 | Complete | 2026-03-22 |
 | 3. Booking + Contact | v1.0 | 2/2 | Complete | 2026-03-22 |
 | 4. Document Generation | v1.0 | 4/4 | Complete | 2026-03-22 |
+| 10. AI Search Readiness | v1.1 | 1/2 | In Progress | |
