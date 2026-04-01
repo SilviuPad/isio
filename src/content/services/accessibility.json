@@ -4,6 +4,6 @@
   "title": { "ro": "Accesibilitate", "en": "Accessibility" },
   "description": { "ro": "Audituri de accesibilitate web conform WCAG 2.1.", "en": "Web accessibility audits following WCAG 2.1 guidelines." },
   "metaTitle": { "ro": "Accesibilitate — Isio", "en": "Accessibility — Isio" },
-  "metaDescription": { "ro": "Audituri de accesibilitate web.", "en": "Web accessibility audits." },
+  "metaDescription": { "ro": "Audituri de accesibilitate web WCAG 2.1 realizate de Isio — evaluare completă, raport detaliat cu priorități și remedieri concrete pentru conformitate și incluziune.", "en": "WCAG 2.1 web accessibility audits by Isio — complete evaluation, detailed priority report, and concrete remediation steps for compliance and digital inclusion." },
   "order": 4
 }
