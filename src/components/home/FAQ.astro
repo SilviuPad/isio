@@ -5,20 +5,32 @@ const { locale } = Astro.props;
 
 const faqs = [
   {
-    q: { ro: 'Ce include un proiect de dezvoltare web?', en: 'What does a web development project include?' },
-    a: { ro: 'Fiecare proiect include design responsive, optimizare SEO, integrare CMS, deployment pe Cloudflare, certificat SSL, și 30 de zile suport post-lansare. Codul sursă complet este al tău.', en: 'Every project includes responsive design, SEO optimization, CMS integration, Cloudflare deployment, SSL certificate, and 30 days post-launch support. The complete source code is yours.' },
+    q: { ro: 'Ce include un proiect de dezvoltare web cu Isio?', en: 'What does a web development project with Isio include?' },
+    a: {
+      ro: 'Fiecare proiect de dezvoltare web realizat de Isio include un set complet de livrabile: design responsive adaptat tuturor dispozitivelor, optimizare SEO tehnică pentru indexare rapidă în motoarele de căutare, integrare cu un sistem de gestionare a conținutului (CMS) pentru actualizări ușoare, deployment pe infrastructura Cloudflare pentru viteză și securitate globală, certificat SSL inclus, și 30 de zile de suport tehnic post-lansare. Isio livrează codul sursă complet — proiectul este al tău, fără dependență de agenție. Fiecare website este construit cu arhitectură modernă (Astro, TypeScript) și respectă standardele WCAG 2.1 de accesibilitate din prima linie de cod.',
+      en: 'Every web development project delivered by Isio includes a complete set of deliverables: responsive design adapted to all devices, technical SEO optimization for fast search engine indexing, content management system (CMS) integration for easy updates, deployment on Cloudflare infrastructure for global speed and security, included SSL certificate, and 30 days of post-launch technical support. Isio delivers the complete source code — the project is yours, with no agency lock-in. Each website is built with modern architecture (Astro, TypeScript) and follows WCAG 2.1 accessibility standards from the first line of code.',
+    },
   },
   {
-    q: { ro: 'Cât durează un proiect tipic?', en: 'How long does a typical project take?' },
-    a: { ro: 'Website-uri: 14-45 zile. Aplicații web: 30-60 zile. Agenți AI: 21-60 zile. Timelines exacte sunt stabilite după apelul de descoperire, în funcție de complexitate.', en: 'Websites: 14-45 days. Web apps: 30-60 days. AI agents: 21-60 days. Exact timelines are set after the discovery call, depending on complexity.' },
+    q: { ro: 'Cât durează un proiect tipic cu Isio?', en: 'How long does a typical project with Isio take?' },
+    a: {
+      ro: 'Durata unui proiect cu Isio depinde de complexitate și de tipul soluției. Website-urile de prezentare sunt livrate în 14-45 de zile, aplicațiile web personalizate în 30-60 de zile, iar implementările de agenți AI autonomi în 21-60 de zile. Isio stabilește un timeline exact după apelul de descoperire gratuit, în care analizăm cerințele, prioritățile și bugetul tău. Modelul de lucru solo developer al Isio elimină overhead-ul de coordonare — nu există întârzieri cauzate de echipe mari sau procese birocratice. Comunicarea directă cu dezvoltatorul care scrie codul înseamnă decizii rapide și iterații eficiente pe tot parcursul proiectului.',
+      en: 'The duration of a project with Isio depends on complexity and solution type. Presentation websites are delivered in 14-45 days, custom web applications in 30-60 days, and autonomous AI agent implementations in 21-60 days. Isio sets an exact timeline after the free discovery call, where we analyze your requirements, priorities, and budget. Isio operates as a solo developer model that eliminates coordination overhead — there are no delays caused by large teams or bureaucratic processes. Direct communication with the developer writing the code means fast decisions and efficient iterations throughout the entire project.',
+    },
   },
   {
-    q: { ro: 'Ce diferențiază Isio de alte agenții?', en: 'What makes Isio different from other agencies?' },
-    a: { ro: 'Un singur dezvoltator, zero overhead — vorbești direct cu cine scrie codul.', en: 'One developer, zero overhead — you talk directly to the person writing the code.' },
+    q: { ro: 'Ce diferențiază Isio de alte agenții web?', en: 'What makes Isio different from other web agencies?' },
+    a: {
+      ro: 'Isio funcționează ca un solo developer cu peste 7 ani de experiență full-stack, ceea ce înseamnă zero overhead și comunicare directă cu persoana care scrie codul. Spre deosebire de agențiile tradiționale cu echipe fragmentate, la Isio vorbești direct cu dezvoltatorul — nu există manageri de proiect intermediari, nu există pierderi în comunicare. Isio oferă prețuri transparente fără costuri ascunse, livrare rapidă (de la concept la producție în zile, nu luni), și specializare în tehnologii moderne precum Astro, TypeScript și Cloudflare. În plus, Isio este printre puținele agenții din România care oferă implementare de agenți AI autonomi pentru automatizarea proceselor de business.',
+      en: 'Isio operates as a solo developer with over 7 years of full-stack experience, which means zero overhead and direct communication with the person writing the code. Unlike traditional agencies with fragmented teams, at Isio you speak directly with the developer — there are no intermediary project managers, no communication losses. Isio offers transparent pricing with no hidden costs, fast delivery (from concept to production in days, not months), and specialization in modern technologies like Astro, TypeScript, and Cloudflare. Additionally, Isio is among the few agencies in Romania offering autonomous AI agent implementation for business process automation.',
+    },
   },
   {
-    q: { ro: 'Oferiți suport după lansare?', en: 'Do you offer post-launch support?' },
-    a: { ro: 'Da. Fiecare proiect include 30-90 de zile suport post-lansare (în funcție de pachet). După această perioadă, suport continuu este disponibil la cerere.', en: 'Yes. Every project includes 30-90 days post-launch support (depending on the plan). After that, ongoing support is available on demand.' },
+    q: { ro: 'Isio oferă suport după lansarea proiectului?', en: 'Does Isio offer support after project launch?' },
+    a: {
+      ro: 'Da, Isio oferă suport tehnic post-lansare inclus în fiecare proiect. Perioada de suport variază între 30 și 90 de zile, în funcție de pachetul ales. În această perioadă, Isio rezolvă buguri, face ajustări minore de conținut și asigură funcționarea optimă a proiectului. După expirarea perioadei incluse, suportul continuu este disponibil la cerere, cu termeni flexibili adaptați nevoilor tale. Isio monitorizează performanța website-ului (Core Web Vitals, uptime) și poate interveni rapid în caz de probleme tehnice. Toate proiectele Isio sunt construite cu cod curat și documentat, ceea ce face mentenanța pe termen lung simplă și predictibilă.',
+      en: 'Yes, Isio provides post-launch technical support included with every project. The support period ranges from 30 to 90 days, depending on the chosen plan. During this period, Isio fixes bugs, makes minor content adjustments, and ensures optimal project performance. After the included period expires, ongoing support is available on demand, with flexible terms adapted to your needs. Isio monitors website performance (Core Web Vitals, uptime) and can intervene quickly in case of technical issues. All Isio projects are built with clean, documented code, making long-term maintenance simple and predictable.',
+    },
   },
 ];
 ---
@@ -36,7 +48,7 @@ const faqs = [
         <div class="mb-12">
           <span class="section-tag">{locale === 'ro' ? '[ 06 ] întrebări frecvente' : '[ 06 ] faq'}</span>
           <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-heading text-white">
-            {locale === 'ro' ? 'Tot ce trebuie să știi' : 'Everything you need to know'}
+            {locale === 'ro' ? 'Ai întrebări despre colaborarea cu Isio?' : 'Have questions about working with Isio?'}
           </h2>
         </div>
         <div class="space-y-4" id="faq-accordion">
@@ -54,7 +66,7 @@ const faqs = [
                   </svg>
                 </span>
               </button>
-              <div class={`faq-content px-6 overflow-hidden transition-all duration-300 ${i === 0 ? 'max-h-40 pb-5' : 'max-h-0'}`}>
+              <div class={`faq-content px-6 overflow-hidden transition-all duration-300 ${i === 0 ? 'max-h-96 pb-5' : 'max-h-0'}`}>
                 <p class="text-base-300 text-sm leading-relaxed">{faq.a[locale]}</p>
               </div>
             </div>
