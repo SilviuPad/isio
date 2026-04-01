@@ -54,6 +54,10 @@ Plans:
 - [ ] Person schema present on about page
 - [ ] ProfessionalService has email, sameAs, founder fields
 - [ ] Logo references /og.png (raster)
+**Plans:** 2 plans
+Plans:
+- [ ] 06-01-PLAN.md — Fix prop-passing bug and rewrite JsonLd.astro with @graph pattern
+- [ ] 06-02-PLAN.md — Update all page files with pageType/serviceName and verify build output
 
 #### Phase 7: Content Cleanup & Trust Signals
 **Goal:** Remove fake/misleading content and fix trust-damaging elements that hurt E-E-A-T scores.
@@ -137,7 +141,7 @@ Plans:
 | 3. Booking + Contact | v1.0 | 2/2 | Complete | 2026-03-22 |
 | 4. Document Generation | v1.0 | 4/4 | Complete | 2026-03-22 |
 | 5. Performance & Security | v1.1 | 0/1 | Planned | |
-| 6. Schema & Structured Data | v1.1 | 0/? | Not Started | |
+| 6. Schema & Structured Data | v1.1 | 0/2 | Planned | |
 | 7. Content Cleanup & Trust | v1.1 | 0/? | Not Started | |
 | 8. Sitemap & i18n | v1.1 | 0/? | Not Started | |
 | 9. SEO Meta & On-Page | v1.1 | 0/? | Not Started | |
