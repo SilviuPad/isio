@@ -5,70 +5,198 @@ interface Props {
   locale: Locale;
   pageType?: 'home' | 'service' | 'pricing' | 'portfolio' | 'about' | 'contact' | 'default';
   serviceName?: string;
+  title?: string;
+  roSlug?: string;
+  enSlug?: string;
 }
 
-const { locale, pageType = 'default', serviceName } = Astro.props;
+const { locale, pageType = 'default', serviceName, title, roSlug, enSlug } = Astro.props;
+
 const baseUrl = 'https://isio.ro';
+const orgId = `${baseUrl}/#organization`;
+const websiteId = `${baseUrl}/#website`;
+const founderId = `${baseUrl}/#founder`;
+const currentUrl = locale === 'ro' ? `${baseUrl}${roSlug || '/'}` : `${baseUrl}${enSlug || '/en/'}`;
 
-// WebSite schema -- always present
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'ISIO',
-  url: baseUrl,
-  inLanguage: locale === 'ro' ? 'ro-RO' : 'en-US',
-  description: locale === 'ro'
-    ? 'Agenție web specializată în dezvoltare, SEO, accesibilitate și agenți AI.'
-    : 'Web agency specializing in development, SEO, accessibility, and AI agents.',
-};
-
-// LocalBusiness schema -- always present
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
+// === ProfessionalService (Organization) ===
+const orgSchema = {
   '@type': 'ProfessionalService',
-  name: 'ISIO',
+  '@id': orgId,
+  name: 'Isio',
   url: baseUrl,
-  logo: `${baseUrl}/favicon.svg`,
-  description: locale === 'ro'
-    ? 'Agenție web specializată în dezvoltare website-uri, aplicații web, SEO și accesibilitate.'
-    : 'Web agency specializing in website development, web apps, SEO, and accessibility.',
+  logo: {
+    '@type': 'ImageObject',
+    '@id': `${baseUrl}/#logo`,
+    url: `${baseUrl}/og.png`,
+    contentUrl: `${baseUrl}/og.png`,
+    width: 1200,
+    height: 630,
+    caption: 'Isio',
+  },
+  image: { '@id': `${baseUrl}/#logo` },
+  email: 'contact@isio.ro',
+  foundingDate: '2025',
+  founder: { '@id': founderId },
+  sameAs: ['https://www.linkedin.com/in/silviu-paduraru/'],
   address: {
     '@type': 'PostalAddress',
+    addressLocality: 'Iasi',
     addressCountry: 'RO',
   },
   areaServed: [
     { '@type': 'Country', name: 'Romania' },
-    { '@type': 'Country', name: 'Global' },
+    { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 47.16, longitude: 27.59 }, geoRadius: '50000' },
   ],
   knowsLanguage: ['ro', 'en'],
-  priceRange: '€€',
-  serviceType: [
-    'Web Development',
-    'Web Application Development',
-    'Search Engine Optimization',
-    'Web Accessibility Auditing',
-    'AI Agent Implementation',
+  priceRange: '$$',
+  description: locale === 'ro'
+    ? 'Agenție web specializată în dezvoltare, SEO, accesibilitate și agenți AI.'
+    : 'Web agency specializing in development, SEO, accessibility, and AI agents.',
+  serviceType: ['Web Development', 'Web Application Development', 'Search Engine Optimization', 'Web Accessibility Auditing', 'AI Agent Implementation'],
+};
+
+// === WebSite ===
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: baseUrl,
+  name: 'Isio',
+  description: locale === 'ro'
+    ? 'Agenție web specializată în dezvoltare website-uri, aplicații web, SEO și accesibilitate.'
+    : 'Web agency specializing in website development, web apps, SEO, and accessibility.',
+  publisher: { '@id': orgId },
+  inLanguage: locale === 'ro' ? 'ro-RO' : 'en-US',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: { '@type': 'EntryPoint', urlTemplate: `${baseUrl}${locale === 'ro' ? '/servicii/' : '/en/services/'}` },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+// === Person (Founder) ===
+const personSchema = {
+  '@type': 'Person',
+  '@id': founderId,
+  name: 'Silviu Paduraru',
+  jobTitle: locale === 'ro' ? 'Fondator & Dezvoltator Full-Stack' : 'Founder & Full-Stack Developer',
+  url: 'https://www.linkedin.com/in/silviu-paduraru/',
+  sameAs: ['https://www.linkedin.com/in/silviu-paduraru/'],
+  worksFor: { '@id': orgId },
+};
+
+// === BreadcrumbList (non-homepage only) ===
+function buildBreadcrumbs(locale: Locale, roSlug?: string, enSlug?: string, title?: string): any[] | null {
+  const slug = locale === 'ro' ? (roSlug || '/') : (enSlug || '/en/');
+  if (slug === '/' || slug === '/en/') return null;
+
+  const items: any[] = [];
+  const homeName = locale === 'ro' ? 'Acasă' : 'Home';
+  const homeUrl = locale === 'ro' ? baseUrl + '/' : baseUrl + '/en/';
+
+  items.push({ '@type': 'ListItem', position: 1, name: homeName, item: homeUrl });
+
+  const segments = slug.split('/').filter(Boolean);
+  const pathSegments = locale === 'en' ? segments.slice(1) : segments;
+
+  const slugLabels: Record<string, Record<Locale, string>> = {
+    'servicii': { ro: 'Servicii', en: 'Services' },
+    'services': { ro: 'Servicii', en: 'Services' },
+    'portofoliu': { ro: 'Portofoliu', en: 'Portfolio' },
+    'portfolio': { ro: 'Portofoliu', en: 'Portfolio' },
+    'pret': { ro: 'Prețuri', en: 'Pricing' },
+    'pricing': { ro: 'Prețuri', en: 'Pricing' },
+    'despre': { ro: 'Despre', en: 'About' },
+    'about': { ro: 'Despre', en: 'About' },
+    'contact': { ro: 'Contact', en: 'Contact' },
+  };
+
+  let currentPath = locale === 'ro' ? '' : '/en';
+  for (let i = 0; i < pathSegments.length; i++) {
+    currentPath += '/' + pathSegments[i];
+    const isLast = i === pathSegments.length - 1;
+    const label = isLast && title ? title.split(' — ')[0] : (slugLabels[pathSegments[i]]?.[locale] || pathSegments[i]);
+    const crumb: any = { '@type': 'ListItem', position: i + 2, name: label };
+    if (!isLast) crumb.item = baseUrl + currentPath + '/';
+    items.push(crumb);
+  }
+
+  return items;
+}
+
+// === FAQPage (homepage only) ===
+const faqPageSchema = {
+  '@type': 'FAQPage',
+  '@id': `${currentUrl}#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: locale === 'ro' ? 'Ce include un proiect de dezvoltare web?' : 'What does a web development project include?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: locale === 'ro'
+          ? 'Fiecare proiect include design responsive, optimizare SEO, integrare CMS, deployment pe Cloudflare, certificat SSL, și 30 de zile suport post-lansare. Codul sursă complet este al tău.'
+          : 'Every project includes responsive design, SEO optimization, CMS integration, Cloudflare deployment, SSL certificate, and 30 days post-launch support. The complete source code is yours.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: locale === 'ro' ? 'Cât durează un proiect tipic?' : 'How long does a typical project take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: locale === 'ro'
+          ? 'Website-uri: 14-45 zile. Aplicații web: 30-60 zile. Agenți AI: 21-60 zile. Timelines exacte sunt stabilite după apelul de descoperire, în funcție de complexitate.'
+          : 'Websites: 14-45 days. Web apps: 30-60 days. AI agents: 21-60 days. Exact timelines are set after the discovery call, depending on complexity.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: locale === 'ro' ? 'Ce diferențiază Isio de alte agenții?' : 'What makes Isio different from other agencies?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: locale === 'ro'
+          ? 'Un singur dezvoltator, zero overhead — vorbești direct cu cine scrie codul.'
+          : 'One developer, zero overhead — you talk directly to the person writing the code.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: locale === 'ro' ? 'Oferiți suport după lansare?' : 'Do you offer post-launch support?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: locale === 'ro'
+          ? 'Da. Fiecare proiect include 30-90 de zile suport post-lansare (în funcție de pachet). După această perioadă, suport continuu este disponibil la cerere.'
+          : 'Yes. Every project includes 30-90 days post-launch support (depending on the plan). After that, ongoing support is available on demand.',
+      },
+    },
   ],
 };
 
-// Service schema -- only on service pages
+// === Service (service pages only) ===
 const serviceSchema = serviceName ? {
-  '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${currentUrl}#service`,
   name: serviceName,
-  provider: {
-    '@type': 'ProfessionalService',
-    name: 'ISIO',
-    url: baseUrl,
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Romania',
-  },
+  provider: { '@id': orgId },
+  areaServed: { '@type': 'Country', name: 'Romania' },
+  serviceType: serviceName,
 } : null;
 
-const schemas = [websiteSchema, localBusinessSchema, serviceSchema].filter(Boolean);
+// === Assemble @graph ===
+const graph: any[] = [orgSchema, websiteSchema, personSchema];
+
+const breadcrumbs = buildBreadcrumbs(locale, roSlug, enSlug, title);
+if (breadcrumbs) {
+  graph.push({ '@type': 'BreadcrumbList', '@id': `${currentUrl}#breadcrumb`, itemListElement: breadcrumbs });
+}
+
+if (pageType === 'home') {
+  graph.push(faqPageSchema);
+}
+
+if (pageType === 'service' && serviceSchema) {
+  graph.push(serviceSchema);
+}
+
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
-{schemas.map((schema) => (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-))}
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
