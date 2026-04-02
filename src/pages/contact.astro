@@ -171,7 +171,9 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
     });
     Cal("ui", {
       theme: "dark",
-      styles: { branding: { brandColor: "#3b82f6" } },
+      cssVarsPerTheme: {
+        dark: { "cal-brand": "#3b82f6" }
+      },
       hideEventTypeDetails: true
     });
   </script>
