@@ -140,31 +140,31 @@ const l = labels[locale];
 <script>
   async function initHeroEffects() {
     const { gsap } = await import('gsap');
-
-    // === MOUSE-FOLLOWING GLOW ===
     const hero = document.getElementById('hero-section');
+    if (!hero) return;
+
     const mouseGlow = document.getElementById('hero-mouse-glow');
+    let glowRafId: number | null = null;
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let glowX = mouseX;
+    let glowY = mouseY;
 
-    if (hero && mouseGlow) {
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let glowX = mouseX;
-      let glowY = mouseY;
+    function animateGlow() {
+      if (!mouseGlow) return;
+      glowX += (mouseX - glowX) * 0.06;
+      glowY += (mouseY - glowY) * 0.06;
+      mouseGlow.style.left = `${glowX}px`;
+      mouseGlow.style.top = `${glowY}px`;
+      glowRafId = requestAnimationFrame(animateGlow);
+    }
 
+    if (mouseGlow) {
       hero.addEventListener('mousemove', (e: MouseEvent) => {
         const rect = hero.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
       });
-
-      function animateGlow() {
-        glowX += (mouseX - glowX) * 0.06;
-        glowY += (mouseY - glowY) * 0.06;
-        mouseGlow.style.left = `${glowX}px`;
-        mouseGlow.style.top = `${glowY}px`;
-        requestAnimationFrame(animateGlow);
-      }
-      animateGlow();
 
       let idleTimer: ReturnType<typeof setTimeout>;
       hero.addEventListener('mousemove', () => {
@@ -174,14 +174,19 @@ const l = labels[locale];
           gsap.to(mouseGlow, { width: 500, height: 500, duration: 1.5, ease: 'power2.out' });
         }, 200);
       });
+
+      glowRafId = requestAnimationFrame(animateGlow);
     }
 
     // === FREELY FLOATING ORBS ===
+    const orbTweens: gsap.core.Tween[] = [];
     function floatOrb(id: string, xRange: number, yRange: number, duration: number) {
       const el = document.getElementById(id);
       if (!el) return;
-      gsap.to(el, { x: `random(-${xRange}, ${xRange})`, y: `random(-${yRange}, ${yRange})`, duration, ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true });
-      gsap.to(el, { scale: 'random(0.8, 1.2)', duration: duration * 1.3, ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true });
+      orbTweens.push(
+        gsap.to(el, { x: `random(-${xRange}, ${xRange})`, y: `random(-${yRange}, ${yRange})`, duration, ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true }),
+        gsap.to(el, { scale: 'random(0.8, 1.2)', duration: duration * 1.3, ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true })
+      );
     }
     floatOrb('hero-orb-1', 80, 60, 6);
     floatOrb('hero-orb-2', 100, 80, 8);
@@ -189,9 +194,27 @@ const l = labels[locale];
 
     // === SCAN LINE ===
     const scanline = document.getElementById('hero-scanline');
-    if (scanline) {
-      gsap.to(scanline, { top: '110%', duration: 4, ease: 'none', repeat: -1, delay: 2 });
-    }
+    const scanTween = scanline
+      ? gsap.to(scanline, { top: '110%', duration: 4, ease: 'none', repeat: -1, delay: 2 })
+      : null;
+
+    // === PAUSE ALL WHEN HERO IS OFF-SCREEN ===
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (mouseGlow && glowRafId === null) {
+          glowRafId = requestAnimationFrame(animateGlow);
+        }
+        orbTweens.forEach(t => t.play());
+        scanTween?.play();
+      } else {
+        if (glowRafId !== null) {
+          cancelAnimationFrame(glowRafId);
+          glowRafId = null;
+        }
+        orbTweens.forEach(t => t.pause());
+        scanTween?.pause();
+      }
+    }).observe(hero);
   }
 
   initHeroEffects();

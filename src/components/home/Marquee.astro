@@ -41,7 +41,15 @@ const items = [
     display: flex;
     align-items: center;
     white-space: nowrap;
-    will-change: transform;
+    animation: marquee-scroll 35s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
   }
 
   .marquee-item {
@@ -65,33 +73,3 @@ const items = [
     color: rgba(255, 255, 255, 0.9);
   }
 </style>
-
-<script>
-  const track = document.getElementById('marquee-track');
-  if (track) {
-    let currentX = 0;
-    const speed = -0.5; // pixels per frame
-    let velocity = speed;
-
-    function getTotalWidth(): number {
-      return track.scrollWidth / 2;
-    }
-
-    function animateMarquee() {
-      currentX += velocity;
-      const totalWidth = getTotalWidth();
-      if (currentX <= -totalWidth) currentX = 0;
-      track.style.transform = `translateX(${currentX}px)`;
-      requestAnimationFrame(animateMarquee);
-    }
-    animateMarquee();
-
-    // Speed up on scroll
-    let resetTimer: ReturnType<typeof setTimeout>;
-    window.addEventListener('scroll', () => {
-      velocity = speed * 3;
-      clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => { velocity = speed; }, 300);
-    }, { passive: true });
-  }
-</script>
