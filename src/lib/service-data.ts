@@ -71,6 +71,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           { text: { ro: '30 de zile suport post-lansare', en: '30 days post-launch support' } },
         ],
       },
+      {
+        id: 'process',
+        title: { ro: 'Procesul de lucru', en: 'Our workflow' },
+        prose: [
+          {
+            ro: 'Colaborarea cu Isio incepe cu un apel de descoperire gratuit de 30-45 minute, in care discutam obiectivele proiectului, publicul tinta si bugetul disponibil. Dupa apel, primesti o propunere detaliata cu specificatii tehnice, timeline pe etape si pret fix — fara costuri ascunse sau estimari vagi. Odata ce propunerea este acceptata, lucrul incepe imediat cu faza de structurare si wireframing.',
+            en: 'Working with Isio starts with a free 30-45 minute discovery call where we discuss project goals, target audience, and available budget. After the call, you receive a detailed proposal with technical specifications, phased timeline, and fixed price — no hidden costs or vague estimates. Once the proposal is accepted, work begins immediately with the structuring and wireframing phase.',
+          },
+          {
+            ro: 'Pe parcursul dezvoltarii, comunicarea este directa prin email sau WhatsApp — nu exista intermediari sau ticketing systems care sa incetineasca procesul. La fiecare milestone primesti un link de preview live pentru a testa si oferi feedback in timp real. Modificarile sunt implementate in 24-48 de ore, nu in saptamani. Aceasta agilitate este posibila tocmai pentru ca Isio functioneaza ca un solo developer dedicat proiectului tau, fara overhead-ul unei echipe mari.',
+            en: 'Throughout development, communication is direct via email or WhatsApp — there are no intermediaries or ticketing systems to slow down the process. At each milestone you receive a live preview link to test and provide real-time feedback. Changes are implemented within 24-48 hours, not weeks. This agility is possible precisely because Isio operates as a solo developer dedicated to your project, without the overhead of a large team.',
+          },
+          {
+            ro: 'Lansarea include configurare completa: DNS, SSL, redirecturi, Google Search Console, Google Analytics si testare finala pe toate dispozitivele. In primele 30 de zile post-lansare, monitorizez activ Core Web Vitals si rezolv orice problema tehnica fara costuri suplimentare. Obiectivul este ca website-ul tau sa performeze impecabil din prima zi.',
+            en: 'Launch includes complete setup: DNS, SSL, redirects, Google Search Console, Google Analytics, and final testing across all devices. During the first 30 days post-launch, I actively monitor Core Web Vitals and resolve any technical issues at no additional cost. The goal is for your website to perform flawlessly from day one.',
+          },
+        ],
+        items: [],
+      },
     ],
     faq: [
       {
@@ -88,6 +107,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         question: { ro: 'Website-ul va fi optimizat pentru mobil?', en: 'Will the website be mobile-optimized?' },
         answer: { ro: 'Absolut. Dezvoltam mobile-first, ceea ce inseamna ca design-ul este creat intai pentru ecrane mici si apoi adaptat pentru desktop. Testam pe minim 5 browsere (Chrome, Safari, Firefox, Edge, Samsung Internet) si pe dispozitive reale, nu doar in emulator. Toate elementele interactive respecta dimensiunea minima de 48x48px pentru touch targets, conform recomandarilor Google.', en: 'Absolutely. We develop mobile-first, meaning the design is created for small screens first and then adapted for desktop. We test on at least 5 browsers (Chrome, Safari, Firefox, Edge, Samsung Internet) and on real devices, not just emulators. All interactive elements meet the minimum 48x48px size for touch targets, following Google recommendations.' },
+      },
+      {
+        question: { ro: 'Ofer si servicii de redesign pentru website-uri existente?', en: 'Do you offer redesign services for existing websites?' },
+        answer: { ro: 'Da, Isio ofera servicii complete de redesign si migrare pentru website-uri existente. Procesul incepe cu un audit al site-ului actual care evalueaza performanta, SEO-ul, accesibilitatea si experienta utilizatorului. Pastram continutul si URL-urile existente (pentru a nu pierde pozitiile SEO), imbunatatim designul, actualizam stack-ul tehnologic si optimizam viteza de incarcare. Migrarea include redirecturi 301 pentru toate URL-urile modificate si verificarea ca nicio pagina indexata nu returneza erori 404.', en: 'Yes, Isio offers complete redesign and migration services for existing websites. The process begins with an audit of the current site evaluating performance, SEO, accessibility, and user experience. We preserve existing content and URLs (to avoid losing SEO positions), improve the design, update the technology stack, and optimize loading speed. Migration includes 301 redirects for all modified URLs and verification that no indexed page returns 404 errors.' },
       },
     ],
   },
@@ -141,6 +164,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           { text: { ro: '60 de zile suport post-lansare', en: '60 days post-launch support' } },
         ],
       },
+      {
+        id: 'process',
+        title: { ro: 'Procesul de dezvoltare', en: 'Development process' },
+        prose: [
+          {
+            ro: 'Dezvoltarea unei aplicatii web la Isio urmeaza o metodologie structurata care minimizeaza riscul si maximizeaza transparenta. Incepem cu o faza de descoperire extinsa in care analizam fluxurile de lucru existente, identificam bottleneck-urile si definim specificatiile tehnice ale fiecarui modul. Rezultatul este un document de specificatii cu user stories, schema bazei de date si arhitectura API — aprobat de tine inainte de a incepe dezvoltarea.',
+            en: 'Web application development at Isio follows a structured methodology that minimizes risk and maximizes transparency. We start with an extended discovery phase where we analyze existing workflows, identify bottlenecks, and define the technical specifications for each module. The result is a specification document with user stories, database schema, and API architecture — approved by you before development begins.',
+          },
+          {
+            ro: 'Dezvoltarea decurge in sprint-uri de 1-2 saptamani, fiecare sprint avand deliverables demonstrabile. La sfarsitul fiecarui sprint primesti un link de staging unde poti testa noile functionalitati si oferi feedback direct. Aceasta abordare iterativa inseamna ca problemele sunt identificate si rezolvate devreme, nu la sfarsitul proiectului cand costul corectiilor este mult mai mare.',
+            en: 'Development proceeds in 1-2 week sprints, each sprint having demonstrable deliverables. At the end of each sprint you receive a staging link where you can test new features and provide direct feedback. This iterative approach means problems are identified and resolved early, not at the end of the project when correction costs are much higher.',
+          },
+          {
+            ro: 'Fiecare functionalitate este acoperita de teste automate care ruleaza la fiecare commit. Monitorizarea in productie include alerte automate pentru erori, metrici de performanta si backup-uri zilnice ale bazei de date. Suportul de 60 de zile post-lansare acopera atat bug-uri cat si ajustari ale fluxurilor daca utilizatorii raporteaza dificultati.',
+            en: 'Every feature is covered by automated tests that run on each commit. Production monitoring includes automatic error alerts, performance metrics, and daily database backups. The 60-day post-launch support covers both bugs and workflow adjustments if users report difficulties using the application.',
+          },
+        ],
+        items: [],
+      },
     ],
     faq: [
       {
@@ -158,6 +200,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         question: { ro: 'Cat costa dezvoltarea unei aplicatii web?', en: 'How much does web application development cost?' },
         answer: { ro: 'Costul depinde de complexitatea aplicatiei. Un MVP (Minimum Viable Product) cu autentificare, un dashboard si 3-5 functionalitati principale se incadreaza de obicei in pachetul Standard sau Premium de pe pagina de preturi. In faza de descoperire gratuita analizam cerintele si oferim o estimare detaliata pe functionalitati, cu timeline si cost transparent per etapa.', en: 'The cost depends on application complexity. An MVP (Minimum Viable Product) with authentication, a dashboard, and 3-5 core features typically fits within the Standard or Premium package on the pricing page. During the free discovery phase we analyze requirements and provide a detailed estimate by feature, with transparent per-stage timeline and cost.' },
+      },
+      {
+        question: { ro: 'Pot migra o aplicatie existenta la un stack modern?', en: 'Can I migrate an existing application to a modern stack?' },
+        answer: { ro: 'Da, Isio ofera servicii de migrare si modernizare a aplicatiilor web existente. Analizez arhitectura curenta, identific componentele care pot fi reutilizate si propun un plan de migrare graduala care minimizeaza riscul si downtime-ul. Migrarea se face modular — inlocuim componentele una cate una, testam fiecare pas si mentin aplicatia functionala pe tot parcursul procesului. Aceasta abordare este mai sigura decat o rescriere completa si permite lansarea de imbunatatiri vizibile la fiecare sprint.', en: 'Yes, Isio offers migration and modernization services for existing web applications. I analyze the current architecture, identify components that can be reused, and propose a gradual migration plan that minimizes risk and downtime. Migration is done modularly — we replace components one by one, test each step, and keep the application functional throughout the process. This approach is safer than a complete rewrite and allows shipping visible improvements at each sprint.' },
       },
     ],
   },
@@ -210,6 +256,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           { text: { ro: 'Dashboard cu metrici și progres', en: 'Metrics and progress dashboard' } },
           { text: { ro: 'Rapoarte lunare de performanță', en: 'Monthly performance reports' } },
         ],
+      },
+      {
+        id: 'process',
+        title: { ro: 'Cum lucram', en: 'How we work' },
+        prose: [
+          {
+            ro: 'Fiecare proiect SEO la Isio incepe cu un audit tehnic complet care analizeaza peste 140 de factori: viteza de incarcare, structura URL-urilor, crawlabilitate, schema markup, securitate, mobile-friendliness si Core Web Vitals. Auditul genereaza un raport prioritizat cu actiuni concrete, nu doar observatii generice. Pe baza auditului, construim un plan de optimizare pe 3-6 luni cu milestone-uri masurabile lunar.',
+            en: 'Every SEO project at Isio starts with a comprehensive technical audit that analyzes over 140 factors: load speed, URL structure, crawlability, schema markup, security, mobile-friendliness, and Core Web Vitals. The audit generates a prioritized report with concrete actions, not just generic observations. Based on the audit, we build a 3-6 month optimization plan with monthly measurable milestones.',
+          },
+          {
+            ro: 'Implementarea urmeaza o abordare data-driven: fiecare modificare este documentata si efectul ei este masurat prin Google Search Console si Analytics. Rapoartele lunare includ evolutia pozitiilor pentru keyword-urile tinta, traficul organic, rata de click (CTR) si Core Web Vitals. Daca o strategie nu produce rezultate in 60 de zile, o ajustam — nu asteptam luni intregi sperand ca algoritmul se va schimba in favoarea noastra.',
+            en: 'Implementation follows a data-driven approach: every change is documented and its effect is measured through Google Search Console and Analytics. Monthly reports include position evolution for target keywords, organic traffic, click-through rate (CTR), and Core Web Vitals. If a strategy does not produce results within 60 days, we adjust it — we do not wait months hoping the algorithm will change in our favor.',
+          },
+          {
+            ro: 'Isio se concentreaza pe SEO tehnic si on-page deoarece acestea sunt domeniile in care un solo developer cu experienta in cod poate aduce cel mai mare impact. Optimizarile tehnice (viteza, structured data, crawlability) au efect imediat si durabil, spre deosebire de tacticile de link building care pot fi penalizate de Google. Rezultatul: crestere organica sustenabila construita pe fundamente tehnice solide.',
+            en: 'Isio focuses on technical and on-page SEO because these are the areas where a solo developer with coding experience can bring the greatest impact. Technical optimizations (speed, structured data, crawlability) have immediate and lasting effect, unlike link building tactics that can be penalized by Google. The result: sustainable organic growth built on solid technical foundations.',
+          },
+        ],
+        items: [],
       },
     ],
     faq: [
@@ -281,6 +346,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           { text: { ro: 'Re-testare după remediere (pachetele Standard+)', en: 'Re-test after remediation (Standard+ plans)' } },
         ],
       },
+      {
+        id: 'process',
+        title: { ro: 'Procesul de audit', en: 'Audit process' },
+        prose: [
+          {
+            ro: 'Auditul de accesibilitate Isio combina testare automata cu evaluare manuala pentru a identifica barierele reale pe care le intampina utilizatorii cu dizabilitati. Folosim axe-core si Lighthouse pentru scanare automata, dar aceste instrumente detecteaza doar 30-40% din problemele reale. De aceea, fiecare audit include testare manuala cu screen reader (NVDA si VoiceOver), navigare exclusiv cu tastatura si verificarea contrastului de culori in toate starile interactive.',
+            en: 'The Isio accessibility audit combines automated testing with manual evaluation to identify real barriers that users with disabilities encounter. We use axe-core and Lighthouse for automated scanning, but these tools detect only 30-40% of real issues. That is why every audit includes manual testing with screen readers (NVDA and VoiceOver), keyboard-only navigation, and color contrast verification across all interactive states.',
+          },
+          {
+            ro: 'Raportul de audit clasifica fiecare problema dupa severitate (critica, majora, minora) si include capturi de ecran, locatia exacta in cod si solutia recomandata cu exemplu de implementare. Problemele critice sunt cele care impiedica complet accesul — de exemplu, formulare fara etichete, imagini fara text alternativ sau navigatie imposibila cu tastatura. Pachetele Standard si Premium includ si implementarea remedierii, nu doar raportarea.',
+            en: 'The audit report classifies each issue by severity (critical, major, minor) and includes screenshots, exact location in code, and the recommended solution with implementation example. Critical issues are those that completely prevent access — for example, forms without labels, images without alternative text, or impossible keyboard navigation. Standard and Premium plans include remediation implementation, not just reporting.',
+          },
+          {
+            ro: 'Dupa remediere, re-testam fiecare problema rezolvata si emitem un certificat de conformitate WCAG 2.1 care poate fi prezentat clientilor, partenerilor sau autoritatilor de reglementare. Isio ofera si training pentru echipa ta de dezvoltare (1-2 ore) cu ghiduri practice de codare accesibila, astfel incat problemele sa nu reapara in viitoarele actualizari ale site-ului.',
+            en: 'After remediation, we re-test every resolved issue and issue a WCAG 2.1 compliance certificate that can be presented to clients, partners, or regulatory authorities. Isio also offers training for your development team (1-2 hours) with practical accessible coding guides, so that issues do not reappear in future site updates.',
+          },
+        ],
+        items: [],
+      },
     ],
     faq: [
       {
@@ -350,6 +434,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           { text: { ro: 'Training operare și monitorizare', en: 'Operation and monitoring training' } },
           { text: { ro: '90 de zile suport și optimizare post-lansare', en: '90 days post-launch support and optimization' } },
         ],
+      },
+      {
+        id: 'process',
+        title: { ro: 'Procesul de implementare', en: 'Implementation process' },
+        prose: [
+          {
+            ro: 'Implementarea unui agent AI la Isio incepe cu o faza de analiza in care cartografiem procesele de business existente si identificam sarcinile repetitive cu cel mai mare potential de automatizare. Calculam ROI-ul estimat pentru fiecare sarcina automatizata — de exemplu, daca un angajat petrece 2 ore pe zi pe procesarea email-urilor, un agent AI poate reduce acest timp la 15 minute, economisind peste 400 de ore pe an.',
+            en: 'AI agent implementation at Isio begins with an analysis phase where we map existing business processes and identify repetitive tasks with the highest automation potential. We calculate the estimated ROI for each automated task — for example, if an employee spends 2 hours per day on email processing, an AI agent can reduce this to 15 minutes, saving over 400 hours per year.',
+          },
+          {
+            ro: 'Agentii AI sunt construiti cu Google Gemini prin intermediul framework-ului Genkit, care ofera flow-uri structurate, gestionarea prompt-urilor si tracing pentru depanare. Fiecare agent opereaza in limite strict definite — are acces doar la datele si actiunile necesare sarcinii sale, cu hard limits pe buget si frecventa de executie. Implementam logging detaliat pentru fiecare decizie luata de agent, astfel incat sa poti audita exact ce a facut si de ce.',
+            en: 'AI agents are built with Google Gemini through the Genkit framework, which provides structured flows, prompt management, and tracing for debugging. Each agent operates within strictly defined boundaries — it has access only to the data and actions needed for its task, with hard limits on budget and execution frequency. We implement detailed logging for every decision the agent makes, so you can audit exactly what it did and why.',
+          },
+          {
+            ro: 'Lansarea se face in etape: mai intai agentul ruleaza in mod de observare (primeste sarcini dar nu executa actiuni), apoi in mod asistat (propune actiuni dar asteapta aprobarea ta), si in final in mod autonom (executa independent cu raportare zilnica). Aceasta abordare graduala elimina riscul de erori costisitoare si construieste incredere in sistem. Suportul de 90 de zile include optimizarea prompt-urilor, ajustarea pragurilor de decizie si extinderea capabilitatilor pe masura ce te familiarizezi cu potentialul agentului.',
+            en: 'Launch happens in stages: first the agent runs in observation mode (receives tasks but does not execute actions), then in assisted mode (proposes actions but waits for your approval), and finally in autonomous mode (executes independently with daily reporting). This gradual approach eliminates the risk of costly errors and builds trust in the system. The 90-day support includes prompt optimization, decision threshold adjustment, and capability expansion as you become familiar with the agent potential.',
+          },
+        ],
+        items: [],
       },
     ],
     faq: [
