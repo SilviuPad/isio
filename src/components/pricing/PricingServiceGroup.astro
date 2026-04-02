@@ -27,7 +27,7 @@ interface Props {
 
 const { serviceKey, serviceName, tiers, locale } = Astro.props;
 
-const ctaHref = localePath('contact', locale);
+const contactPath = localePath('contact', locale);
 ---
 
 <div class="mb-20" data-animate>
@@ -44,7 +44,7 @@ const ctaHref = localePath('contact', locale);
         description={localize(tier.description, locale)}
         features={tier.features.map((f) => ({ text: localize(f, locale), included: f.included }))}
         locale={locale}
-        ctaHref={ctaHref}
+        ctaHref={`${contactPath}?service=${serviceKey}&package=${encodeURIComponent(localize(tier.name, locale))}`}
       />
     ))}
     <!-- Custom / Enquire card -->
@@ -59,7 +59,7 @@ const ctaHref = localePath('contact', locale);
           : 'Have specific requirements? Contact us for a custom quote.'}
       </p>
       <a
-        href={ctaHref}
+        href={`${contactPath}?service=${serviceKey}`}
         class="btn-outline mt-6 inline-flex items-center gap-2 group text-sm"
       >
         {locale === 'ro' ? 'Cere ofertă' : 'Enquire'}

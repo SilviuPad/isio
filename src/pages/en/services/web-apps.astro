@@ -13,7 +13,7 @@ const slugMapKey = 'webApps';
 const { roSlug, enSlug } = { roSlug: slugMap[slugMapKey].ro, enSlug: slugMap[slugMapKey].en };
 
 const service = await getServiceByKey(serviceKey);
-const title = service ? localize(service.metaTitle, locale) : 'Web Applications — Isio';
+const title = service ? localize(service.metaTitle, locale) : 'Web Applications — ISIO';
 const description = service ? localize(service.metaDescription, locale) : '';
 const serviceLabel = title.split(' — ')[0];
 ---

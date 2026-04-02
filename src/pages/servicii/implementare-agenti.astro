@@ -13,7 +13,7 @@ const slugMapKey = 'aiAgents';
 const { roSlug, enSlug } = { roSlug: slugMap[slugMapKey].ro, enSlug: slugMap[slugMapKey].en };
 
 const service = await getServiceByKey(serviceKey);
-const title = service ? localize(service.metaTitle, locale) : 'Implementare Agenți AI — Isio';
+const title = service ? localize(service.metaTitle, locale) : 'Implementare Agenți AI — ISIO';
 const description = service ? localize(service.metaDescription, locale) : '';
 const serviceLabel = title.split(' — ')[0];
 ---

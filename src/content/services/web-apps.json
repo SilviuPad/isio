@@ -3,7 +3,7 @@
   "slug": { "ro": "aplicatii-web", "en": "web-apps" },
   "title": { "ro": "Aplicații Web", "en": "Web Applications" },
   "description": { "ro": "Aplicații web personalizate cu funcționalități complexe.", "en": "Custom web applications with complex functionality." },
-  "metaTitle": { "ro": "Aplicații Web — Isio", "en": "Web Applications — Isio" },
-  "metaDescription": { "ro": "Aplicații web personalizate dezvoltate de Isio cu TypeScript full-stack — dashboard-uri, platforme SaaS și integrări API. De la concept la producție în 30-60 zile.", "en": "Custom web applications built by Isio with full-stack TypeScript — dashboards, SaaS platforms, and API integrations. From concept to production in 30-60 days." },
+  "metaTitle": { "ro": "Aplicații Web — ISIO", "en": "Web Applications — ISIO" },
+  "metaDescription": { "ro": "Aplicații web personalizate dezvoltate de ISIO cu TypeScript full-stack — dashboard-uri, platforme SaaS și integrări API. De la concept la producție în 30-60 zile.", "en": "Custom web applications built by ISIO with full-stack TypeScript — dashboards, SaaS platforms, and API integrations. From concept to production in 30-60 days." },
   "order": 2
 }

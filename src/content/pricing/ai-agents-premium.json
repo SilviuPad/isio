@@ -15,6 +15,7 @@
     { "ro": "Fluxuri de lucru multi-sarcină", "en": "Multi-task workflows", "included": true },
     { "ro": "Dashboard de monitorizare", "en": "Dashboard monitoring", "included": true },
     { "ro": "Antrenament personalizat", "en": "Custom training", "included": true },
-    { "ro": "Învățare continuă", "en": "Continuous learning", "included": true }
+    { "ro": "Învățare continuă", "en": "Continuous learning", "included": true },
+    { "ro": "Management lunar (hosting + monitorizare)", "en": "Monthly management (hosting + monitoring)", "included": true }
   ]
 }

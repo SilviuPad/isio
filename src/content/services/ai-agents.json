@@ -3,7 +3,7 @@
   "slug": { "ro": "implementare-agenti", "en": "ai-agents" },
   "title": { "ro": "Implementare Agenți AI", "en": "AI Agent Implementation" },
   "description": { "ro": "Agenți AI autonomi care automatizează procese de business — SEO, marketing, suport clienți.", "en": "Autonomous AI agents that automate business processes — SEO, marketing, customer support." },
-  "metaTitle": { "ro": "Implementare Agenți AI — Isio", "en": "AI Agent Implementation — Isio" },
-  "metaDescription": { "ro": "Isio implementează agenți AI autonomi care automatizează SEO, marketing și suport clienți — integrare cu API-uri existente, dashboard de control, deployment cloud.", "en": "Isio implements autonomous AI agents that automate SEO, marketing, and customer support — integration with existing APIs, control dashboard, and cloud deployment." },
+  "metaTitle": { "ro": "Implementare Agenți AI — ISIO", "en": "AI Agent Implementation — ISIO" },
+  "metaDescription": { "ro": "ISIO implementează agenți AI autonomi care automatizează SEO, marketing și suport clienți — integrare cu API-uri existente, dashboard de control, deployment cloud.", "en": "ISIO implements autonomous AI agents that automate SEO, marketing, and customer support — integration with existing APIs, control dashboard, and cloud deployment." },
   "order": 5
 }

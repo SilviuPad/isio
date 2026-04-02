@@ -21,7 +21,7 @@ const labels: Record<Locale, {
     titleStart: 'Construim potențialul ',
     titleHighlight: 'experiențelor digitale ',
     titleEnd: 'autonome',
-    subtitle: 'Evidențiem beneficiile potențiale ale soluțiilor autonome — execuție rapidă, performanță maximă și automatizare completă.',
+    subtitle: 'Construim website-uri performante, aplicații web și automatizări AI. Zero overhead, comunicare directă, livrare rapidă.',
     ctaDiscover: 'Descoperă',
     bannerSubtitle: 'Ridică-ți afacerea cu soluțiile noastre inovatoare',
     bannerTagline: 'Soluții creative pentru afacerea ta',
@@ -30,7 +30,7 @@ const labels: Record<Locale, {
     titleStart: 'Unlocking the potential of ',
     titleHighlight: 'autonomous digital ',
     titleEnd: 'experiences',
-    subtitle: 'Highlight the potential benefits of autonomous solutions — lightning execution, maximum performance, and complete automation.',
+    subtitle: 'We build high-performance websites, web apps, and AI automations. Zero overhead, direct communication, fast delivery.',
     ctaDiscover: 'Discover',
     bannerSubtitle: 'Elevate your business with our innovative solutions',
     bannerTagline: 'Creative solutions for your business',
@@ -79,10 +79,10 @@ const l = labels[locale];
           </p>
           <a
             href={localePath('services', locale)}
-            class="btn-glow magnetic-btn text-base inline-flex items-center gap-2 mt-8 shrink-0"
+            class="btn-glow magnetic-btn text-base inline-flex items-center gap-2 mt-8 shrink-0 group"
           >
             {l.ctaDiscover}
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>
           </a>
@@ -124,12 +124,12 @@ const l = labels[locale];
 
           <p class="text-base-300 text-sm max-w-lg leading-relaxed">
             {locale === 'ro'
-              ? 'Agenție web fondată pe principiul că tehnologia trebuie să fie rapidă, accesibilă și autonomă. Un singur dezvoltator, zero overhead — vorbești direct cu cine scrie codul.'
-              : 'Web agency built on the principle that technology should be fast, accessible, and autonomous. One developer, zero overhead — you talk directly to whoever writes the code.'}
+              ? 'Agenție web fondată pe principiul că tehnologia trebuie să fie rapidă, accesibilă și autonomă. Zero overhead — vorbești direct cu cine scrie codul.'
+              : 'Web agency built on the principle that technology should be fast, accessible, and autonomous. Zero overhead — you talk directly to the people writing the code.'}
           </p>
 
           <!-- Large ISIO logo touching bottom -->
-          <img src="/images/logo.svg" alt="Isio" class="h-[5rem] sm:h-[7rem] lg:h-[10rem] w-auto" width="224" height="80" style="margin-bottom: -0.08em;" />
+          <img src="/images/logo.svg" alt="ISIO" class="h-[5rem] sm:h-[7rem] lg:h-[10rem] w-auto" width="224" height="80" style="margin-bottom: -0.08em;" />
         </div>
       </div>
     </div>

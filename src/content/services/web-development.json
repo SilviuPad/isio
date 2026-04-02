@@ -3,7 +3,7 @@
   "slug": { "ro": "dezvoltare-web", "en": "web-development" },
   "title": { "ro": "Dezvoltare Web", "en": "Web Development" },
   "description": { "ro": "Website-uri moderne, rapide și optimizate pentru motoarele de căutare.", "en": "Modern, fast websites optimized for search engines." },
-  "metaTitle": { "ro": "Dezvoltare Web — Isio", "en": "Web Development — Isio" },
-  "metaDescription": { "ro": "Isio creează website-uri moderne cu Astro și TypeScript — design responsive, SEO tehnic, deployment Cloudflare și suport 30 zile inclus. Livrare în 14-45 zile.", "en": "Isio builds modern websites with Astro and TypeScript — responsive design, technical SEO, Cloudflare deployment, and 30-day support included. Delivery in 14-45 days." },
+  "metaTitle": { "ro": "Dezvoltare Web — ISIO", "en": "Web Development — ISIO" },
+  "metaDescription": { "ro": "ISIO creează website-uri moderne cu Astro și TypeScript — design responsive, SEO tehnic, deployment Cloudflare și suport 30 zile inclus. Livrare în 14-45 zile.", "en": "ISIO builds modern websites with Astro and TypeScript — responsive design, technical SEO, Cloudflare deployment, and 30-day support included. Delivery in 14-45 days." },
   "order": 1
 }

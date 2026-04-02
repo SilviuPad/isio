@@ -8,7 +8,7 @@ import type { Locale } from '../i18n/utils';
 const locale: Locale = 'ro';
 const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact.en };
 ---
-<Page title="Contact — Isio" description="Contactează-ne pentru a discuta proiectul tău. Programează un apel de descoperire gratuit." locale={locale} roSlug={roSlug} enSlug={enSlug} pageType="contact">
+<Page title="Contact — ISIO" description="Contactează-ne pentru a discuta proiectul tău. Programează un apel de descoperire gratuit." locale={locale} roSlug={roSlug} enSlug={enSlug} pageType="contact">
   <!-- Hero -->
   <section class="bg-base-950 dot-mesh py-24 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -204,6 +204,23 @@ const { roSlug, enSlug } = { roSlug: slugMap.contact.ro, enSlug: slugMap.contact
       };
 
       var t = strings[locale] || strings.ro;
+
+      // Pre-fill from pricing page query params
+      var params = new URLSearchParams(window.location.search);
+      var paramService = params.get('service');
+      var paramPackage = params.get('package');
+      if (paramService) {
+        var serviceSelect = form.querySelector('[name="service"]');
+        if (serviceSelect) serviceSelect.value = paramService;
+      }
+      if (paramPackage) {
+        var msgField = form.querySelector('[name="message"]');
+        if (msgField && !msgField.value) {
+          msgField.value = locale === 'ro'
+            ? 'Sunt interesat de pachetul ' + paramPackage + '.'
+            : "I'm interested in the " + paramPackage + ' package.';
+        }
+      }
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();

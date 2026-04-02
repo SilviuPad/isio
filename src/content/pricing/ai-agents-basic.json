@@ -13,6 +13,7 @@
     { "ro": "Integrare API", "en": "API integration", "included": true },
     { "ro": "Monitorizare de bază", "en": "Basic monitoring", "included": true },
     { "ro": "Orchestrare multi-agent", "en": "Multi-agent orchestration", "included": false },
-    { "ro": "Antrenament personalizat", "en": "Custom training", "included": false }
+    { "ro": "Antrenament personalizat", "en": "Custom training", "included": false },
+    { "ro": "Management lunar (hosting + monitorizare)", "en": "Monthly management (hosting + monitoring)", "included": false }
   ]
 }

@@ -22,7 +22,7 @@ const currentUrl = locale === 'ro' ? `${baseUrl}${roSlug || '/'}` : `${baseUrl}$
 const orgSchema = {
   '@type': 'ProfessionalService',
   '@id': orgId,
-  name: 'Isio',
+  name: 'ISIO',
   url: baseUrl,
   logo: {
     '@type': 'ImageObject',
@@ -31,7 +31,7 @@ const orgSchema = {
     contentUrl: `${baseUrl}/og.png`,
     width: 1200,
     height: 630,
-    caption: 'Isio',
+    caption: 'ISIO',
   },
   image: { '@id': `${baseUrl}/#logo` },
   email: 'contact@isio.ro',
@@ -60,7 +60,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   '@id': websiteId,
   url: baseUrl,
-  name: 'Isio',
+  name: 'ISIO',
   description: locale === 'ro'
     ? 'Agenție web specializată în dezvoltare website-uri, aplicații web, SEO și accesibilitate.'
     : 'Web agency specializing in website development, web apps, SEO, and accessibility.',
@@ -150,12 +150,12 @@ const faqPageSchema = {
     },
     {
       '@type': 'Question',
-      name: locale === 'ro' ? 'Ce diferențiază Isio de alte agenții?' : 'What makes Isio different from other agencies?',
+      name: locale === 'ro' ? 'Ce diferențiază ISIO de alte agenții?' : 'What makes ISIO different from other agencies?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: locale === 'ro'
-          ? 'Un singur dezvoltator, zero overhead — vorbești direct cu cine scrie codul.'
-          : 'One developer, zero overhead — you talk directly to the person writing the code.',
+          ? 'Zero overhead — vorbești direct cu echipa care scrie codul.'
+          : 'Zero overhead — you talk directly to the team writing the code.',
       },
     },
     {

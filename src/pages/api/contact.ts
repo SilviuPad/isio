@@ -101,7 +101,7 @@ export async function POST({ request }: { request: Request }): Promise<Response>
 
   try {
     const { error } = await resend.emails.send({
-      from: 'Isio Contact <onboarding@resend.dev>',
+      from: 'ISIO Contact <onboarding@resend.dev>',
       to: contactEmail,
       replyTo: email,
       subject,
@@ -119,8 +119,8 @@ export async function POST({ request }: { request: Request }): Promise<Response>
     // Auto-reply to visitor
     const isRo = body.locale === 'ro';
     const autoReplySubject = isRo
-      ? 'Am primit mesajul tău — Isio'
-      : 'We received your message — Isio';
+      ? 'Am primit mesajul tău — ISIO'
+      : 'We received your message — ISIO';
 
     const autoReplyHtml = `
 <!DOCTYPE html>
@@ -149,7 +149,7 @@ export async function POST({ request }: { request: Request }): Promise<Response>
       </p>
     </div>
     <div style="padding: 0 32px 32px; text-align: center;">
-      <p style="color: #475569; font-size: 12px; margin: 0;">Isio — ${isRo ? 'Servicii web profesionale' : 'Professional web services'}</p>
+      <p style="color: #475569; font-size: 12px; margin: 0;">ISIO — ${isRo ? 'Servicii web profesionale' : 'Professional web services'}</p>
     </div>
   </div>
 </body>
@@ -157,7 +157,7 @@ export async function POST({ request }: { request: Request }): Promise<Response>
     `.trim();
 
     await resend.emails.send({
-      from: 'Isio <onboarding@resend.dev>',
+      from: 'ISIO <onboarding@resend.dev>',
       to: email,
       replyTo: contactEmail,
       subject: autoReplySubject,
