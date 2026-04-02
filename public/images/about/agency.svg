@@ -34,8 +34,8 @@
   <!-- Small decorative circles -->
   <circle cx="380" cy="400" r="8" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.15)" stroke-width="1"/>
   <circle cx="90" cy="200" r="12" fill="rgba(59,130,246,0.06)" stroke="rgba(59,130,246,0.12)" stroke-width="1"/>
-  <!-- Est. 2019 text -->
-  <text x="175" y="480" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.15)">Est. 2019</text>
+  <!-- Est. 2020 text -->
+  <text x="175" y="480" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.15)">Est. 2020</text>
   <!-- Corner brackets -->
   <path d="M40,40 L40,20 L60,20" fill="none" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"/>
   <path d="M440,40 L440,20 L420,20" fill="none" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"/>
