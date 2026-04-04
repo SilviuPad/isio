@@ -65,3 +65,43 @@ const l = labels[locale];
   </div>
 </section>
 
+<script>
+  async function initCounters() {
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]);
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.querySelectorAll('[data-counter]').forEach((counter) => {
+      const el = counter as HTMLElement;
+      const target = parseFloat(el.dataset.counter || '0');
+      const suffix = el.dataset.suffix || '';
+      let started = false;
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          if (started) return;
+          started = true;
+          el.textContent = '0' + suffix;
+          const duration = 4000;
+          const startTime = performance.now();
+
+          function update(currentTime: number) {
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.ceil(target * eased);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        },
+      });
+    });
+  }
+
+  initCounters();
+</script>
