@@ -68,7 +68,7 @@ const defaultOgImage = `${baseUrl}/og.png`;
   <body class="bg-base-950 text-base-100 min-h-screen antialiased">
     <slot />
 
-    <!-- Global animations (deferred — breaks the critical chain) -->
+    <!-- All animations consolidated into single entry point to flatten critical chain -->
     <script>
       async function initAnimations() {
         const [{ default: Lenis }, { gsap }, { ScrollTrigger }] = await Promise.all([
@@ -121,6 +121,105 @@ const defaultOgImage = `${baseUrl}/og.png`;
           });
           el.addEventListener('mouseleave', () => {
             gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+          });
+        });
+
+        // === HERO EFFECTS ===
+        const hero = document.getElementById('hero-section');
+        if (hero) {
+          const mouseGlow = document.getElementById('hero-mouse-glow');
+          let glowRafId: number | null = null;
+          let mouseX = window.innerWidth / 2;
+          let mouseY = window.innerHeight / 2;
+          let glowX = mouseX;
+          let glowY = mouseY;
+
+          function animateGlow() {
+            if (!mouseGlow) return;
+            glowX += (mouseX - glowX) * 0.06;
+            glowY += (mouseY - glowY) * 0.06;
+            mouseGlow.style.left = `${glowX}px`;
+            mouseGlow.style.top = `${glowY}px`;
+            glowRafId = requestAnimationFrame(animateGlow);
+          }
+
+          if (mouseGlow) {
+            hero.addEventListener('mousemove', (e: MouseEvent) => {
+              const rect = hero.getBoundingClientRect();
+              mouseX = e.clientX - rect.left;
+              mouseY = e.clientY - rect.top;
+            });
+
+            let idleTimer: ReturnType<typeof setTimeout>;
+            hero.addEventListener('mousemove', () => {
+              gsap.to(mouseGlow, { width: 700, height: 700, duration: 0.3, ease: 'power2.out' });
+              clearTimeout(idleTimer);
+              idleTimer = setTimeout(() => {
+                gsap.to(mouseGlow, { width: 500, height: 500, duration: 1.5, ease: 'power2.out' });
+              }, 200);
+            });
+
+            glowRafId = requestAnimationFrame(animateGlow);
+          }
+
+          const orbTweens: gsap.core.Tween[] = [];
+          function floatOrb(id: string, xRange: number, yRange: number, duration: number) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            orbTweens.push(
+              gsap.to(el, { x: `random(-${xRange}, ${xRange})`, y: `random(-${yRange}, ${yRange})`, duration, ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true }),
+              gsap.to(el, { scale: 'random(0.8, 1.2)', duration: duration * 1.3, ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true })
+            );
+          }
+          floatOrb('hero-orb-1', 80, 60, 6);
+          floatOrb('hero-orb-2', 100, 80, 8);
+          floatOrb('hero-orb-3', 60, 50, 7);
+
+          const scanline = document.getElementById('hero-scanline');
+          const scanTween = scanline
+            ? gsap.to(scanline, { top: '110%', duration: 4, ease: 'none', repeat: -1, delay: 2 })
+            : null;
+
+          new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+              if (mouseGlow && glowRafId === null) glowRafId = requestAnimationFrame(animateGlow);
+              orbTweens.forEach(t => t.play());
+              scanTween?.play();
+            } else {
+              if (glowRafId !== null) { cancelAnimationFrame(glowRafId); glowRafId = null; }
+              orbTweens.forEach(t => t.pause());
+              scanTween?.pause();
+            }
+          }).observe(hero);
+        }
+
+        // === STATS COUNTERS ===
+        document.querySelectorAll('[data-counter]').forEach((counter) => {
+          const el = counter as HTMLElement;
+          const target = parseFloat(el.dataset.counter || '0');
+          const suffix = el.dataset.suffix || '';
+          let started = false;
+
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            once: true,
+            onEnter: () => {
+              if (started) return;
+              started = true;
+              el.textContent = '0' + suffix;
+              const duration = 4000;
+              const startTime = performance.now();
+
+              function update(currentTime: number) {
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.ceil(target * eased);
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+              }
+              requestAnimationFrame(update);
+            },
           });
         });
       }

@@ -35,6 +35,9 @@ export default defineConfig({
   site: 'https://isio.ro',
   output: 'server',
   adapter: cloudflare({ prerenderEnvironment: 'node' }),
+  build: {
+    inlineStylesheets: 'always',
+  },
   i18n: {
     locales: ['ro', 'en'],
     defaultLocale: 'ro',
