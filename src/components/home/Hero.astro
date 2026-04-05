@@ -16,6 +16,7 @@ const labels: Record<Locale, {
   ctaDiscover: string;
   bannerSubtitle: string;
   bannerTagline: string;
+  qa: { q: string; a: string }[];
 }> = {
   ro: {
     titleStart: 'Construim potențialul ',
@@ -25,6 +26,20 @@ const labels: Record<Locale, {
     ctaDiscover: 'Descoperă',
     bannerSubtitle: 'Ridică-ți afacerea cu soluțiile noastre inovatoare',
     bannerTagline: 'Soluții creative pentru afacerea ta',
+    qa: [
+      {
+        q: 'Cum automatizăm în siguranță?',
+        a: 'Cu audit prealabil, medii de test izolate și posibilitatea de revocare rapidă. Fiecare acțiune critică trece printr-un punct de aprobare umană înainte să ajungă în producție.',
+      },
+      {
+        q: 'Cum măsurăm impactul?',
+        a: 'Definim metrici clare de la început — timp economisit, erori reduse, cost per proces — și raportăm lunar transparent, cu acces direct la logurile și tablourile de bord ale automatizărilor tale.',
+      },
+      {
+        q: 'Cum păstrăm controlul asupra proceselor?',
+        a: 'Jurnale complete, panouri de control și buton de oprire instantanee. Tu rămâi în scaunul șoferului — noi construim și întreținem mașina, tu decizi unde merge.',
+      },
+    ],
   },
   en: {
     titleStart: 'Unlocking the potential of ',
@@ -34,6 +49,20 @@ const labels: Record<Locale, {
     ctaDiscover: 'Discover',
     bannerSubtitle: 'Elevate your business with our innovative solutions',
     bannerTagline: 'Creative solutions for your business',
+    qa: [
+      {
+        q: 'How do we automate safely?',
+        a: 'With upfront audits, isolated test environments, and fast rollback. Every critical action passes through a human approval checkpoint before reaching production.',
+      },
+      {
+        q: 'How do we measure impact?',
+        a: 'We define clear metrics from day one — time saved, errors reduced, cost per process — and report monthly with transparent access to your automation logs and dashboards.',
+      },
+      {
+        q: 'How do we keep process control?',
+        a: 'Full logs, control panels, and an instant kill switch. You stay in the driver\u2019s seat — we build and maintain the car, you decide where it goes.',
+      },
+    ],
   },
 };
 
@@ -122,11 +151,22 @@ const l = labels[locale];
             </a>
           </div>
 
-          <p class="text-base-300 text-sm max-w-lg leading-relaxed">
-            {locale === 'ro'
-              ? 'Agenție web fondată pe principiul că tehnologia trebuie să fie rapidă, accesibilă și autonomă. Zero overhead — vorbești direct cu cine scrie codul.'
-              : 'Web agency built on the principle that technology should be fast, accessible, and autonomous. Zero overhead — you talk directly to the people writing the code.'}
-          </p>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <p class="text-base-300 text-sm max-w-lg leading-relaxed lg:col-span-5">
+              {locale === 'ro'
+                ? 'Agenție web fondată pe principiul că tehnologia trebuie să fie rapidă, accesibilă și autonomă. Zero overhead — vorbești direct cu cine scrie codul.'
+                : 'Web agency built on the principle that technology should be fast, accessible, and autonomous. Zero overhead — you talk directly to the people writing the code.'}
+            </p>
+
+            <dl class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-6">
+              {l.qa.map((item) => (
+                <div class="border-l-2 border-electric-400/40 pl-4">
+                  <dt class="text-white text-sm font-semibold mb-2 leading-snug">{item.q}</dt>
+                  <dd class="text-base-400 text-xs leading-relaxed">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
           <!-- Large ISIO logo touching bottom -->
           <img src="/images/logo.svg" alt="ISIO" class="h-[5rem] sm:h-[7rem] lg:h-[10rem] w-auto" width="224" height="80" style="margin-bottom: -0.08em;" />
